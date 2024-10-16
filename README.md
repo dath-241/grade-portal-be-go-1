@@ -1,1 +1,0 @@
-# grade-portal-be-go-1
