@@ -8,8 +8,4 @@ import (
 
 func AuthRoute(r *gin.RouterGroup) {
 	r.POST("/login", controller_admin.LoginController)
-<<<<<<< HEAD
-
-=======
->>>>>>> d02509ed7fcdab80770194afdfcb89e5f7eae356
 }

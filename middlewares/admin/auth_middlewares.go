@@ -1,6 +1,5 @@
 package middlewares_admin
 
-<<<<<<< HEAD
 import (
 	"LearnGo/helper"
 
@@ -19,8 +18,4 @@ func RequireAuth(c *gin.Context) {
 		return
 	}
 	c.Next()
-=======
-func requireAuth() {
-
->>>>>>> d02509ed7fcdab80770194afdfcb89e5f7eae356
 }
