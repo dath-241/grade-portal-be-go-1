@@ -7,16 +7,17 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type Claims struct {
-	Email                string `json:"email"` // Email được lưu trong token
-	jwt.RegisteredClaims        // Thêm các trường chuẩn như exp, iat
+	ID                   bson.ObjectID `json:"id"` // Email được lưu trong token
+	jwt.RegisteredClaims               // Thêm các trường chuẩn như exp, iat
 }
 
-func CreateJWT(email string) string {
+func CreateJWT(id bson.ObjectID) string {
 	claims := Claims{
-		Email: email, // Sử dụng email ở đây
+		ID: id, // Sử dụng email ở đây
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)), // Hết hạn sau 1 ngày
 		}, // Thời gian hết hạn của token

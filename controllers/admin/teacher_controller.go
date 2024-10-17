@@ -1,8 +1,13 @@
 package controller_admin
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 func CreateTeacher(c *gin.Context) {
+	fmt.Println(c.Get("ID"))
 	c.JSON(200, gin.H{
 		"code": "hello",
 	})

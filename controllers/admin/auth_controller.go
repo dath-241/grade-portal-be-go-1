@@ -31,13 +31,17 @@ func LoginController(c *gin.Context) {
 	// tim kiem nguoi dung da co trong db khong
 	collection := models.AdminModel()
 	var user models.InterfaceAdmin
-	collection.FindOne(
+	err = collection.FindOne(
 		context.TODO(),
 		bson.M{
 			"email": email,
 		},
 	).Decode(&user)
-	token := helper.CreateJWT(email)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "khong lay duoc thong tin nguoi dung trong dữ liệu vui lòng liên hệ admin để thêm bạn vào"})
+		return
+	}
+	token := helper.CreateJWT(user.ID)
 	c.SetCookie("token", token, 3600*24, "/", "", false, true)
 	c.JSON(200, gin.H{
 		"code": "Success",
