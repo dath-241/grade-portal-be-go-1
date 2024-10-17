@@ -47,3 +47,20 @@ func LoginController(c *gin.Context) {
 		"code": "Success",
 	})
 }
+
+func CreateAdminController(c *gin.Context) {
+	var data InterfaceAdmin
+	c.BindJSON(&data)
+	collection := models.AdminModel()
+	createAt, _ := c.Get("ID")
+	collection.InsertOne(context.TODO(), bson.M{
+		"email":    data.Email,
+		"name":     data.Name,
+		"faculty":  data.Faculty,
+		"ms":       data.Ms,
+		"createAt": createAt,
+	})
+	c.JSON(200, gin.H{
+		"code": "vao duoc trang createAdmin",
+	})
+}
