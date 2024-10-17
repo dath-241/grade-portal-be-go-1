@@ -17,5 +17,6 @@ func RequireAuth(c *gin.Context) {
 		c.Abort()
 		return
 	}
+	c.Set("ID", Claims.ID)
 	c.Next()
 }

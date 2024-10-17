@@ -9,10 +9,12 @@ import (
 
 func MainRoute(r *gin.Engine) {
 	prefixAdmin := config.PrefixAdmin()
+	// vo được mà không cần đăng nhập
 	AuthRoute(r.Group(prefixAdmin))
 	// middleware đảm bảo rằng đã đăng nhập trước khi vào web
 	protectedGroup := r.Group(prefixAdmin)
 	protectedGroup.Use(middlewares_admin.RequireAuth)
 	// tạo các group để chạy các api sau khi đã đăng nhập thành công
 	TeacherRoute(protectedGroup.Group("/teacher"))
+	ResultScoreRoute(protectedGroup.Group("/resultScore"))
 }
