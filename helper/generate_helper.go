@@ -14,6 +14,7 @@ type Claims struct {
 	jwt.RegisteredClaims        // Thêm các trường chuẩn như exp, iat
 }
 
+// tao JWT
 func CreateJWT(email string) string {
 	claims := Claims{
 		Email: email, // Sử dụng email ở đây
@@ -32,6 +33,7 @@ func CreateJWT(email string) string {
 	return tokenString
 }
 
+// dich JWT tu token
 func ParseJWT(tokenString string) (*Claims, error) {
 	jwtSecret := os.Getenv("JWT_SECRET") // Lấy secret từ .env
 
