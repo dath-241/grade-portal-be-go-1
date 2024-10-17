@@ -28,7 +28,6 @@ func LoginController(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "khong lay duoc thong tin nguoi dung"})
 		return
 	}
-	fmt.Println(email)
 	// tim kiem nguoi dung da co trong db khong
 	collection := models.AdminModel()
 	var user models.InterfaceAdmin
@@ -38,7 +37,6 @@ func LoginController(c *gin.Context) {
 			"email": email,
 		},
 	).Decode(&user)
-	fmt.Println(user)
 	token := helper.CreateJWT(email)
 	c.SetCookie("token", token, 3600*24, "/", "", false, true)
 	c.JSON(200, gin.H{
