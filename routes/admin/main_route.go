@@ -20,4 +20,5 @@ func MainRoute(r *gin.Engine) {
 	ResultScoreRoute(protectedGroup.Group("/resultScore"))
 	// tthem account vao database
 	AccountRoute(protectedGroup.Group("/account"))
+	ClassRoute(protectedGroup.Group("/class"))
 }
