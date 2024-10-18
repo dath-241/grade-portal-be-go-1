@@ -1,11 +1,7 @@
 package routes_admin
 
-import (
-	controller_admin "LearnGo/controllers/admin"
+import "github.com/gin-gonic/gin"
 
-	"github.com/gin-gonic/gin"
-)
+func StudentRoute(r *gin.RouterGroup) {
 
-func AccountRoute(r *gin.RouterGroup) {
-	r.POST("create", controller_admin.AccountCreate)
 }
