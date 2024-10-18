@@ -1,5 +1,9 @@
 package controller_admin
 
+import (
+	"time"
+)
+
 type AuthController struct {
 	IDToken string `json:"idToken"`
 }
@@ -20,9 +24,27 @@ type InterfaceResultScoreController struct {
 	ClassID string `json:"class_id"`
 }
 
-type InterfaceAdmin struct {
+type InterfaceAdminController struct {
 	Email   string `json:"email"`
 	Name    string `json:"name"`
 	Faculty string `json:"faculty"`
 	Ms      string `json:"ms"`
+}
+
+type InterfaceClassController struct {
+	Semester      string   `json:"semester"`
+	Name          string   `json:"name"` // nhom lop
+	CourseId      string   `json:"course_id"`
+	ListStudentId []string `json:"listStudent_id"`
+	TeacherId     string   `json:"teacher_id"`
+}
+
+type InterfaceUserController struct {
+	Email     string    `json:"email"`
+	Name      string    `json:"name"`
+	Ms        string    `json:"ms"`
+	Faculty   string    `json:"faculty"`
+	Role      string    `json:"role"`
+	CreatedBy any       `json:"createdBy"`
+	ExpiredAt time.Time `json:"expiredAt"`
 }
