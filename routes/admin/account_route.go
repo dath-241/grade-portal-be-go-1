@@ -7,5 +7,5 @@ import (
 )
 
 func AccountRoute(r *gin.RouterGroup) {
-	r.POST("create", controller_admin.AccountCreate)
+	r.POST("/create", controller_admin.AccountCreateController)
 }
