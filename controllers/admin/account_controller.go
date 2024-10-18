@@ -10,17 +10,17 @@ import (
 )
 
 func AccountCreateController(c *gin.Context) {
-	var user []models.InterfaceUser
+	var user []InterfaceUserController
 
 	// Bind JSON từ body của request vào struct
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
 		return
 	}
-
+	createdBy, _ := c.Get("ID")
 	// Gán giá trị cho các trường còn thiếu
 	for i := range user {
-		user[i].CreatedAt = time.Now()
+		user[i].CreatedBy = createdBy
 		user[i].ExpiredAt = time.Now().AddDate(5, 0, 0) // Ví dụ: hết hạn sau 5 năm
 	}
 

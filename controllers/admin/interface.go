@@ -1,5 +1,9 @@
 package controller_admin
 
+import (
+	"time"
+)
+
 type AuthController struct {
 	IDToken string `json:"idToken"`
 }
@@ -33,4 +37,14 @@ type InterfaceClassController struct {
 	CourseId      string   `json:"course_id"`
 	ListStudentId []string `json:"listStudent_id"`
 	TeacherId     string   `json:"teacher_id"`
+}
+
+type InterfaceUserController struct {
+	Email     string    `json:"email"`
+	Name      string    `json:"name"`
+	Ms        string    `json:"ms"`
+	Faculty   string    `json:"faculty"`
+	Role      string    `json:"role"`
+	CreatedBy any       `json:"createdBy"`
+	ExpiredAt time.Time `json:"expiredAt"`
 }
