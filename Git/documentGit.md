@@ -96,11 +96,8 @@ git add .
 git commit -m "Nội dung commit"
 git branch -M "tên nhánh mới"
 git remote add origin url_github
-<<<<<<< HEAD
-git push -u orgin "tên nhánh"
-=======
 git push -u origin "tên nhánh"
->>>>>>> d02509ed7fcdab80770194afdfcb89e5f7eae356
+
 ```
 ## kéo code từ github về máy
 ```bash
