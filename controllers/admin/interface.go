@@ -27,7 +27,7 @@ type InterfaceAdminController struct {
 	Ms      string `json:"ms"`
 }
 
-type InterfaceClass struct {
+type InterfaceClassController struct {
 	Semester      string   `json:"semester"`
 	Name          string   `json:"name"` // nhom lop
 	CourseId      string   `json:"course_id"`

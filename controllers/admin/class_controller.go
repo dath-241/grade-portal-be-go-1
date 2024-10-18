@@ -9,18 +9,19 @@ import (
 )
 
 func CreateClass(c *gin.Context) {
-	var data InterfaceClass
+	var data InterfaceClassController
 
 	c.BindJSON(&data)
 	collection := models.ClassModel()
-	createAt, _ := c.Get("ID")
+	createBy, _ := c.Get("ID")
+
 	collection.InsertOne(context.TODO(), bson.M{
 		"semester":       data.Semester,
 		"name":           data.Name,
 		"course_id":      data.CourseId,
 		"listStudent_id": data.ListStudentId,
 		"teacher_id":     data.TeacherId,
-		"createdBy":      createAt,
+		"createdBy":      createBy,
 	})
 
 	c.JSON(200, gin.H{
