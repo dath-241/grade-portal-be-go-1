@@ -49,7 +49,7 @@ func LoginController(c *gin.Context) {
 }
 
 func CreateAdminController(c *gin.Context) {
-	var data InterfaceAdmin
+	var data InterfaceAdminController
 	c.BindJSON(&data)
 	collection := models.AdminModel()
 	createAt, _ := c.Get("ID")

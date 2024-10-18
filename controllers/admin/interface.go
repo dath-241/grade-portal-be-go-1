@@ -20,7 +20,7 @@ type InterfaceResultScoreController struct {
 	ClassID string `json:"class_id"`
 }
 
-type InterfaceAdmin struct {
+type InterfaceAdminController struct {
 	Email   string `json:"email"`
 	Name    string `json:"name"`
 	Faculty string `json:"faculty"`
