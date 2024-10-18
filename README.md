@@ -51,7 +51,6 @@ docker run -d -p <port_1>:<port_2> --name <name> --env-file <file .env> <user>/<
 |5   | 2210348 | Phùng Xương Cận     | Dev  |
 |6   | 2212918 | Trương Tấn Sang     | Dev  |
 |7   | 2115036 | Trịnh Khải Toàn     | Dev  |
-|8   | -       | -                   | Dev  |
 
 ### Tự đánh giá tiến độ thành viên
 
@@ -64,7 +63,6 @@ docker run -d -p <port_1>:<port_2> --name <name> --env-file <file .env> <user>/<
 |2210348 | Phùng Xương Cận     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
 |2212918 | Trương Tấn Sang     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
 |2115036 | Trịnh Khải Toàn     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|- | -     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
 
 ### Đánh giá của nhóm
 
