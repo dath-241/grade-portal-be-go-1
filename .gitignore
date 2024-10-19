@@ -1,3 +1,4 @@
 .env
 actions-runner/
 note.txt
+tmp/
