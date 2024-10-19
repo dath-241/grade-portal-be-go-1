@@ -48,17 +48,27 @@ func LoginController(c *gin.Context) {
 	})
 }
 
+func LogoutController(c *gin.Context) {
+	c.SetCookie("token", "", -1, "/", "", false, true)
+	c.JSON(200, gin.H{
+		"code":    "Success",
+		"massage": "Đăng xuất thành công",
+	})
+}
+
 func CreateAdminController(c *gin.Context) {
-	var data InterfaceAdminController
-	c.BindJSON(&data)
+	adminData, _ := c.Get("adminData")
+	data := adminData.(InterfaceAdminController)
 	collection := models.AdminModel()
 	createBy, _ := c.Get("ID")
-	email := data.Email
 	var Admin models.InterfaceAdmin
 	err := collection.FindOne(
 		context.TODO(),
 		bson.M{
-			"email": email,
+			"$or": bson.A{
+				bson.M{"email": data.Email},
+				bson.M{"ms": data.Ms},
+			},
 		},
 	).Decode(&Admin)
 	if err == nil {
