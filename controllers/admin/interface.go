@@ -45,6 +45,6 @@ type InterfaceUserController struct {
 	Ms        string    `json:"ms"`
 	Faculty   string    `json:"faculty"`
 	Role      string    `json:"role"`
-	CreatedBy any       `json:"createdBy"`
-	ExpiredAt time.Time `json:"expiredAt"`
+	CreatedBy any       `json:"createdBy" bson:"createdBy"`
+	ExpiredAt time.Time `json:"expiredAt" bson:"createdAt"`
 }
