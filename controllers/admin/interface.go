@@ -48,3 +48,11 @@ type InterfaceUserController struct {
 	CreatedBy any       `json:"createdBy" bson:"createdBy"`
 	ExpiredAt time.Time `json:"expiredAt" bson:"createdAt"`
 }
+
+type InterfaceCourseController struct {
+	MS       string `json:"ms" bson:"ms"`             // Mã số khóa học
+	Credit   int    `json:"credit" bson:"credit"`     // Số tín chỉ
+	Name     string `json:"name" bson:"name"`         // Tên khóa học
+	Desc     string `json:"desc" bson:"desc"`         // Mô tả khóa học
+	CreateBy string `json:"createBy" bson:"createBy"` // ID người tạo (nếu cần)
+}
