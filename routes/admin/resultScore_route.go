@@ -7,5 +7,5 @@ import (
 )
 
 func ResultScoreRoute(r *gin.RouterGroup) {
-	r.POST("create", controller_admin.ResultScoreController)
+	r.POST("/create", controller_admin.ResultScoreController)
 }
