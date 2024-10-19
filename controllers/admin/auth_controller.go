@@ -53,6 +53,21 @@ func CreateAdminController(c *gin.Context) {
 	c.BindJSON(&data)
 	collection := models.AdminModel()
 	createBy, _ := c.Get("ID")
+	email := data.Email
+	var Admin models.InterfaceAdmin
+	err := collection.FindOne(
+		context.TODO(),
+		bson.M{
+			"email": email,
+		},
+	).Decode(&Admin)
+	if err == nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "Bảng ghi của admin này đã được lưu trong database trước đó",
+		})
+		return
+	}
 	collection.InsertOne(context.TODO(), bson.M{
 		"email":     data.Email,
 		"name":      data.Name,
@@ -60,7 +75,7 @@ func CreateAdminController(c *gin.Context) {
 		"ms":        data.Ms,
 		"createdBy": createBy,
 	})
-	c.JSON(200, gin.H{
+	c.JSON(201, gin.H{
 		"code": "vao duoc trang createAdmin",
 	})
 }
