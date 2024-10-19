@@ -4,6 +4,7 @@ import (
 	"LearnGo/models"
 	"context"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -43,7 +44,7 @@ func AccountCreateController(c *gin.Context) {
 		m[account.Ms] = true
 	}
 	for _, newAccount := range newUsers {
-		if !m[newAccount.Email] && !m[newAccount.Ms] {
+		if !m[newAccount.Email] && !m[newAccount.Ms] && strings.HasSuffix(newAccount.Email, "@hcmut.edu.vn") && (newAccount.Role == "student" || newAccount.Role == "teacher") {
 			newAccount.CreatedBy = CreatedBy
 			newAccount.ExpiredAt = time.Now().AddDate(5, 0, 0)
 			filterAccount = append(filterAccount, newAccount)
