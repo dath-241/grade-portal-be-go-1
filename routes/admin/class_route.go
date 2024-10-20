@@ -8,4 +8,5 @@ import (
 
 func ClassRoute(r *gin.RouterGroup) {
 	r.POST("/create", controller_admin.CreateClass)
+	r.PATCH("/add",controller_admin.AddStudentsToCourseHandler)
 }

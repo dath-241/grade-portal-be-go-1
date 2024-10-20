@@ -3,6 +3,7 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -84,4 +85,34 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 	}
 
 	return true, nil // Tìm thấy bản ghi trùng
+}
+
+// AddStudentsToCourseHandler handles the HTTP request to add students to a course
+func AddStudentsToCourseHandler(c *gin.Context) {
+	var request struct {
+			CourseID string   `json:"courseID"`
+			Students []string `json:"students"`
+	}
+
+	if err := c.BindJSON(&request); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+					"code":    "error",
+					"message": "Invalid request data",
+			})
+			return
+	}
+
+	err := models.AddStudentsToCourse(request.CourseID, request.Students)
+	if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+					"code":    "error",
+					"message": "Failed to add students to course",
+			})
+			return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+			"code":    "success",
+			"message": "Students added to course successfully",
+	})
 }
