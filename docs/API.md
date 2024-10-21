@@ -2,7 +2,7 @@
 
 ## Admin
 
-### Đăng Nhập và Đăng Xuất
+### Đăng Nhập và Đăng Xuất `Thái`
 - **POST** 
   - **Đăng Nhập**: `admin/api/login`  
     - Mô tả: Tính năng đăng nhập, yêu cầu gửi lên `idToken`.
