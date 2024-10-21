@@ -21,7 +21,7 @@ func CreateCourse(c *gin.Context) {
 		return
 	}
 
-	collection := models.Course()
+	collection := models.CourseModle()
 
 	// Kiểm tra xem khóa học có bị trùng không
 	isDuplicate, err := CheckDuplicateCourse(collection, data.Ms, data.Name)

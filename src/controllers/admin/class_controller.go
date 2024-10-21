@@ -40,16 +40,23 @@ func CreateClass(c *gin.Context) {
 		})
 		return
 	}
-
 	// Thêm nếu không bị trùng lăp
 	createBy, _ := c.Get("ID")
+	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "teacher_id không hợp lệ",
+		})
+	}
 	_, err = collection.InsertOne(context.TODO(), bson.M{
 		"semester":       data.Semester,
 		"name":           data.Name,
 		"course_id":      data.CourseId,
 		"listStudent_id": data.ListStudentId,
-		"teacher_id":     data.TeacherId,
+		"teacher_id":     teacher_id,
 		"createdBy":      createBy,
+		"updatedBy":      createBy,
 	})
 
 	if err != nil {

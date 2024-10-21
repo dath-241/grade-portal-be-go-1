@@ -1,7 +1,17 @@
 package routes_client
 
-import "github.com/gin-gonic/gin"
+import (
+	middlewares_client "LearnGo/middlewares/client"
+
+	"github.com/gin-gonic/gin"
+)
 
 func MainRoute(r *gin.Engine) {
-	HomeRouter(r.Group("/api"))
+	HomeRouter(r.Group("/"))
+	UserRoute(r.Group("/api"))
+
+	protectedGroup := r.Group("/api")
+	protectedGroup.Use(middlewares_client.RequireUser)
+	ClassRoute(protectedGroup.Group("/class"))
+	ResultScoreRoute(protectedGroup.Group("/resultScore"))
 }

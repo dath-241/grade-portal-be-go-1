@@ -46,7 +46,7 @@ type InterfaceUserController struct {
 	Faculty   string    `json:"faculty"`
 	Role      string    `json:"role"`
 	CreatedBy any       `json:"createdBy" bson:"createdBy"`
-	ExpiredAt time.Time `json:"expiredAt" bson:"createdAt"`
+	ExpiredAt time.Time `json:"expiredAt" bson:"expiredAt"`
 }
 
 type InterfaceCourseController struct {
