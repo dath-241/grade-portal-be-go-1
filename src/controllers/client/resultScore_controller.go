@@ -43,5 +43,11 @@ func ResultController(c *gin.Context) {
 		"code":    "error",
 		"massage": "ban khong co quyen vao day",
 	})
+}
+
+func CreateResultScoreController(c *gin.Context) {
+	var data InterfaceResultScoreController
+	// lay du lieu tu front end
+	c.BindJSON(&data)
 
 }
