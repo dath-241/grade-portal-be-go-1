@@ -1,0 +1,13 @@
+# .air.toml
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  bin = "tmp/main.exe"  # Tên tệp thực thi sau khi biên dịch
+  cmd = "go build -o tmp/main.exe ."  # Lệnh biên dịch
+  include_ext = ["go"]  # Các phần mở rộng để theo dõi
+  exclude_dir = ["tmp", ".github", ".vscode", "actions-runner", "Git"]  # Thư mục không theo dõi
+  watch_dir = ["." ]  # Thư mục theo dõi
+
+[log]
+  level = "info"
