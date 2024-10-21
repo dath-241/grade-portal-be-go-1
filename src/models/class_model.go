@@ -1,8 +1,6 @@
 package models
 
 import (
-	"time"
-
 	"go.mongodb.org/mongo-driver/v2/bson"
 	"go.mongodb.org/mongo-driver/v2/mongo"
 )
@@ -13,9 +11,9 @@ type InterfaceClass struct {
 	Name          string        `bson:"name"` // nhom lop
 	CourseId      string        `bson:"course_id"`
 	ListStudentId []string      `bson:"listStudent_id"`
-	TeacherId     string        `bson:"teacher_id"`
-	CreatedBy     time.Time     `bson:"createdBy"` // Tag cho thời gian tạo
-	UpdatedAt     string        `bson:"updatedBy"`
+	TeacherId     bson.ObjectID `bson:"teacher_id"`
+	CreatedBy     bson.ObjectID `bson:"createdBy"` // Tag cho thời gian tạo
+	UpdatedBy     bson.ObjectID `bson:"updatedBy"`
 }
 
 func ClassModel() *mongo.Collection {
