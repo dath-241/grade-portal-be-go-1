@@ -139,3 +139,6 @@
   - **Lấy ra bảng điểm**: `api/resultScore/:class_id`
     - Mô tả: Tính năng lấy ra bảng điểm của lớp học đó, nếu teacher thì sẽ gửi về toàn bộ bản điểm, nếu student thì gửi về bảng điểm của student đó
     - Yêu cầu gửi lên: đúng param
+    - **Lấy ra lớp bằng id lớp **: `api/class/:id`
+    - Mô tả: Tính năng lấy ra lớp học bằng id lớp học 
+    - Yêu cầu gửi lên: đúng param
