@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+
+* {
+    font-family: 'Poppins', cursive, sans-serif;
+}
+
+/* Đối với thiết bị di động */
+@media screen and (max-width: 574px) {
+    .greetings {
+        font-size: 3rem;
+        font-weight: 500;
+        text-align: center;
+    }
+    .description {
+        font-size: 1rem;
+    }
+    .button a {
+        font-size: .5rem;
+    }
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    width: 100%;
+    height: auto;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Anonymous Pro', monospace;
+    background-color: rgb(25, 25, 25);
+    
+}
+
+.hidden {
+    display: none;
+}
+.greetings{
+    margin: 1rem 0;
+    display: block;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+}
+.greetings > span{
+    animation: glow 2.5s ease-in-out infinite;
+}
+@keyframes glow{
+    0%, 100%{
+        color: #fff;
+        text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
+    }
+    10%, 90%{
+        color: #111;
+        text-shadow: none;
+    }
+}
+.greetings > span:nth-child(2){
+    animation-delay: .2s ;
+}
+.greetings > span:nth-child(3){
+    animation-delay: .4s ;
+}
+.greetings > span:nth-child(4){
+    animation-delay: .6s;
+}
+.greetings > span:nth-child(5){
+    animation-delay: .8s;
+}
+.greetings > span:nth-child(6){
+    animation-delay: 1s ;
+}
+.greetings > span:nth-child(7){
+    animation-delay: 1.2s ;
+}
+.greetings > span:nth-child(8){
+    animation-delay: 1.4s;
+}
+.greetings > span:nth-child(9){
+    animation-delay: 1.6s;
+}
+
+.description{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.button a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #111;
+}
+
+
+#letter{
+    letter-spacing: -0.2em;
+}
+@media screen and (max-width:574px){
+    .greetings{
+        display: block;
+        font-size: 3rem;
+        font-weight: 500;
+        text-align: center;
+    }
+    .description{
+        font-size: 1rem;
+    }
+    
+    .button a{
+        font-size: .5rem;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    animation: rotate 10s linear infinite; /* Xoay trong 10 giây vô hạn lần */
+    width: 100px; /* Kích thước của hình hoa */
+    height: 100px;
+    background: url('../img/flower_white.png') no-repeat center center; /* Đặt hình ảnh hoa làm nền */
+    background-size: cover; /* Đảm bảo hình ảnh hoa nền bao phủ hoàn toàn */
+}
+.flower {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.petal {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+  }
+/* Google Fonts */
+
+/* Global */
+html{
+  min-height: 100%;
+  overflow: hidden;
+}
+body{
+  height: calc(100vh - 8em);
+
+  color: rgba(255,255,255,.75);
+  font-family: 'Anonymous Pro', monospace;  
+  background-color: rgb(25,25,25);  
+}
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 50em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 120%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 50em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+.csstext{
+    display: flex;
+    width: 95%;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 12pt;
+    text-align: center;
+    white-space: normal;
+    justify-content: center;
+    padding: 28px 45%;
+    letter-spacing: 1px;
+    color: #fff;
+    font-weight: normal;
+    
+}
+@media screen and (max-width: 574px) {
+    .csstext{
+        padding: 2em; /* Thay đổi độ dày lề cho thiết bị di động */
+    font-size: 12pt; /* Điều chỉnh kích thước phông chữ cho thiết bị di động */
+    text-align: center; /* Căn giữa văn bản cho thiết bị di động */
+    width: 100%; /* Sử dụng toàn bộ chiều rộng cho thiết bị di động */
+    letter-spacing: 0.5px; /* Điều chỉnh khoảng cách giữa các chữ cái */
+    }
+}
+#pp_letter{
+    color:#fff;
+    letter-spacing: 1px;
+    color:#fff; text-decoration: none;
+}
+.spacing_01{
+
+    padding: 0 3rem;
+}
+/* CSS cho thiết bị di động */
+@media (max-width: 768px) {
+    .mobile-break {
+      display: block; /* Hiển thị thẻ <br> trên thiết bị di động */
+    }
+  }
+  
+  /* CSS cho các thiết bị khác */
+  @media (min-width: 769px) {
+    .mobile-break {
+      display: none; /* Ẩn thẻ <br> trên các thiết bị khác */
+    }
+  }
+  

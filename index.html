@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Flowers</title>
+    <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    
+    <audio id="background-audio" muted loop autoplay>
+        <source src="./NoiGioacuteRoi-ChauThamZhouShen-6330139.mp3">
+    </audio>
+    <div class="greetings">
+        <!-- silahkan menambah kata sesuai keinginan dengan <span>text...</span -->
+
+        <span id="letter">Y</span>
+        <span id="letter">O</span>
+        <span id="letter">U</span>
+        <span id="letter">'</span>
+        <span id="letter">R</span>
+        <span>E</span>
+
+        <span style="margin-right: 20px;"></span>
+        <span id="letter">M</span>
+        <span>Y</span>
+
+        <span style="margin-right:4pt;"></span>
+        <br class="mobile-break">
+
+        <span id="letter">
+            <a href="" id="pp_letter" class="typewrite" data-period="2000"
+                data-type='[ "FRIEND" ]'>
+                <script>
+                    var TxtType = function (el, toRotate, period) {
+                        this.toRotate = toRotate;
+                        this.el = el;
+                        this.loopNum = 0;
+                        this.period = parseInt(period, 10) || 2000;
+                        this.txt = '';
+                        this.tick();
+                        this.isDeleting = false;
+                    };
+
+                    TxtType.prototype.tick = function () {
+                        var i = this.loopNum % this.toRotate.length;
+                        var fullTxt = this.toRotate[i];
+
+                        if (this.isDeleting) {
+                            this.txt = fullTxt.substring(0, this.txt.length - 1);
+                        } else {
+                            this.txt = fullTxt.substring(0, this.txt.length + 1);
+                        }
+
+                        this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+                        var that = this;
+                        var delta = 200 - Math.random() * 100;
+
+                        if (this.isDeleting) { delta /= 2; }
+
+                        if (!this.isDeleting && this.txt === fullTxt) {
+                            delta = this.period;
+                            this.isDeleting = true;
+                        } else if (this.isDeleting && this.txt === '') {
+                            this.isDeleting = false;
+                            this.loopNum++;
+                            delta = 500;
+                        }
+
+                        setTimeout(function () {
+                            that.tick();
+                        }, delta);
+                    };
+
+                    window.onload = function () {
+                        var elements = document.getElementsByClassName('typewrite');
+                        for (var i = 0; i < elements.length; i++) {
+                            var toRotate = elements[i].getAttribute('data-type');
+                            var period = elements[i].getAttribute('data-period');
+                            if (toRotate) {
+                                new TxtType(elements[i], JSON.parse(toRotate), period);
+                            }
+                        }
+                        // INJECT CSS
+                        var css = document.createElement("style");
+                        css.type = "text/css";
+                        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+                        document.body.appendChild(css);
+                    };
+                </script>
+                <span class="wrap"></span>
+            </a>
+        </span>
+        <!-- <span id="letter">F</span>
+        <span id="letter">L</span>
+        <span id="letter">O</span>
+        <span id="letter">W</span>
+        <span id="letter">E</span>
+        <span id="letter">R</span> -->
+
+    </div>
+    
+    <div id="typedtext" class="csstext">
+        <div id="clickMe">Bấm vào đi đợi gì nữa đâu cũng được</div>
+        <script>
+            var aText = new Array(
+                "20.10.2024 Ngày Phụ Nữ Việt Nam",
+                "Nhân chúc các bạn nữ luôn xinh đẹp, mạnh khỏe và hạnh phúc.",
+                "Tìm được những niềm vui và hạnh phúc trong cuộc sống",
+            );
+            var iSpeed = 100; // time delay of print out
+            var iIndex = 0; // start printing array at this posision
+            var iArrLength = aText[0].length; // the length of the text array
+            var iScrollAt = 20; // start scrolling up at this many lines
+
+            var iTextPos = 0; // initialise text position
+            var sContents = ''; // initialise contents variable
+            var iRow; // initialise current row
+
+            function typewriter() {
+                sContents = ' ';
+                iRow = Math.max(0, iIndex - iScrollAt);
+                var destination = document.getElementById("typedtext");
+
+                while (iRow < iIndex) {
+                    sContents += aText[iRow++] + '<br>'; // Thêm thẻ <br> để tạo khoảng cách
+                }
+                destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+                if (iTextPos++ == iArrLength) {
+                    iTextPos = 0;
+                    iIndex++;
+                    if (iIndex != aText.length) {
+                        iArrLength = aText[iIndex].length;
+                        setTimeout("typewriter()", 500);
+                    }
+                } else {
+                    setTimeout("typewriter()", iSpeed);
+                }
+            }
+
+            
+            window.addEventListener('load', () => {
+                const audio = document.getElementById('background-audio');
+                const click = document.getElementById("clickMe")
+                // Bật âm thanh khi người dùng click
+                const enableAudio = () => {
+                    audio.muted = false; // Bật âm thanh
+                    audio.play(); // Phát âm thanh
+                    document.removeEventListener('click', enableAudio); // Gỡ bỏ sự kiện sau lần đầu
+                    document.removeEventListener('click', typewriter);
+                };
+                
+                // Gán sự kiện click để bật âm thanh
+                document.addEventListener('click', () => {
+                    click.classList.add("hidden")
+                    enableAudio()
+                    typewriter();
+                    
+                });
+            });
+            // set up text to print, each item in array is new line
+            
+        </script>
+
+
+    </div>
+
+    <div class="description">
+
+
+
+        <!-- <p class="line-1 anim-typewriter"></p>
+        <p class="line-1 anim-typewriter"></p>
+        <p class="line-1 anim-typewriter"></p>
+        <p class="line-1 anim-typewriter"></p> -->
+    </div>
+    <div class="button">
+        <a href="flower.html">
+            <div id="flower" class="rotate"></div>
+            <script src="hoa.js"></script>
+
+        </a>
+    </div>
+
+</body>
+
+</html>
