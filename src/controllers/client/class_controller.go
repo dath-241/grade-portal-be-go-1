@@ -32,7 +32,6 @@ func ClassTeacherController(c *gin.Context) {
 	if err := cursor.All(context.TODO(), &classTeacherAll); err != nil {
 		log.Fatalf("Cursor All error: %v", err)
 	}
-
 	c.JSON(200, gin.H{
 		"code":     "success",
 		"classAll": classTeacherAll,
