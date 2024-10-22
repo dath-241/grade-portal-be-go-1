@@ -141,23 +141,24 @@
     - Yêu cầu gửi lên: đúng param
   - **Lấy lớp bằng id lớp 'Nhân'**: `api/class/:id`
     - Mô tả: Tính năng lấy ra lớp học bằng id lớp học, nếu tìm thấy lớp học trả về 
+    ```bash
     c.JSON(200, gin.H
    { "status":  "success",
 		"message": "Lấy lớp học thành công",
 		"class":{
-              "ID": ""            bson.ObjectID 
-	            "Semester": ""      string       
-	            "Name": ""          string        
-	            "CourseId": ""      string       
+              "ID": ""           
+	            "Semester": ""        
+	            "Name": ""             
+	            "CourseId": ""         
 	            "ListStudentId": [
                 ""
                 ""
                 ...
                 ""
-              ]                   []string     
-	            "TeacherId": ""     bson.ObjectID 
-	            "CreatedBy": ""     bson.ObjectID 
-	            "UpdatedBy": ""     bson.ObjectID 
+              ]                   []    
+	            "TeacherId": ""     
+	            "CreatedBy": ""     
+	            "UpdatedBy": ""     
             }
     })
     - Yêu cầu gửi lên: đúng param
