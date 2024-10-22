@@ -36,3 +36,5 @@
 
 ### Chú ý
 - Các tính năng trên đã đảm bảo logic không trùng nhau giữa các trường chính. Bắt buộc phải đăng nhập mới được sử dụng các tính năng. Dữ liệu đã được validate trước khi chạy vào logic chính.
+
+## Client
