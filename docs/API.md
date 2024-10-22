@@ -140,5 +140,24 @@
     - Mô tả: Tính năng lấy ra bảng điểm của lớp học đó, nếu teacher thì sẽ gửi về toàn bộ bản điểm, nếu student thì gửi về bảng điểm của student đó
     - Yêu cầu gửi lên: đúng param
   - **Lấy lớp bằng id lớp**: `api/class/:id`
-    - Mô tả: Tính năng lấy ra lớp học bằng id lớp học 
+    - Mô tả: Tính năng lấy ra lớp học bằng id lớp học, nếu tìm thấy lớp học trả về 
+    c.JSON(200, gin.H
+   { "status":  "success",
+		"message": "Lấy lớp học thành công",
+		"class":{
+              "ID": ""            bson.ObjectID 
+	            "Semester": ""      string       
+	            "Name": ""          string        
+	            "CourseId": ""      string       
+	            "ListStudentId": [
+                ""
+                ""
+                ...
+                ""
+              ]                   []string     
+	            "TeacherId": ""     bson.ObjectID 
+	            "CreatedBy": ""     bson.ObjectID 
+	            "UpdatedBy": ""     bson.ObjectID 
+            }
+    })
     - Yêu cầu gửi lên: đúng param
