@@ -126,16 +126,16 @@
 ### Lấy ra các lớp học và chi tiết lớp học
 - **GET**
   - **Lấy ra tất cả các lớp học cho giáo viên**: `api/class/teacher`
-  - Mô tả: Tính năng lấy ra tất cả lớp học của giáo viên
-  - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là teacher
+    - Mô tả: Tính năng lấy ra tất cả lớp học của giáo viên
+    - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là teacher
   - **Lấy ra tất cả các lớp học cho học sinh**: `api/class/student`
-  - Mô tả: Tính năng lấy ra tất cả các lớp học của học sinh đó đang học
-  - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là student
+    - Mô tả: Tính năng lấy ra tất cả các lớp học của học sinh đó đang học
+    - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là student
   - **Lấy ra chi tiết lớp hoc**: `api/class/:id`
-  - Mô tả: Tính năng lấy ra chi tiết lớp học đó
-  - Yêu cầu gửi lên: đúng param nếu sai thì be sẽ không trả dữ liệu
+    - Mô tả: Tính năng lấy ra chi tiết lớp học đó
+    - Yêu cầu gửi lên: đúng param nếu sai thì be sẽ không trả dữ liệu
 ### Lấy ra bảng điểm
 - **Get**
   - **Lấy ra bảng điểm**: `api/resultScore/:class_id`
-  - Mô tả: Tính năng lấy ra bảng điểm của lớp học đó, nếu teacher thì sẽ gửi về toàn bộ bản điểm, nếu student thì gửi về bảng điểm của student đó
-  - Yêu cầu gửi lên: đúng param
+    - Mô tả: Tính năng lấy ra bảng điểm của lớp học đó, nếu teacher thì sẽ gửi về toàn bộ bản điểm, nếu student thì gửi về bảng điểm của student đó
+    - Yêu cầu gửi lên: đúng param
