@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Product-BE GVHD thầy Lê Đình Thuận
 
 ## Giới thiệu:
@@ -79,21 +78,3 @@ docker run -d -p <port_1>:<port_2> --name <name> --env-file <file .env> <user>/<
     - 🟢 nếu đạt 10/10.
     - 🟡 nếu đạt 5/10.
     - 🔴 nếu đạt 0/10.
-=======
-## Hi there 👋
-
-<!--
-**nhanhcmut/nhanhcmut** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
->>>>>>> 62cfc2a605e4198b42d8a6b98ffdf1ed4bb89c1e

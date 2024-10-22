@@ -74,7 +74,7 @@ func CreateAdminController(c *gin.Context) {
 	if err == nil {
 		c.JSON(400, gin.H{
 			"code":    "error",
-			"massage": "Bang ghi cua admin nay da duoc luu trong database truoc do",
+			"massage": "Bảng ghi của admin này đã được lưu trong database trước đó",
 		})
 		return
 	}

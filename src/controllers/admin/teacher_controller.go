@@ -12,6 +12,3 @@ func CreateTeacher(c *gin.Context) {
 		"code": "hello",
 	})
 }
-func GetClassByClassID(c *gin.Context) {
-
-}
