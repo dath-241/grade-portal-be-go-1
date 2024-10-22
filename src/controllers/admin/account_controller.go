@@ -32,10 +32,6 @@ func AccountCreateController(c *gin.Context) {
 		return
 	}
 	CreatedBy, _ := c.Get("ID")
-	c.JSON(200, gin.H{
-		"code":    "success",
-		"massage": CreatedBy,
-	})
 	m := make(map[string]bool)
 	var filterAccount []InterfaceUserController
 	var errorAccount []InterfaceUserController
