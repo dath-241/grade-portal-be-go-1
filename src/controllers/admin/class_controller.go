@@ -4,6 +4,7 @@ import (
 	"LearnGo/models"
 	"context"
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -103,4 +104,91 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 	}
 
 	return true, nil // Tìm thấy bản ghi trùng
+}
+
+// Hỗ trợ check student hay teacher
+func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true, Teacher -> false
+	collection := models.UserModel()
+
+	// Chuyển đổi id từ string sang ObjectID
+	objectId, err := bson.ObjectIDFromHex(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return false // Xử lý lỗi và trả về false
+	}
+
+	cursor, err := collection.Find(context.TODO(), bson.M{
+		"_id":  objectId,
+		"role": "student",
+	})
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return false // Xử lý lỗi và trả về false
+	}
+	defer cursor.Close(context.TODO()) // Đảm bảo đóng cursor sau khi sử dụng
+
+	var user bson.M
+	cursor.Decode(&user)
+	fmt.Println(user)
+	// Kiểm tra xem có tài liệu nào không
+	if cursor.Next(context.TODO()) {
+		// Nếu có tài liệu, trả về true
+		return true
+	} else if err := cursor.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return false
+	}
+
+	// Nếu không có tài liệu nào, trả về false
+	return false
+
+}
+
+// API lấy tất cả lớp học theo account_id
+func GetAllClassesByAccountID(c *gin.Context) {
+	accountID := c.Param("id")
+
+	var classes []bson.M
+	collection := models.ClassModel()
+	// Tìm tất cả lớp học mà giáo viên hoặc sinh viên với account_id tham gia
+	isStudent := CheckStudentOrTeacher(c, accountID)
+	var filter bson.M
+	if isStudent {
+		filter = bson.M{"listStudent_id": bson.M{"$in": []string{accountID}}} // Nếu là student
+	} else {
+		id, _ := bson.ObjectIDFromHex(accountID)
+		filter = bson.M{"teacher_id": id} // Nếu là teacher
+	}
+
+	cursor, err := collection.Find(context.TODO(), filter)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	// Đọc dữ liệu từ cursor
+	for cursor.Next(context.TODO()) {
+		var class bson.M
+		if err := cursor.Decode(&class); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		classes = append(classes, class)
+	}
+
+	if err := cursor.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Trả về danh sách lớp học
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Lấy lớp học thành công",
+		"data": gin.H{
+			"classes": classes,
+		},
+	})
 }
