@@ -15,6 +15,10 @@ func ValindateEmail(email string) bool {
 	return strings.HasSuffix(email, "@hcmut.edu.vn")
 }
 
+func ValindateMS(ms string) bool {
+	return ms != ""
+}
+
 func ValidateDataAdmin(c *gin.Context) {
 	var data controller_admin.InterfaceAdminController
 	c.BindJSON(&data)
@@ -29,5 +33,4 @@ func ValidateDataAdmin(c *gin.Context) {
 	}
 	c.Set("adminData", data)
 	c.Next()
-
 }

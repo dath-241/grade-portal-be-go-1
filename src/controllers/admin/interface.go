@@ -51,7 +51,7 @@ type InterfaceUserController struct {
 
 type InterfaceCourseController struct {
 	Ms     string `json:"ms"`
-	Credit string `json:"credit"`
+	Credit int    `json:"credit"`
 	Name   string `json:"name"`
 	Desc   string `json:"desc"`
 }

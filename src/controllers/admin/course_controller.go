@@ -3,6 +3,7 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
+	"errors"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -68,9 +69,11 @@ func CreateCourse(c *gin.Context) {
 }
 
 func CheckDuplicateCourse(collection *mongo.Collection, ms string, name string) (bool, error) {
+	if ms == "" {
+		return true, errors.New("Lỗi ms không có")
+	}
 	filter := bson.M{
-		"ms":   ms,
-		"name": name,
+		"ms": ms,
 	}
 
 	//kiểm tra xem có bản ghi nào không
