@@ -8,4 +8,5 @@ import (
 
 func ClassRoute(r *gin.RouterGroup) {
 	r.POST("/create", controller_admin.CreateClass)
+	r.GET("/account/:id", controller_admin.GetAllClassesByAccountID)
 }
