@@ -58,9 +58,6 @@ func AccountCreateController(c *gin.Context) {
 	// 		invalidEmails = append(invalidEmails, newUser)
 	// 		continue
 	// 	}
-
-	//aihjsjadksjajk
-
 	// Chèn các tài khoản hợp lệ vào cơ sở dữ liệu
 	if len(filterAccount) > 0 {
 		_, err := userCollection.InsertMany(context.TODO(), filterAccount)
