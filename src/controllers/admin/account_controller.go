@@ -31,11 +31,13 @@ func AccountCreateController(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error decoding users"})
 		return
 	}
+
 	CreatedBy, _ := c.Get("ID")
 	c.JSON(200, gin.H{
 		"status":         "success",
 		"createdByAdmin": CreatedBy,
 	})
+
 	m := make(map[string]bool)
 	var filterAccount []InterfaceUserController
 	var errorAccount []InterfaceUserController
