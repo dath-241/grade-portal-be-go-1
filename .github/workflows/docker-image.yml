@@ -17,6 +17,7 @@ jobs:
       - name: Build and Push DockerFile
         run: |
           echo "${{ secrets.DOCKERHUB_ACCESS_TOKEN }}" | sudo docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          cd src/
           sudo docker build -t thaily/learngo .
           sudo docker push thaily/learngo
   deploy:
