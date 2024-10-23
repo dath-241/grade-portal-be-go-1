@@ -49,4 +49,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f learngo
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name learngo -e MONGO_URL=${{ secrets.MONGO_URL }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} -e YOUR_CLIENT_ID=${{ secrets.YOUR_CLIENT_ID }} -e PORT=${{ secrets.PORT }} ${{ secrets.DOCKERHUB_USERNAME }}/learngo
+        run: docker run -d -p 8080:8082 --name learngo -e MONGO_URL=${{ secrets.MONGO_URL }} -e JWT_SECRET=${{ secrets.JWT_SECRET }} -e YOUR_CLIENT_ID=${{ secrets.YOUR_CLIENT_ID }} -e PORT=${{ secrets.PORT }} ${{ secrets.DOCKERHUB_USERNAME }}/learngo
