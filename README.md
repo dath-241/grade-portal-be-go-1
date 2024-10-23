@@ -5,7 +5,7 @@ Phần mềm backend cho chương trình web để đồng bộ dữ liệu 
 
 - Đề tài: Grade Portal
 - Nhiệm vụ: Backend Go 1
-- Tên nhóm: `Trùm Golang`
+- Tên nhóm: `Code không bao giờ khó`
 
 
 ### Tech: Go, Gin, MongoDB, các thư viện khác

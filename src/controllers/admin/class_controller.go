@@ -3,6 +3,8 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
+	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -11,8 +13,6 @@ import (
 
 func CreateClass(c *gin.Context) {
 	var data InterfaceClassController
-
-	// Kiểm tra parse data vào có lỗi ko
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
 			"code":    "error",
@@ -20,10 +20,29 @@ func CreateClass(c *gin.Context) {
 		})
 		return
 	}
+	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
+	fmt.Println(teacher_id, data)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "teacher_id không hợp lệ",
+		})
+		return
+	}
+	course_id, err := bson.ObjectIDFromHex(data.CourseId)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "course_id không hợp lệ",
+		})
+		return
+	}
+	// Kiểm tra parse data vào có lỗi ko
+
 	collection := models.ClassModel()
 
 	// Kiểm tra xem lớp học có bị trùng ko bằng FindOne
-	isDuplicate, err := CheckDuplicateClass(collection, data.Semester, data.CourseId, data.Name)
+	isDuplicate, err := CheckDuplicateClass(collection, data.Semester, course_id, data.Name)
 	if err != nil {
 		c.JSON(500, gin.H{
 			"code":    "error",
@@ -42,17 +61,11 @@ func CreateClass(c *gin.Context) {
 	}
 	// Thêm nếu không bị trùng lăp
 	createBy, _ := c.Get("ID")
-	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
-	if err != nil {
-		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "teacher_id không hợp lệ",
-		})
-	}
+
 	_, err = collection.InsertOne(context.TODO(), bson.M{
 		"semester":       data.Semester,
 		"name":           data.Name,
-		"course_id":      data.CourseId,
+		"course_id":      course_id,
 		"listStudent_id": data.ListStudentId,
 		"teacher_id":     teacher_id,
 		"createdBy":      createBy,
@@ -74,7 +87,7 @@ func CreateClass(c *gin.Context) {
 	})
 }
 
-func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId string, name string) (bool, error) {
+func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId bson.ObjectID, name string) (bool, error) {
 	filter := bson.M{
 		"semester":  semester,
 		"course_id": courseId,
@@ -91,4 +104,88 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 	}
 
 	return true, nil // Tìm thấy bản ghi trùng
+}
+
+// Hỗ trợ check student hay teacher
+func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true, Teacher -> false
+	collection := models.UserModel()
+
+	// Chuyển đổi id từ string sang ObjectID
+	objectId, err := bson.ObjectIDFromHex(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return false // Xử lý lỗi và trả về false
+	}
+
+	cursor, err := collection.Find(context.TODO(), bson.M{
+		"_id":  objectId,
+		"role": "student",
+	})
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return false // Xử lý lỗi và trả về false
+	}
+	defer cursor.Close(context.TODO()) // Đảm bảo đóng cursor sau khi sử dụng
+
+	// Kiểm tra xem có tài liệu nào không
+	if cursor.Next(context.TODO()) {
+		// Nếu có tài liệu, trả về true
+		return true
+	} else if err := cursor.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return false
+	}
+
+	// Nếu không có tài liệu nào, trả về false
+	return false
+
+}
+
+// API lấy tất cả lớp học theo account_id
+func GetAllClassesByAccountID(c *gin.Context) {
+	accountID := c.Param("id")
+
+	var classes []bson.M
+	collection := models.ClassModel()
+	// Tìm tất cả lớp học mà giáo viên hoặc sinh viên với account_id tham gia
+	isStudent := CheckStudentOrTeacher(c, accountID)
+	var filter bson.M
+	if isStudent {
+		filter = bson.M{"listStudent_id": bson.M{"$in": []string{accountID}}} // Nếu là student
+	} else {
+		id, _ := bson.ObjectIDFromHex(accountID)
+		filter = bson.M{"teacher_id": id} // Nếu là teacher
+	}
+
+	cursor, err := collection.Find(context.TODO(), filter)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	// Đọc dữ liệu từ cursor
+	for cursor.Next(context.TODO()) {
+		var class bson.M
+		if err := cursor.Decode(&class); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		classes = append(classes, class)
+	}
+
+	if err := cursor.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Trả về danh sách lớp học
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Lấy lớp học thành công",
+		"data": gin.H{
+			"classes": classes,
+		},
+	})
 }
