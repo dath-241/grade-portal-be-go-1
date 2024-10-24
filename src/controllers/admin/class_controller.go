@@ -4,6 +4,7 @@ import (
 	"LearnGo/models"
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -66,7 +67,7 @@ func CreateClass(c *gin.Context) {
 		"semester":       data.Semester,
 		"name":           data.Name,
 		"course_id":      course_id,
-		"listStudent_id": data.ListStudentId,
+		"listStudent_ms": data.ListStudentMs,
 		"teacher_id":     teacher_id,
 		"createdBy":      createBy,
 		"updatedBy":      createBy,
@@ -153,7 +154,7 @@ func GetAllClassesByAccountID(c *gin.Context) {
 	isStudent := CheckStudentOrTeacher(c, accountID)
 	var filter bson.M
 	if isStudent {
-		filter = bson.M{"listStudent_id": bson.M{"$in": []string{accountID}}} // Nếu là student
+		filter = bson.M{"listStudent_ms": bson.M{"$in": []string{accountID}}} // Nếu là student
 	} else {
 		id, _ := bson.ObjectIDFromHex(accountID)
 		filter = bson.M{"teacher_id": id} // Nếu là teacher
@@ -187,5 +188,38 @@ func GetAllClassesByAccountID(c *gin.Context) {
 		"data": gin.H{
 			"classes": classes,
 		},
+	})
+}
+
+func GetClassByClassID(c *gin.Context) {
+	param := c.Param("id")
+	class_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "error",
+			"message": "Invalid ID format",
+		})
+		return
+	}
+
+	var class models.InterfaceClass
+	collection := models.ClassModel()
+
+	if err := collection.FindOne(context.TODO(), bson.M{"_id": class_id}).Decode(&class); err != nil {
+		if err == mongo.ErrNoDocuments {
+			c.JSON(404, gin.H{
+				"status":  "error",
+				"message": "Không tìm thấy lớp",
+			})
+		} else {
+			log.Fatalf("Find error: %v", err)
+		}
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"status":  "success",
+		"message": "Lấy lớp học thành công",
+		"class":   class,
 	})
 }

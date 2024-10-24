@@ -45,7 +45,7 @@ func ClassStudentController(c *gin.Context) {
 	collection := models.ClassModel()
 	fmt.Println(user)
 	cursor, err := collection.Find(context.TODO(), bson.M{
-		"listStudent_id": user.ID.Hex(),
+		"listStudent_ms": user.Ms,
 	})
 	if err != nil {
 		log.Fatalf("Find error: %v", err)
@@ -78,7 +78,7 @@ func ClassDetailController(c *gin.Context) {
 		return
 	}
 	if user.Role == "student" {
-		var listStudent = classDetail.ListStudentId
+		var listStudent = classDetail.ListStudentMs
 		for _, studentID := range listStudent {
 			if studentID == user.ID.String() {
 				c.JSON(200, gin.H{

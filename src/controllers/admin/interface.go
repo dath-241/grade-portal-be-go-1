@@ -35,7 +35,7 @@ type InterfaceClassController struct {
 	Semester      string   `json:"semester"`
 	Name          string   `json:"name"` // nhom lop
 	CourseId      string   `json:"course_id"`
-	ListStudentId []string `json:"listStudent_id"`
+	ListStudentMs []string `json:"listStudent_ms"`
 	TeacherId     string   `json:"teacher_id"`
 }
 

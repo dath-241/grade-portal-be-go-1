@@ -47,7 +47,6 @@ func ResultController(c *gin.Context) {
 
 func CreateResultScoreController(c *gin.Context) {
 	var data InterfaceResultScoreController
-	// lay du lieu tu front end
 	c.BindJSON(&data)
 
 }
