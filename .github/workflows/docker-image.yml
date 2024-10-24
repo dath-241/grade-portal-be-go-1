@@ -3,11 +3,10 @@ name: LearnGo
 on:
   push:
     branches: [main]
-    
 
 jobs:
   docker:
-    runs-on: self-hosted  # Self-hosted Linux runner
+    runs-on: self-hosted  # Ensure this runner is properly configured
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
@@ -47,7 +46,7 @@ jobs:
 
   deploy:
     needs: docker
-    runs-on: self-hosted  # Self-hosted Linux runner
+    runs-on: self-hosted
     steps:
       - name: Pull Docker Image
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/learngo:latest
