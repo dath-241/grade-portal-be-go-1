@@ -100,6 +100,12 @@
     })
     - Yêu cầu gửi lên: đúng param
 
+- **GET**
+  - **Lấy Lớp Theo ID Tài Khoản**: `admin/api/class/account/:id`
+    - Mô tả: Lấy 1 danh sách các lớp học dựa vào id (có thể là student hoặc teacher) 
+    - Yêu cầu gửi lên: đúng param nếu sai thì be sẽ không trả dữ liệu
+
+
 ### Kết Quả Học Tập `Thái`
 - **POST**
   - **Tạo Bảng Kết Quả**: `admin/api/resultScore/create`  
