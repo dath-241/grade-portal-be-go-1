@@ -129,9 +129,6 @@ func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true,
 	}
 	defer cursor.Close(context.TODO()) // Đảm bảo đóng cursor sau khi sử dụng
 
-	var user bson.M
-	cursor.Decode(&user)
-	fmt.Println(user)
 	// Kiểm tra xem có tài liệu nào không
 	if cursor.Next(context.TODO()) {
 		// Nếu có tài liệu, trả về true
