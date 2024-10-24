@@ -19,9 +19,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -tags netgo -ldflags '-s -w' -o main .
 # Bước 2: Tạo image nhẹ hơn để chạy ứng dụng
 FROM alpine:latest
 
-# Cài đặt ca-certificates để đảm bảo kết nối HTTPS an toàn
-RUN apk --no-cache add ca-certificates
-
 # Thiết lập thư mục làm việc
 WORKDIR /root/
 
