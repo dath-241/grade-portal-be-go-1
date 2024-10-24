@@ -73,6 +73,7 @@ func AccountCreateController(c *gin.Context) {
 		"errorAccount": errorAccount,
 	})
 }
+
 func AccountGetByMS(c *gin.Context) {
 	ms := c.Param("ms") // Lấy giá trị "" từ URL
 
@@ -98,5 +99,67 @@ func AccountGetByMS(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":      "User found successfully",
 		"foundedUser": user,
+	})
+}
+
+func TeacherAccountGet(c *gin.Context) {
+	userCollection := models.UserModel()
+
+	// Tạo biến lưu kết quả
+	var users []models.InterfaceUser
+
+	cursor, err := userCollection.Find(context.TODO(), bson.M{"role": "teacher"})
+	// Xử lý lỗi
+	if err != nil {
+		if err.Error() == "mongo: no documents in result" {
+			// Nếu không tìm thấy user
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+		// Xử lý lỗi khác
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	if err := cursor.All(context.TODO(), &users); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	// Trả về thông tin users
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "Users found successfully",
+		"foundedUser": users,
+	})
+}
+
+func StudentAccountGet(c *gin.Context) {
+	userCollection := models.UserModel()
+
+	// Tạo biến lưu kết quả
+	var users []models.InterfaceUser
+
+	cursor, err := userCollection.Find(context.TODO(), bson.M{"role": "student"})
+	// Xử lý lỗi
+	if err != nil {
+		if err.Error() == "mongo: no documents in result" {
+			// Nếu không tìm thấy user
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+		// Xử lý lỗi khác
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	if err := cursor.All(context.TODO(), &users); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	// Trả về thông tin users
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "Users found successfully",
+		"foundedUser": users,
 	})
 }
