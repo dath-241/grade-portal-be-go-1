@@ -78,7 +78,7 @@ func ClassDetailController(c *gin.Context) {
 		return
 	}
 	if user.Role == "student" {
-		var listStudent = classDetail.ListStudentId
+		var listStudent = classDetail.ListStudentMs
 		for _, studentID := range listStudent {
 			if studentID == user.ID.String() {
 				c.JSON(200, gin.H{
