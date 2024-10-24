@@ -6,7 +6,7 @@ on:
 
 jobs:
   docker:
-    runs-on: self-hosted  # Ensure this runner is properly configured
+    runs-on: self-hosted  # Ensure your runner is configured properly
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/learngo:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-from: type=local,src=/tmp/.buildx-cache  # Ensure correct format
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Verify Image Digest
