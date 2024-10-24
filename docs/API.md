@@ -75,6 +75,30 @@
         ]
       }
     ```
+- **POST**
+  - **Lấy lớp bằng id lớp 'Nhân'**: `api/class/:id`
+    - Mô tả: Tính năng lấy ra lớp học bằng id lớp học, nếu tìm thấy lớp học trả về 
+    ```bash
+    c.JSON(200, gin.H
+   { "status":  "success",
+		"message": "Lấy lớp học thành công",
+		"class":{
+              "ID": ""           
+	            "Semester": ""        
+	            "Name": ""             
+	            "CourseId": ""         
+	            "ListStudentId": [
+                ""
+                ""
+                ...
+                ""
+              ]                   []    
+	            "TeacherId": ""     
+	            "CreatedBy": ""     
+	            "UpdatedBy": ""     
+            }
+    })
+    - Yêu cầu gửi lên: đúng param
 
 ### Kết Quả Học Tập `Thái`
 - **POST**

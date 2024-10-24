@@ -10,7 +10,7 @@ type InterfaceClass struct {
 	Semester      string        `bson:"semester"`
 	Name          string        `bson:"name"` // nhom lop
 	CourseId      bson.ObjectID `bson:"course_id"`
-	ListStudentId []string      `bson:"listStudent_id"`
+	ListStudentMs []string      `bson:"listStudent_ms"`
 	TeacherId     bson.ObjectID `bson:"teacher_id"`
 	CreatedBy     bson.ObjectID `bson:"createdBy"` // Tag cho thời gian tạo
 	UpdatedBy     bson.ObjectID `bson:"updatedBy"`

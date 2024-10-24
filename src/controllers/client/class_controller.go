@@ -45,7 +45,7 @@ func ClassStudentController(c *gin.Context) {
 	collection := models.ClassModel()
 	fmt.Println(user)
 	cursor, err := collection.Find(context.TODO(), bson.M{
-		"listStudent_id": user.ID.Hex(),
+		"listStudent_ms": user.Ms,
 	})
 	if err != nil {
 		log.Fatalf("Find error: %v", err)
