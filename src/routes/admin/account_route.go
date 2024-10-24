@@ -8,4 +8,5 @@ import (
 
 func AccountRoute(r *gin.RouterGroup) {
 	r.POST("/create", controller_admin.AccountCreateController)
+	r.GET("/:ms", controller_admin.AccountGetByMS)
 }

@@ -46,6 +46,10 @@
         }
       ]
     ```
+- **GET**
+  - **Lấy Tài Khoản theo ms**: `admin/api/account/:ms` 
+    - Mô tả: Lấy một tài khoản có mã số ms.
+    - Yêu cầu gửi lên: Đúng param nếu sai thì be sẽ không trả dữ liệu
 
 ### Quản Lý Khóa Học và Lớp Học `Cận và Sang và Kiệt`
 - **POST**
