@@ -16,7 +16,7 @@
   - **Đăng Xuất**: `admin/api/logout`  
     - Mô tả: Tính năng đăng xuất, xóa cookie trên máy người dùng
 
-### Quản Lý Tài Khoản `Nhân và Thịnh`
+### Quản Lý Tài Khoản `Nhân và Thịnh và Toàn`
 - **POST**
   - **Tạo Admin Mới**: `admin/api/create`  
     - Mô tả: Tạo thêm 1 admin mới.
@@ -50,6 +50,12 @@
   - **Lấy Tài Khoản theo ms**: `admin/api/account/:ms` 
     - Mô tả: Lấy một tài khoản có mã số ms.
     - Yêu cầu gửi lên: Đúng param nếu sai thì be sẽ không trả dữ liệu
+
+  **Lấy Tài Khoản có role là Teacher**: `admin/api/account/teacher` 
+    - Mô tả: Lấy tất cả tài khoản có role là teacher.
+
+  **Lấy Tài Khoản có role là Student**: `admin/api/account/student` 
+    - Mô tả: Lấy tất cả tài khoản có role là student.
 
 ### Quản Lý Khóa Học và Lớp Học `Cận và Sang và Kiệt`
 - **POST**
