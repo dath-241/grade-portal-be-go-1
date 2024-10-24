@@ -29,6 +29,6 @@ jobs:
       - name: Delete old container
         run: sudo docker rm -f learngo
       - name: Run docker container
-        run:
+        run: |
           cd server
           sudo docker run -p 8080:8080 --name learngo --env-file .env thaily/learngo
