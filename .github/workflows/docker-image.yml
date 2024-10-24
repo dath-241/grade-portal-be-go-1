@@ -31,5 +31,5 @@ jobs:
         run: sudo docker rm -f learngo
       - name: Run docker container
         run: |
-          cd ~/server
+          cd ~
           sudo docker run -d -p 8080:8080 --name learngo --env-file .env thaily/learngo
