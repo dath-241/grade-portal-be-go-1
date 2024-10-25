@@ -1,4 +1,13 @@
+### Clone dự án về máy sử dụng git
+```bash
+git clone https://github.com/dath-241/grade-portal-be-go-1.git
+```
+```bash
+cd /src
+```
+
 ### Để chạy chương trình
+
 #### Cách 1
 ```bash
 go install github.com/air-verse/air@latest
