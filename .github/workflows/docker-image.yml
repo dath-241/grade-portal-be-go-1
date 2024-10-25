@@ -1,5 +1,4 @@
 name: LearnGo
-
 on:
   push:
     branches: [main]
