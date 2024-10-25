@@ -7,7 +7,6 @@ Phần mềm backend cho chương trình web để đồng bộ dữ liệu 
 - Nhiệm vụ: Backend Go 1
 - Tên nhóm: `Code không bao giờ khó`
 
-
 ### Tech: Go, Gin, MongoDB, các thư viện khác
 
 ### Tính năng:
@@ -17,29 +16,6 @@ Phần mềm backend cho chương trình web để đồng bộ dữ liệu 
 - Student có thể tra cứu điểm
 - Việc cập nhật bảng điểm tự động có thời hạn là 6 tháng,
 - Hall of Fame
-
-### Để chạy chương trình
-#### Cách 1
-```bash
-go install github.com/air-verse/air@latest
-```
-```bash
-air
-```
-#### Cách 2
-```bash
-go run main.go
-```
-#### Cách 3
-Sử dụng Docker
-```bash
-Docker version
-```
-Kiểm tra phiên bản version đang sử dụng nếu không có thì tải docker xuống
-```bash
-docker build -t <user>/<name>:<version> .
-docker run -d -p <port_1>:<port_2> --name <name> --env-file <file .env> <user>/<name>:<version>
-```
 
 ### Thông tin nhóm
 |STT | MSSV    | Tên thành viên      | Role | 
@@ -52,29 +28,12 @@ docker run -d -p <port_1>:<port_2> --name <name> --env-file <file .env> <user>/<
 |6   | 2212918 | Trương Tấn Sang     | Dev  |
 |7   | 2115036 | Trịnh Khải Toàn     | Dev  |
 
-### Tự đánh giá tiến độ thành viên
-
-|MSSV    | Tên thành viên      | Tuần 1 | Tuần 2 | Tuần 3 | Tuần 4 |  Tuần 5 | Tuần 6 | Tuần 7 | Tuần 8 |  Tuần 9 | Tuần 10 |
-|--------|---------------------|--------|--------|--------|--------|---------|--------|--------|--------|---------|---------|
-|2213104 | Lý Vĩnh Thái        | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2212372 | Nguyễn Trung Nhân   | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2211756 | Lê Tuấn Kiệt        | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2213313 | Trương Quang Thịnh  | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2210348 | Phùng Xương Cận     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2212918 | Trương Tấn Sang     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-|2115036 | Trịnh Khải Toàn     | 🟢    |🟢      |🟢     |-       |-        |-       |-       |-       |-        |-        |
-
-### Đánh giá của nhóm
-
-|Tiêu chí đánh giá | Giữa kỳ | Cuối kỳ |
-|------------------|---------|---------|
-| Biên bản họp nhóm|-        |-        |
-| Tài liệu         |-        |-        |
-| Commit           |-        |-        |
-| Clean code       |-        |-        |
-| Test             |-        |-        |
-
- - Tick: 
-    - 🟢 nếu đạt 10/10.
-    - 🟡 nếu đạt 5/10.
-    - 🔴 nếu đạt 0/10.
+### Cấu trúc thư mục
+- `/src`: Source code của dự án.
+- `/docs`: Thư mục chứa các tài liệu hướng dẫn dự án, bao gồm:
+  - `Deploy_guide.md`: Hướng dẫn triển khai hệ thống.
+  - `User_guide.md`: Hướng dẫn sử dụng phần mềm.
+  - `API_doc.md`: Tài liệu về API được sử dụng trong dự án.
+- `/reports`: Thư mục chứa các báo cáo về tiến độ và báo cáo cuối kỳ.
+  - `/weekly reports`: Thư mục chứ các báo cáo tiến độ các tuần
+  - `main_report.md`: Báo cáo môn học.
