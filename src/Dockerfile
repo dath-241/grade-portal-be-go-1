@@ -24,8 +24,8 @@ WORKDIR /root/
 
 # Sao chép binary và chứng chỉ vào image mới
 COPY --from=builder /app/main .
-COPY ./cert.pem .  # Đảm bảo rằng đường dẫn đúng
-COPY ./key.pem .    # Đảm bảo rằng đường dẫn đúng
+COPY ./src/cert.pem .  # Đảm bảo rằng đường dẫn đúng
+COPY ./src/key.pem .    # Đảm bảo rằng đường dẫn đúng
 
 
 # Mở cổng mà ứng dụng sẽ lắng nghe
