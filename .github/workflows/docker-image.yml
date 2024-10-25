@@ -30,4 +30,5 @@ jobs:
       - name: Run docker container
         run: |
           cd ~
-          sudo docker run -d -p 443:8080 --name learngo --env-file .env thaily/learngo
+          sudo docker run -d -p 443:443 --name learngo --env-file .env thaily/learngo
+

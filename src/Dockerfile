@@ -22,8 +22,10 @@ FROM alpine:latest
 # Thiết lập thư mục làm việc
 WORKDIR /root/
 
-# Sao chép tệp thực thi từ builder
+# Sao chép binary và chứng chỉ vào image mới
 COPY --from=builder /app/main .
+COPY cert.pem .
+COPY key.pem .
 
 # Mở cổng mà ứng dụng sẽ lắng nghe
 EXPOSE 8080
