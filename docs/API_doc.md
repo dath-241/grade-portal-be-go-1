@@ -16,7 +16,7 @@
   - **Đăng Xuất**: `admin/api/logout`  
     - Mô tả: Tính năng đăng xuất, xóa cookie trên máy người dùng
 
-### Quản Lý Tài Khoản `Nhân và Thịnh`
+### Quản Lý Tài Khoản `Nhân và Thịnh và Toàn`
 - **POST**
   - **Tạo Admin Mới**: `admin/api/create`  
     - Mô tả: Tạo thêm 1 admin mới.
@@ -46,6 +46,16 @@
         }
       ]
     ```
+- **GET**
+  - **Lấy Tài Khoản theo ms**: `admin/api/account/:ms` 
+    - Mô tả: Lấy một tài khoản có mã số ms.
+    - Yêu cầu gửi lên: Đúng param nếu sai thì be sẽ không trả dữ liệu
+
+  **Lấy Tài Khoản có role là Teacher**: `admin/api/account/teacher` 
+    - Mô tả: Lấy tất cả tài khoản có role là teacher.
+
+  **Lấy Tài Khoản có role là Student**: `admin/api/account/student` 
+    - Mô tả: Lấy tất cả tài khoản có role là student.
 
 ### Quản Lý Khóa Học và Lớp Học `Cận và Sang và Kiệt`
 - **POST**
@@ -79,25 +89,26 @@
   - **Lấy lớp bằng id lớp 'Nhân'**: `api/class/:id`
     - Mô tả: Tính năng lấy ra lớp học bằng id lớp học, nếu tìm thấy lớp học trả về 
     ```bash
-    c.JSON(200, gin.H
-   { "status":  "success",
-		"message": "Lấy lớp học thành công",
-		"class":{
-              "ID": ""           
-	            "Semester": ""        
-	            "Name": ""             
-	            "CourseId": ""         
-	            "ListStudentId": [
-                ""
-                ""
-                ...
-                ""
-              ]                   []    
-	            "TeacherId": ""     
-	            "CreatedBy": ""     
-	            "UpdatedBy": ""     
-            }
-    })
+    { 
+      "status":  "success",
+      "message": "Lấy lớp học thành công",
+      "class":{
+                "ID": ""           
+                "Semester": ""        
+                "Name": ""             
+                "CourseId": ""         
+                "ListStudentId": [
+                  ""
+                  ""
+                  ...
+                  ""
+                ]                   []    
+                "TeacherId": ""     
+                "CreatedBy": ""     
+                "UpdatedBy": ""     
+              }
+      }
+    ```
     - Yêu cầu gửi lên: đúng param
 
 - **GET**
@@ -155,17 +166,62 @@
     -Mô tả: Tính năng lấy ra dữ liệu của account đó
 ### Lấy ra các lớp học và chi tiết lớp học
 - **GET**
-  - **Lấy ra tất cả các lớp học cho giáo viên**: `api/class/teacher`
-    - Mô tả: Tính năng lấy ra tất cả lớp học của giáo viên
-    - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là teacher
-  - **Lấy ra tất cả các lớp học cho học sinh**: `api/class/student`
-    - Mô tả: Tính năng lấy ra tất cả các lớp học của học sinh đó đang học
-    - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role là student
+  - **Lấy ra tất cả các lớp học cho account**: `api/class/account`
+    - Mô tả: Tính năng lấy ra tất cả các lớp học của account đó đang học
+    - Yêu cầu gửi lên: không cần gửi lên gì cả, chỉ cần đăng nhập bằng account có role student | teacher
+    - Giá trị trả về:
+    ```bash
+    ```
   - **Lấy ra chi tiết lớp hoc**: `api/class/:id`
     - Mô tả: Tính năng lấy ra chi tiết lớp học đó
     - Yêu cầu gửi lên: đúng param nếu sai thì be sẽ không trả dữ liệu
-### Lấy ra bảng điểm
+    - Giá trị trả về:
+    ```bash
+    ```
+### bảng điểm
 - **Get**
   - **Lấy ra bảng điểm**: `api/resultScore/:class_id`
     - Mô tả: Tính năng lấy ra bảng điểm của lớp học đó, nếu teacher thì sẽ gửi về toàn bộ bản điểm, nếu student thì gửi về bảng điểm của student đó
     - Yêu cầu gửi lên: đúng param
+    - Giá trị trả về:
+    ```bash
+
+    ```
+- **POST**
+  - **Thêm bảng điểm**: `api/resultScore/create`
+    - Mô tả: Tính năng thêm 1 bảng điểm mới vào database
+    - Yêu cầu gửi lên:
+    ```bash
+      {
+        "score": [
+          "MSSV": MSSV,
+          "Data": {
+            "BT": []float // 1 mảng các điểm BT,
+            "TN": []float // 1 mảng các điểm TN,
+            "BTL": []float // 1 mảng các điểm BTL,
+            "GK": float // điểm giữa kỳ
+            "CK": float // điểm cuối kỳ
+          }
+        ],
+        "class_id": class_id
+      }
+    ```
+- **PATCH**
+  - **Chỉnh sửa bảng điểm** `api/resultScore/:class_id`
+    - Mô tả: Tính năng chỉnh sửa 1 bảng điểm mới vào database
+    - Yêu cầu gửi lên:
+    ```bash
+      {
+        "score": [
+          "MSSV": MSSV,
+          "Data": {
+            "BT": []float // 1 mảng các điểm BT,
+            "TN": []float // 1 mảng các điểm TN,
+            "BTL": []float // 1 mảng các điểm BTL,
+            "GK": float // điểm giữa kỳ
+            "CK": float // điểm cuối kỳ
+          }
+        ],
+        "class_id": class_id
+      }
+    ```

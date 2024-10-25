@@ -7,8 +7,6 @@ import (
 )
 
 func ClassRoute(r *gin.RouterGroup) {
-	r.GET("/teacher", controller_client.ClassTeacherController)
-	r.GET("/student", controller_client.ClassStudentController)
+	r.GET("/account", controller_client.ClassAccountController)
 	r.GET("/:id", controller_client.ClassDetailController)
-
 }
