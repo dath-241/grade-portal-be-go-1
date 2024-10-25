@@ -32,6 +32,12 @@ func AccountCreateController(c *gin.Context) {
 		return
 	}
 	CreatedBy, _ := c.Get("ID")
+
+	c.JSON(200, gin.H{
+		"status":         "success",
+		"createdByAdmin": CreatedBy,
+	})
+
 	m := make(map[string]bool)
 	var filterAccount []InterfaceUserController
 	var errorAccount []InterfaceUserController
@@ -54,7 +60,6 @@ func AccountCreateController(c *gin.Context) {
 	// 		invalidEmails = append(invalidEmails, newUser)
 	// 		continue
 	// 	}
-
 	// Chèn các tài khoản hợp lệ vào cơ sở dữ liệu
 	if len(filterAccount) > 0 {
 		_, err := userCollection.InsertMany(context.TODO(), filterAccount)
@@ -63,10 +68,98 @@ func AccountCreateController(c *gin.Context) {
 			return
 		}
 	}
-
 	// Trả về phản hồi, thông báo người dùng nào đã được thêm và ai bị trùng lặp
 	c.JSON(200, gin.H{
-		"code":         "success",
 		"errorAccount": errorAccount,
+	})
+}
+
+func AccountGetByMS(c *gin.Context) {
+	ms := c.Param("ms") // Lấy giá trị "" từ URL
+
+	userCollection := models.UserModel()
+
+	// Tạo biến để lưu kết quả
+	var user models.InterfaceUser
+
+	// Tìm trong MongoDB theo trường MS
+	err := userCollection.FindOne(context.TODO(), bson.M{"ms": ms}).Decode(&user)
+	if err != nil {
+		if err.Error() == "mongo: no documents in result" {
+			// Nếu không tìm thấy user
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+		// Xử lý lỗi khác
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	// Trả về thông tin user
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "User found successfully",
+		"foundedUser": user,
+	})
+}
+
+func TeacherAccountGet(c *gin.Context) {
+	userCollection := models.UserModel()
+
+	// Tạo biến lưu kết quả
+	var users []models.InterfaceUser
+
+	cursor, err := userCollection.Find(context.TODO(), bson.M{"role": "teacher"})
+	// Xử lý lỗi
+	if err != nil {
+		if err.Error() == "mongo: no documents in result" {
+			// Nếu không tìm thấy user
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+		// Xử lý lỗi khác
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	if err := cursor.All(context.TODO(), &users); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	// Trả về thông tin users
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "Users found successfully",
+		"foundedUser": users,
+	})
+}
+
+func StudentAccountGet(c *gin.Context) {
+	userCollection := models.UserModel()
+
+	// Tạo biến lưu kết quả
+	var users []models.InterfaceUser
+
+	cursor, err := userCollection.Find(context.TODO(), bson.M{"role": "student"})
+	// Xử lý lỗi
+	if err != nil {
+		if err.Error() == "mongo: no documents in result" {
+			// Nếu không tìm thấy user
+			c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+			return
+		}
+		// Xử lý lỗi khác
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	if err := cursor.All(context.TODO(), &users); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error fetching user"})
+		return
+	}
+
+	// Trả về thông tin users
+	c.JSON(http.StatusOK, gin.H{
+		"status":      "Users found successfully",
+		"foundedUser": users,
 	})
 }
