@@ -25,6 +25,7 @@ WORKDIR /root/
 # Sao chép binary và chứng chỉ vào image mới
 COPY --from=builder /app/main .
 
+
 # Mở cổng mà ứng dụng sẽ lắng nghe
 EXPOSE 8080
 
