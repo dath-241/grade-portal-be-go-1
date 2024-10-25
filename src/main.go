@@ -29,9 +29,6 @@ func main() {
 
 	// Chạy server
 	fmt.Println("Server đang chạy trên cổng", os.Getenv("PORT"))
-	err := app.RunTLS(":"+os.Getenv("PORT"), "cert.pem", "key.pem")
-	if err != nil {
-		panic(err)
-	}
+	app.Run(":" + os.Getenv("PORT"))
 
 }
