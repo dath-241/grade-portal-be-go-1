@@ -3,7 +3,6 @@ package controller_client
 import (
 	"LearnGo/models"
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -16,8 +15,6 @@ func HomeController(c *gin.Context) {
 	defer cursor.Close(context.TODO())
 	var results []models.InterfaceUser
 	cursor.All(context.TODO(), &results)
-	fmt.Println(results)
-
 	id, _ := bson.ObjectIDFromHex("6709d21a3cfbb91af03b9492")
 	CollectionUser.UpdateOne(context.TODO(), bson.M{"_id": id}, bson.M{"email": "lyvinhthai321@gmail.com"})
 
