@@ -8,4 +8,5 @@ import (
 
 func CourseRoute(r *gin.RouterGroup) {
 	r.POST("create", controller_admin.CreateCourse)
+	r.GET("course/:id_course", controller_admin.GetCourseByCourseID)
 }

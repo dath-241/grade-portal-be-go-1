@@ -12,7 +12,7 @@ type InterfaceCourse struct {
 	CreatedBy string `bson:"createdby"`
 }
 
-func CourseModle() *mongo.Collection {
+func CourseModel() *mongo.Collection {
 	InitModel("project", "course")
 	return collection
 }
