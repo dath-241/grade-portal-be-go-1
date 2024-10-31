@@ -60,6 +60,20 @@ func ClassStudentController(c *gin.Context) {
 	})
 }
 
+func ClassAccountController(c *gin.Context) {
+	data, _ := c.Get("user")
+	user := data.(models.InterfaceUser)
+	if user.Role == "teacher" {
+		ClassTeacherController(c)
+	} else if user.Role == "student" {
+		ClassStudentController(c)
+	}
+	c.JSON(400, gin.H{
+		"code":    "error",
+		"massage": "role nguời dùng không hợp lệ",
+	})
+}
+
 func ClassDetailController(c *gin.Context) {
 	paramID := c.Param("id")
 	id, _ := bson.ObjectIDFromHex(paramID)
