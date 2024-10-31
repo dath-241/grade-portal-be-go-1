@@ -35,5 +35,5 @@ Phần mềm backend cho chương trình web để đồng bộ dữ liệu 
   - `User_guide.md`: Hướng dẫn sử dụng phần mềm.
   - `API_doc.md`: Tài liệu về API được sử dụng trong dự án.
 - `/reports`: Thư mục chứa các báo cáo về tiến độ và báo cáo cuối kỳ.
-  - `/weekly reports`: Thư mục chứ các báo cáo tiến độ các tuần
+  - `/weekly reports`: Thư mục chứa báo cáo tiến độ các tuần
   - `main_report.md`: Báo cáo môn học.
