@@ -52,10 +52,10 @@
     - Yêu cầu gửi lên: Đúng param nếu sai thì be sẽ không trả dữ liệu
 
   **Lấy Tài Khoản có role là Teacher**: `admin/api/account/teacher` 
-    - Mô tả: Lấy tất cả tài khoản có role là teacher.
+    - Mô tả: Lấy tất cả tài khoản có role là teacher. Hoặc lấy 1 tài khoản có role là teacher có mã số ms bằng cách sử dụng API `admin/api/account/student?ms=?` 
 
   **Lấy Tài Khoản có role là Student**: `admin/api/account/student` 
-    - Mô tả: Lấy tất cả tài khoản có role là student.
+    - Mô tả: Lấy tất cả tài khoản có role là student. Hoặc lấy 1 tài khoản có role là student có mã số ms bằng cách sử dụng API `admin/api/account/student?ms=?` 
 
 ### Quản Lý Khóa Học và Lớp Học `Cận và Sang và Kiệt`
 - **POST**
