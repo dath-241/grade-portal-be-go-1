@@ -223,3 +223,43 @@ func GetClassByClassID(c *gin.Context) {
 		"class":   class,
 	})
 }
+
+
+//API lấy tất cả lớp học theo mã môn học
+func GetClassByCourseID(c *gin.Context){
+	param := c.Param("id_course")
+	course_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "error",
+			"message": "Invalid ID format",
+		})
+		return
+	}
+	var classes []models.InterfaceClass
+	collection := models.ClassModel()
+	cursor, err := collection.Find(context.TODO(), bson.M{"course_id": course_id})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "error",
+			"message": "Không tìm thấy lớp học",
+		})
+		return
+	}
+	for cursor.Next(context.Background()) {
+		var class models.InterfaceClass
+		if err := cursor.Decode(&class); err != nil {
+			c.JSON(400, gin.H{
+				"status":  "error",
+				"message": "Lỗi khi decode dữ liệu",
+			})
+			return
+		}
+		classes = append(classes, class)
+	}
+	c.JSON(200, gin.H{
+		"status":  "success",
+		"message": "Lấy lớp học thành công",
+		"classes": classes,
+	})
+}
