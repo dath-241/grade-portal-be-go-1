@@ -108,7 +108,7 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 }
 
 // Hỗ trợ check student hay teacher
-func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true, Teacher -> false
+func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // Student -> true, Teacher -> false
 	collection := models.UserModel()
 
 	// Chuyển đổi id từ string sang ObjectID
@@ -133,6 +133,9 @@ func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true,
 	// Kiểm tra xem có tài liệu nào không
 	if cursor.Next(context.TODO()) {
 		// Nếu có tài liệu, trả về true
+		var user models.InterfaceUser
+		cursor.Decode(&user)
+		*mssv = user.Ms
 		return true
 	} else if err := cursor.Err(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -150,11 +153,13 @@ func GetAllClassesByAccountID(c *gin.Context) {
 
 	var classes []bson.M
 	collection := models.ClassModel()
+	var mssv string
+
 	// Tìm tất cả lớp học mà giáo viên hoặc sinh viên với account_id tham gia
-	isStudent := CheckStudentOrTeacher(c, accountID)
+	isStudent := CheckStudentOrTeacher(c, accountID, &mssv)
 	var filter bson.M
 	if isStudent {
-		filter = bson.M{"listStudent_ms": bson.M{"$in": []string{accountID}}} // Nếu là student
+		filter = bson.M{"listStudent_ms": bson.M{"$in": []string{mssv}}} // Nếu là student
 	} else {
 		id, _ := bson.ObjectIDFromHex(accountID)
 		filter = bson.M{"teacher_id": id} // Nếu là teacher
