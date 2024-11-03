@@ -108,11 +108,9 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 }
 
 // Hỗ trợ check student hay teacher
-// id account -> teacher
-// id account -> student -> account Student
-func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true, Teacher -> false
-	collection := models.UserModel()
 
+func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // Student -> true, Teacher -> false
+	collection := models.UserModel()
 	// Chuyển đổi id từ string sang ObjectID
 	objectId, err := bson.ObjectIDFromHex(id)
 
@@ -135,6 +133,9 @@ func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true,
 	// Kiểm tra xem có tài liệu nào không
 	if cursor.Next(context.TODO()) {
 		// Nếu có tài liệu, trả về true
+		var user models.InterfaceUser
+		cursor.Decode(&user)
+		*mssv = user.Ms
 		return true
 	} else if err := cursor.Err(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -152,11 +153,13 @@ func GetAllClassesByAccountID(c *gin.Context) {
 
 	var classes []bson.M
 	collection := models.ClassModel()
+	var mssv string
+
 	// Tìm tất cả lớp học mà giáo viên hoặc sinh viên với account_id tham gia
-	isStudent := CheckStudentOrTeacher(c, accountID)
+	isStudent := CheckStudentOrTeacher(c, accountID, &mssv)
 	var filter bson.M
 	if isStudent {
-		filter = bson.M{"listStudent_ms": bson.M{"$in": []string{accountID}}} // Nếu là student
+		filter = bson.M{"listStudent_ms": bson.M{"$in": []string{mssv}}} // Nếu là student
 	} else {
 		id, _ := bson.ObjectIDFromHex(accountID)
 		filter = bson.M{"teacher_id": id} // Nếu là teacher
@@ -223,5 +226,44 @@ func GetClassByClassID(c *gin.Context) {
 		"status":  "success",
 		"message": "Lấy lớp học thành công",
 		"class":   class,
+	})
+}
+
+// API lấy tất cả lớp học theo mã môn học
+func GetClassByCourseID(c *gin.Context) {
+	param := c.Param("id_course")
+	course_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "error",
+			"message": "Invalid ID format",
+		})
+		return
+	}
+	var classes []models.InterfaceClass
+	collection := models.ClassModel()
+	cursor, err := collection.Find(context.TODO(), bson.M{"course_id": course_id})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"status":  "error",
+			"message": "Không tìm thấy lớp học",
+		})
+		return
+	}
+	for cursor.Next(context.Background()) {
+		var class models.InterfaceClass
+		if err := cursor.Decode(&class); err != nil {
+			c.JSON(400, gin.H{
+				"status":  "error",
+				"message": "Lỗi khi decode dữ liệu",
+			})
+			return
+		}
+		classes = append(classes, class)
+	}
+	c.JSON(200, gin.H{
+		"status":  "success",
+		"message": "Lấy lớp học thành công",
+		"classes": classes,
 	})
 }
