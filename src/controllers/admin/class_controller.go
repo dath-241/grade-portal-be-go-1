@@ -108,9 +108,9 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 }
 
 // Hỗ trợ check student hay teacher
+
 func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // Student -> true, Teacher -> false
 	collection := models.UserModel()
-
 	// Chuyển đổi id từ string sang ObjectID
 	objectId, err := bson.ObjectIDFromHex(id)
 
@@ -229,9 +229,8 @@ func GetClassByClassID(c *gin.Context) {
 	})
 }
 
-
-//API lấy tất cả lớp học theo mã môn học
-func GetClassByCourseID(c *gin.Context){
+// API lấy tất cả lớp học theo mã môn học
+func GetClassByCourseID(c *gin.Context) {
 	param := c.Param("id_course")
 	course_id, err := bson.ObjectIDFromHex(param)
 	if err != nil {
