@@ -108,6 +108,8 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 }
 
 // Hỗ trợ check student hay teacher
+// id account -> teacher
+// id account -> student -> account Student
 func CheckStudentOrTeacher(c *gin.Context, id string) bool { // Student -> true, Teacher -> false
 	collection := models.UserModel()
 
