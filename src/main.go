@@ -25,7 +25,8 @@ func main() {
 
 	// Cấu hình CORS
 	app.Use(cors.New(cors.Config{
-		AllowAllOrigins:  true, // Cho phép tất cả mọi người truy cập
+		AllowAllOrigins:  true,                                                  // Sai: Đây là một bool, không thể thay thế bằng []string
+		AllowOrigins:     []string{"https://frontend-kappa-pink-95.vercel.app"}, // Đúng: Đây là []string
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
