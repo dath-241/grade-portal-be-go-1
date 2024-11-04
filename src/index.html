@@ -86,17 +86,18 @@
           headers: {
             'Content-Type': 'application/json'
           },
+          credentials: 'include', // Đảm bảo rằng cookie sẽ được gửi
           body: JSON.stringify({ idToken: idToken }) // Gửi ID Token trong body
         })
 
-        const data = await response.json();
-        console.log(data); // In ra phản hồi từ máy chủ
-
-        // Lấy cookie từ document.cookie
-        const cookies = document.cookie; // Hoặc sử dụng hàm getCookie nếu cần
-        console.log('Cookies:', cookies);
+        if (response.ok) {
+          console.log('ID Token đã được gửi thành công.');
+        } else {
+          const errorResponse = await response.text();
+          console.error('Lỗi khi gửi ID Token:', errorResponse);
+        }
       } catch (error) {
-        console.error('Lỗi khi gửi ID Token:', error);
+        console.error('Error sending ID Token:', error);
       }
     }
 
