@@ -42,7 +42,7 @@ func LoginController(c *gin.Context) {
 		return
 	}
 	token := helper.CreateJWT(user.ID)
-	c.SetCookie("token", token, 3600*24, "/", "test-jcz3.vercel.app", true, true)
+	c.SetCookie("token", token, 3600*24, "/", "", true, true)
 	c.JSON(200, gin.H{
 		"code":  "Success",
 		"token": token,
@@ -50,7 +50,7 @@ func LoginController(c *gin.Context) {
 }
 
 func LogoutController(c *gin.Context) {
-	c.SetCookie("token", "", -1, "/", "", false, true)
+	c.SetCookie("token", "", 3600*24, "/", "", true, true)
 	c.JSON(200, gin.H{
 		"code":    "Success",
 		"massage": "Đăng xuất thành công",
