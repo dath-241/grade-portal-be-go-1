@@ -12,8 +12,7 @@
 
   <script>
     var YOUR_CLIENT_ID = '86683415797-aq6n74j9gdkrd7pd3u6a2d55fh587cd3.apps.googleusercontent.com';
-    var YOUR_REDIRECT_URI = 'http://127.0.0.1:5500/src/index.html';
-
+    var YOUR_REDIRECT_URI = 'https://test-jcz3.vercel.app'
     // Phân tích chuỗi truy vấn để kiểm tra xem trang có yêu cầu từ máy chủ OAuth 2.0 không.
     var fragmentString = location.hash.substring(1);
     var params = {};
@@ -88,7 +87,7 @@
     // Gửi ID Token đến backend
     function sendIdTokenToBackend(idToken) {
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:8080/admin/api/login');
+      xhr.open('POST', 'https://canxphung.id.vn/admin/api/login');
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -133,7 +132,6 @@
         'include_granted_scopes': 'true',
         'response_type': 'id_token token' // Yêu cầu cả ID Token và Access Token
       };
-
       // Thêm các tham số biểu mẫu dưới dạng giá trị đầu vào ẩn
       for (var p in params) {
         var input = document.createElement('input');
