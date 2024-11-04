@@ -42,7 +42,7 @@ func LoginController(c *gin.Context) {
 		return
 	}
 	token := helper.CreateJWT(user.ID)
-	c.SetCookie("token", token, 3600*24, "http://127.0.0.1:5500", "http://127.0.0.1:5500/src/index.html", false, true)
+	c.SetCookie("token", token, 3600*24, "/", "test-jcz3.vercel.app", true, true)
 	c.JSON(200, gin.H{
 		"code": "Success",
 	})
