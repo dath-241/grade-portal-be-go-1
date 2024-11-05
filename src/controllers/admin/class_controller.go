@@ -267,3 +267,32 @@ func GetClassByCourseID(c *gin.Context) {
 		"classes": classes,
 	})
 }
+
+func AddStudentsToCourseHandler(c *gin.Context) {
+	var request struct {
+		CourseID string   `json:"courseID"`
+		Students []string `json:"students"`
+	}
+
+	if err := c.BindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    "error",
+			"message": "Invalid request data",
+		})
+		return
+	}
+
+	err := models.AddStudentsToCourse(request.CourseID, request.Students)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "error",
+			"message": "Failed to add students to course",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    "success",
+		"message": "Students added to course successfully",
+	})
+}
