@@ -8,11 +8,10 @@ import (
 func Set_semester(t time.Time) string {
 	year := t.Year()
 	month := t.Month()
-	a := year - 2000
-	Semester := "HK" + strconv.Itoa(a)
+	var Semester string
 	switch {
 	case month >= 9 && month <= 12:
-		Semester = "HK" + strconv.Itoa(a) + "1"
+		Semester = "HK" + strconv.Itoa(year-2000) + "1"
 	case month >= 1 && month <= 4:
 		Semester = "HK" + strconv.Itoa(a-1) + "2"
 	case month >= 5 && month <= 8:
