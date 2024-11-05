@@ -144,7 +144,6 @@ func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // St
 
 	// Nếu không có tài liệu nào, trả về false
 	return false
-
 }
 
 // API lấy tất cả lớp học theo account_id
