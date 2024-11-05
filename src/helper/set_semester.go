@@ -13,9 +13,9 @@ func Set_semester(t time.Time) string {
 	case month >= 9 && month <= 12:
 		Semester = "HK" + strconv.Itoa(year-2000) + "1"
 	case month >= 1 && month <= 4:
-		Semester = "HK" + strconv.Itoa(a-1) + "2"
+		Semester = "HK" + strconv.Itoa(year-2001) + "2"
 	case month >= 5 && month <= 8:
-		Semester = "HK" + strconv.Itoa(a-1) + "3"
+		Semester = "HK" + strconv.Itoa(year-2001) + "3"
 	}
 
 	return Semester

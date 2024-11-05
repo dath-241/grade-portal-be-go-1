@@ -144,7 +144,6 @@ func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // St
 
 	// Nếu không có tài liệu nào, trả về false
 	return false
-
 }
 
 // API lấy tất cả lớp học theo account_id
@@ -265,5 +264,34 @@ func GetClassByCourseID(c *gin.Context) {
 		"status":  "success",
 		"message": "Lấy lớp học thành công",
 		"classes": classes,
+	})
+}
+
+func AddStudentsToCourseHandler(c *gin.Context) {
+	var request struct {
+		CourseID string   `json:"courseID"`
+		Students []string `json:"students"`
+	}
+
+	if err := c.BindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    "error",
+			"message": "Invalid request data",
+		})
+		return
+	}
+
+	err := models.AddStudentsToCourse(request.CourseID, request.Students)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "error",
+			"message": "Failed to add students to course",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    "success",
+		"message": "Students added to course successfully",
 	})
 }
