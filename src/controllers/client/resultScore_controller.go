@@ -15,7 +15,7 @@ func ResultController(c *gin.Context) {
 	data, _ := c.Get("user")
 	param := c.Param("id")
 	class_id, _ := bson.ObjectIDFromHex(param)
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	var resultScore models.InterfaceResultScore
 	collection := models.ResultScoreModel()
 	if err := collection.FindOne(context.TODO(), bson.M{
@@ -49,7 +49,7 @@ func ResultController(c *gin.Context) {
 
 func CreateResultScoreController(c *gin.Context) {
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	var dataResult InterfaceResultScoreController
 	// lay du lieu tu front end
 	c.BindJSON(&dataResult)
@@ -92,7 +92,7 @@ func CreateResultScoreController(c *gin.Context) {
 func ResultPatchController(c *gin.Context) {
 	id := c.Param("id")
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	var dataResult InterfaceResultScoreController
 	c.BindJSON(&dataResult)
 	class_id, _ := bson.ObjectIDFromHex(id)

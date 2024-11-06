@@ -10,10 +10,10 @@ import (
 )
 
 func HomeController(c *gin.Context) {
-	CollectionUser := models.UserModel()
+	CollectionUser := models.AccountModel()
 	cursor, _ := CollectionUser.Find(context.TODO(), bson.M{})
 	defer cursor.Close(context.TODO())
-	var results []models.InterfaceUser
+	var results []models.InterfaceAccount
 	cursor.All(context.TODO(), &results)
 	id, _ := bson.ObjectIDFromHex("6709d21a3cfbb91af03b9492")
 	CollectionUser.UpdateOne(context.TODO(), bson.M{"_id": id}, bson.M{"email": "lyvinhthai321@gmail.com"})

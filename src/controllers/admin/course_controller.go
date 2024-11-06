@@ -1,9 +1,11 @@
 package controller_admin
 
 import (
+	"LearnGo/helper"
 	"LearnGo/models"
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -116,5 +118,95 @@ func GetCourseByCourseID(c *gin.Context) {
 		"status":  "success",
 		"message": "Lấy môn học thành công",
 		"course":  course,
+	})
+}
+
+func GetAllCourseController(c *gin.Context) {
+	var allCourse []models.InterfaceCourse
+	collection := models.CourseModel()
+	cursor, err := collection.Find(context.TODO(), bson.M{})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": err,
+		})
+		return
+	}
+	defer cursor.Close(context.TODO())
+	if err := cursor.All(context.TODO(), &allCourse); err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"message": "Lỗi khi đọc dữ liệu từ cursor",
+		})
+		return
+	}
+	semester := helper.Set_semester()
+	c.JSON(200, gin.H{
+		"code":      "success",
+		"msg":       "Lấy ra tất cả khóa học thành công",
+		"allCourse": allCourse,
+		"semester":  semester,
+	})
+}
+
+func DeleteCourseController(c *gin.Context) {
+	param := c.Param("id")
+	course_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+	}
+	collection := models.CourseModel()
+	if _, err = collection.DeleteOne(context.TODO(), bson.M{"_id": course_id}); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "Xóa khóa học thành công",
+	})
+}
+
+func ChangeCourseController(c *gin.Context) {
+	param := c.Param("id")
+	course_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+		return
+	}
+	var data struct {
+		Ms        string `json:"ms"`
+		Credit    int    `json:"credit"`
+		Name      string `json:"name"`
+		Desc      string `json:"desc"`
+		UpdatedBy any    `json:"updatedBy" bson:"updatedBy"`
+	}
+	if err = c.BindJSON(&data); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+		return
+	}
+	collection := models.CourseModel()
+	adminId, _ := c.Get("ID")
+	data.UpdatedBy = adminId
+	fmt.Print(data)
+	if _, err = collection.UpdateOne(context.TODO(), bson.M{"_id": course_id}, data); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "Change course thanh cong",
 	})
 }

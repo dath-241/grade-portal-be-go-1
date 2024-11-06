@@ -1,6 +1,6 @@
 package controller_client
 
-type InterfaceUserController struct {
+type InterfaceAccountController struct {
 	IDToken string `json:"idToken"`
 	Role    string `json:"role"`
 }

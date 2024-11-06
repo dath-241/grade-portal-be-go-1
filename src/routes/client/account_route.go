@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func UserRoute(r *gin.RouterGroup) {
+func AccountRoute(r *gin.RouterGroup) {
 	r.POST("/login", controller_client.LoginController)
 	r.POST("/logout", middlewares_client.RequireUser, controller_client.LogoutController)
-	r.GET("/info", middlewares_client.RequireUser, controller_client.UserController)
+	r.GET("/info", middlewares_client.RequireUser, controller_client.AccountController)
 }

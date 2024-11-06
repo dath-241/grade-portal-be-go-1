@@ -13,7 +13,7 @@ import (
 )
 
 func LoginController(c *gin.Context) {
-	var data InterfaceUserController
+	var data InterfaceAccountController
 	// lấy dữ liệu từ front end
 	c.BindJSON(&data)
 	payload, err := idtoken.Validate(context.Background(), data.IDToken, os.Getenv("YOUR_CLIENT_ID"))
@@ -30,8 +30,8 @@ func LoginController(c *gin.Context) {
 	}
 	fmt.Println(email, data.Role)
 	// tim kiem nguoi dung da co trong db khong
-	collection := models.UserModel()
-	var user models.InterfaceUser
+	collection := models.AccountModel()
+	var user models.InterfaceAccount
 	err = collection.FindOne(
 		context.TODO(),
 		bson.M{
@@ -47,7 +47,8 @@ func LoginController(c *gin.Context) {
 	token := helper.CreateJWT(user.ID)
 	c.SetCookie("token", token, 3600*24, "/", "", false, true)
 	c.JSON(200, gin.H{
-		"code": "Success",
+		"code":  "Success",
+		"token": token,
 	})
 }
 
@@ -59,7 +60,7 @@ func LogoutController(c *gin.Context) {
 	})
 }
 
-func UserController(c *gin.Context) {
+func AccountController(c *gin.Context) {
 	user, _ := c.Get("user")
 	if user == "" {
 		c.JSON(401, gin.H{

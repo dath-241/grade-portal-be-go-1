@@ -37,14 +37,22 @@ type InterfaceClassController struct {
 	CourseId      string   `json:"course_id"`
 	ListStudentMs []string `json:"listStudent_ms"`
 	TeacherId     string   `json:"teacher_id"`
+	UpdatedBy     any      `json:"updatedBy" bson:"updatedBy"`
+}
+type InterfaceChangeClassController struct {
+	Semester  string `json:"semester"`
+	Name      string `json:"name"` // nhom lop
+	CourseId  any    `json:"course_id" bson:"course_id"`
+	TeacherId any    `json:"teacher_id" bson:"teacher_id"`
+	UpdatedBy any    `json:"updatedBy" bson:"updatedBy"`
 }
 
-type InterfaceUserController struct {
-	Email     string    `json:"email"`
-	Name      string    `json:"name"`
-	Ms        string    `json:"ms"`
-	Faculty   string    `json:"faculty"`
-	Role      string    `json:"role"`
+type InterfaceAccountController struct {
+	Email     string    `json:"email" bson:"email"`
+	Name      string    `json:"name" bson:"name"`
+	Ms        string    `json:"ms" bson:"ms"`
+	Faculty   string    `json:"faculty" bson:"faculty"`
+	Role      string    `json:"role" bson:"role"`
 	CreatedBy any       `json:"createdBy" bson:"createdBy"`
 	ExpiredAt time.Time `json:"expiredAt" bson:"expiredAt"`
 }
@@ -54,4 +62,16 @@ type InterfaceCourseController struct {
 	Credit int    `json:"credit"`
 	Name   string `json:"name"`
 	Desc   string `json:"desc"`
+}
+
+type InterfaceAccountChangeController struct {
+	Name      string `json:"name" bson:"name"`
+	Faculty   string `json:"faculty" bson:"faculty"`
+	Role      string `json:"role" bson:"role"`
+	CreatedBy any    `json:"createdBy" bson:"createdBy"`
+}
+
+type InterfaceAddStudentClassController struct {
+	ClassId       string   `json:"class_id"`
+	ListStudentMs []string `json:"listStudent_ms"`
 }

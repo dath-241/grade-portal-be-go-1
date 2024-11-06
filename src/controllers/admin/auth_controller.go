@@ -90,3 +90,24 @@ func CreateAdminController(c *gin.Context) {
 		"code": "vao duoc trang createAdmin",
 	})
 }
+
+func ProfileController(c *gin.Context) {
+	ID, _ := c.Get("ID")
+	collection := models.AdminModel()
+	var user models.InterfaceAdmin
+	err := collection.FindOne(
+		context.TODO(),
+		bson.M{
+			"_id": ID,
+		},
+	).Decode(&user)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "khong lay duoc thong tin nguoi dung trong dữ liệu vui lòng liên hệ admin để thêm bạn vào"})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "Thanh cong",
+		"user": user,
+	})
+}

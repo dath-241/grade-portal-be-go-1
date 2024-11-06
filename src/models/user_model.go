@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
-type InterfaceUser struct {
+type InterfaceAccount struct {
 	ID        bson.ObjectID `bson:"_id,omitempty"` // Tag cho ID
 	Email     string        `bson:"email"`         // Tag cho email
 	Name      string        `bson:"name"`          // Tag cho role
@@ -21,7 +21,7 @@ type InterfaceUser struct {
 	ExpiredAt time.Time     `bson:"expiredAt"` // Tag cho thời gian hết hạn
 }
 
-func UserModel() *mongo.Collection {
+func AccountModel() *mongo.Collection {
 	InitModel("project", "account")
 	indexModel := mongo.IndexModel{
 		Keys:    bson.D{{Key: "expiredAt", Value: 1}},     // Create index on expiredAt field
