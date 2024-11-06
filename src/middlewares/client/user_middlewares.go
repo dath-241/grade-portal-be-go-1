@@ -43,3 +43,17 @@ func RequireUser(c *gin.Context) {
 	c.Set("user", user)
 	c.Next()
 }
+
+func RequireTeacher(c *gin.Context) {
+	accountGet, _ := c.Get("user")
+	account := accountGet.(models.InterfaceAccount)
+	if account.Role != "teacher" {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Buồn ngủ quá không code nữa đâu",
+		})
+		c.Abort()
+		return
+	}
+	c.Next()
+}
