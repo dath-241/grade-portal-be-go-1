@@ -108,7 +108,7 @@ func CheckDuplicateClass(collection *mongo.Collection, semester string, courseId
 // Hỗ trợ check student hay teacher
 
 func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // Student -> true, Teacher -> false
-	collection := models.UserModel()
+	collection := models.AccountModel()
 	// Chuyển đổi id từ string sang ObjectID
 	objectId, err := bson.ObjectIDFromHex(id)
 
@@ -131,7 +131,7 @@ func CheckStudentOrTeacher(c *gin.Context, id string, mssv *string) bool { // St
 	// Kiểm tra xem có tài liệu nào không
 	if cursor.Next(context.TODO()) {
 		// Nếu có tài liệu, trả về true
-		var user models.InterfaceUser
+		var user models.InterfaceAccount
 		cursor.Decode(&user)
 		*mssv = user.Ms
 		return true
@@ -228,7 +228,7 @@ func GetClassByClassID(c *gin.Context) {
 
 // API lấy tất cả lớp học theo mã môn học
 func GetClassByCourseID(c *gin.Context) {
-	param := c.Param("id_course")
+	param := c.Param("id")
 	course_id, err := bson.ObjectIDFromHex(param)
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -242,7 +242,7 @@ func GetClassByCourseID(c *gin.Context) {
 	cursor, err := collection.Find(context.TODO(), bson.M{"course_id": course_id})
 	if err != nil {
 		c.JSON(400, gin.H{
-			"status":  "error",
+			"status":  err,
 			"message": "Không tìm thấy lớp học",
 		})
 		return
@@ -251,7 +251,7 @@ func GetClassByCourseID(c *gin.Context) {
 		var class models.InterfaceClass
 		if err := cursor.Decode(&class); err != nil {
 			c.JSON(400, gin.H{
-				"status":  "error",
+				"status":  err,
 				"message": "Lỗi khi decode dữ liệu",
 			})
 			return
@@ -266,10 +266,7 @@ func GetClassByCourseID(c *gin.Context) {
 }
 
 func AddStudentsToCourseHandler(c *gin.Context) {
-	var request struct {
-		CourseID string   `json:"courseID"`
-		Students []string `json:"students"`
-	}
+	var request InterfaceAddStudentClassController
 
 	if err := c.BindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -278,8 +275,23 @@ func AddStudentsToCourseHandler(c *gin.Context) {
 		})
 		return
 	}
-
-	err := models.AddStudentsToCourse(request.CourseID, request.Students)
+	collection := models.ClassModel()
+	class_id, err := bson.ObjectIDFromHex(request.ClassId)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+	}
+	filter := bson.M{"_id": class_id}
+	update := bson.M{
+		"$addToSet": bson.M{
+			"listStudent_ms": bson.M{
+				"$each": request.ListStudentMs,
+			},
+		},
+	}
+	_, err = collection.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"code":    "error",
@@ -324,7 +336,7 @@ func ChangeClassController(c *gin.Context) {
 		})
 		return
 	}
-	var data InterfaceClassController
+	var data InterfaceChangeClassController
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
 			"code":    "error",
@@ -332,15 +344,31 @@ func ChangeClassController(c *gin.Context) {
 		})
 		return
 	}
-	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
-	if err != nil {
-		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "teacher_id không hợp lệ",
-		})
-		return
+	teacherIdStr, _ := data.TeacherId.(string)
+	if teacherIdStr != "" {
+		teacher_id, err := bson.ObjectIDFromHex(teacherIdStr)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code":    "error",
+				"massage": "teacher_id không hợp lệ",
+			})
+			return
+		}
+		data.TeacherId = teacher_id
 	}
-	course_id, err := bson.ObjectIDFromHex(data.CourseId)
+	var course_id bson.ObjectID
+	courseIdStr, _ := data.CourseId.(string)
+	if courseIdStr != "" {
+		course_id, err = bson.ObjectIDFromHex(courseIdStr)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code":    "error",
+				"massage": "teacher_id không hợp lệ",
+			})
+			return
+		}
+		data.CourseId = course_id
+	}
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code":    "error",
@@ -372,15 +400,8 @@ func ChangeClassController(c *gin.Context) {
 	}
 	// Thêm nếu không bị trùng lăp
 	createBy, _ := c.Get("ID")
-
-	_, err = collection.UpdateOne(context.TODO(), bson.M{"_id": classId}, bson.M{
-		"semester":       data.Semester,
-		"name":           data.Name,
-		"course_id":      course_id,
-		"listStudent_ms": data.ListStudentMs,
-		"teacher_id":     teacher_id,
-		"updatedBy":      createBy,
-	})
+	data.UpdatedBy = createBy
+	class, err := collection.UpdateOne(context.TODO(), bson.M{"_id": classId}, bson.M{"$set": data})
 
 	if err != nil {
 		c.JSON(500, gin.H{
@@ -389,4 +410,10 @@ func ChangeClassController(c *gin.Context) {
 		})
 		return
 	}
+
+	c.JSON(200, gin.H{
+		"code":  "success",
+		"msg":   "update lop hoc thanh cong",
+		"class": class,
+	})
 }

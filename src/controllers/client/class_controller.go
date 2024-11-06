@@ -12,7 +12,7 @@ import (
 
 func ClassTeacherController(c *gin.Context) {
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	if user.Role != "teacher" {
 		c.JSON(401, gin.H{
 			"code":    "error",
@@ -40,8 +40,8 @@ func ClassTeacherController(c *gin.Context) {
 
 func ClassStudentController(c *gin.Context) {
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
-	var classStudentAll []models.InterfaceClass
+	user := data.(models.InterfaceAccount)
+	var classStudentAll []models.InterfaceClassStudent
 	collection := models.ClassModel()
 	fmt.Println(user)
 	cursor, err := collection.Find(context.TODO(), bson.M{
@@ -62,11 +62,13 @@ func ClassStudentController(c *gin.Context) {
 
 func ClassAccountController(c *gin.Context) {
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	if user.Role == "teacher" {
 		ClassTeacherController(c)
+		return
 	} else if user.Role == "student" {
 		ClassStudentController(c)
+		return
 	}
 	c.JSON(400, gin.H{
 		"code":    "error",
@@ -78,7 +80,7 @@ func ClassDetailController(c *gin.Context) {
 	paramID := c.Param("id")
 	id, _ := bson.ObjectIDFromHex(paramID)
 	data, _ := c.Get("user")
-	user := data.(models.InterfaceUser)
+	user := data.(models.InterfaceAccount)
 	var classDetail models.InterfaceClass
 	collection := models.ClassModel()
 	err := collection.FindOne(context.TODO(), bson.M{
@@ -93,8 +95,8 @@ func ClassDetailController(c *gin.Context) {
 	}
 	if user.Role == "student" {
 		var listStudent = classDetail.ListStudentMs
-		for _, studentID := range listStudent {
-			if studentID == user.ID.String() {
+		for _, studentMs := range listStudent {
+			if studentMs == user.Ms {
 				c.JSON(200, gin.H{
 					"code":        "success",
 					"classDetail": classDetail,
@@ -104,7 +106,7 @@ func ClassDetailController(c *gin.Context) {
 		}
 		c.JSON(401, gin.H{
 			"code":    "error",
-			"massage": "Bạn không được phép vào trang này",
+			"massage": "Bạn không được phép vào trang này 1",
 		})
 		return
 	} else if user.Role == "teacher" {

@@ -8,4 +8,5 @@ import (
 
 func ResultScoreRoute(r *gin.RouterGroup) {
 	r.POST("/create", controller_admin.ResultScoreController)
+	r.GET("/:id", controller_admin.GetResultScoreController)
 }

@@ -49,3 +49,29 @@ func ResultScoreController(c *gin.Context) {
 		"massage": "Cap nhat bang diem thanh cong",
 	})
 }
+
+func GetResultScoreController(c *gin.Context) {
+	param := c.Param("id")
+	class_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+		return
+	}
+	collection := models.ResultScoreModel()
+	var data models.InterfaceResultScore
+	if err = collection.FindOne(context.TODO(), bson.M{"class_id": class_id}).Decode(&data); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  err,
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code":  "success",
+		"msg":   "Lấy bảng điểm thành công",
+		"score": data,
+	})
+}

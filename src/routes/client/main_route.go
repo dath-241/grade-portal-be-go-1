@@ -8,7 +8,7 @@ import (
 
 func MainRoute(r *gin.Engine) {
 	HomeRouter(r.Group("/"))
-	UserRoute(r.Group("/api"))
+	AccountRoute(r.Group("/api"))
 
 	protectedGroup := r.Group("/api")
 	protectedGroup.Use(middlewares_client.RequireUser)
