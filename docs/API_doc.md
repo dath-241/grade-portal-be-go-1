@@ -2,54 +2,85 @@
 # Danh Sách Các API và Chức Năng
 
 ## Admin
-
-### Đăng Nhập và Đăng Xuất `Thái`
+- **URL**: `domain/admin/api`
+### Tài Khoản Admin
 - **POST** 
-  - **Đăng Nhập**: `admin/api/login`  
+  - **Đăng Nhập**: `URL/login`  
     - Mô tả: Tính năng đăng nhập, cookie sẽ được ghi vào cookie trên máy người dùng trong vòng 24h
-    - yêu cầu gửi lên :
-    ```bash
-      {
-        "idToken": idToken
+    ```json
+      request :{
+        "idToken": string
+      },
+      response :{
+        "token": string
       }
     ```
-  - **Đăng Xuất**: `admin/api/logout`  
+  - **Đăng Xuất**: `URL/logout`  
     - Mô tả: Tính năng đăng xuất, xóa cookie trên máy người dùng
-
-### Quản Lý Tài Khoản `Nhân và Thịnh và Toàn`
-- **POST**
-  - **Tạo Admin Mới**: `admin/api/create`  
-    - Mô tả: Tạo thêm 1 admin mới.
-    - Yêu cầu gửi lên:
-    ```bash
-      {
-        "email": email,
-        "name": name,
-        "ms": ms,
-        "faculty": faculty
+  - **Tạo Tài Khoản Admin**: `URL/create`
+    - Mô tả: Tính năng tạo tài khoản admin
+    ```json
+      request :{	    
+        "email": string,
+        "name" :  string,
+        "faculty": string,
+        "ms":      string,
       }
     ```
+  - **Thông tin tài khoản**: `URL/profile`
+    - Mô tả: Xem chi tiết thông tin tài khoản
+    ```json
+      response :{	    
+        "user": user {
+          "ID": string,
+          "Email": string,
+          "Name": string,
+          "Ms": string,
+          "Faculty": string,
+          "CreatedBy": string,
+        }
+      }
+    ```
+### Quản Lý Tài Khoản
+- **POST**
   - **Tạo Tài Khoản**: `admin/api/account/create`  
     - Mô tả: Tạo thêm tài khoản (có thể gửi lên một danh sách tài khoản).
-    - Yêu cầu gửi lên:
-    ```bash
-      [
-        { // object 1
-          "email": email,
-          "name": name,
-          "ms": mssv,
-          "faculty": faculty,
-          "role": role
+    ```json
+      request: [
+        {
+          "email": string,
+          "name": string,
+          "ms": string,
+          "faculty": string,
+          "role": string
         },
-        { // object 2
-          ....
+        {
+          // account 2
         }
       ]
     ```
 - **GET**
-  - **Lấy Tài Khoản theo ms**: `admin/api/account/:ms` 
-    - Mô tả: Lấy một tài khoản có mã số ms.
-    - Yêu cầu gửi lên: Đúng param nếu sai thì be sẽ không trả dữ liệu
+  - **Thông tin chi tiết tài khoản**: `URL/account/:id` 
+    - Mô tả: Lấy chi tiết tài khoản theo accountId
+    ```json
+      response: {
+        "account": {
+          "ID": string,
+          "Email": string,
+          "Name": string,
+          "Ms": string,
+          "Faculty": string,
+          "Role": string,
+        }
+      }
+    ```
+  - **Lấy ra toàn bộ giáo viên đang có**: `URL/account/teacher`
+    ```json
+      response: [
+        
+      ]
+    ```
+    
 
   **Lấy Tài Khoản có role là Teacher**: `admin/api/account/teacher` 
     - Mô tả: Lấy tất cả tài khoản có role là teacher. Hoặc lấy 1 tài khoản có role là teacher có mã số ms bằng cách sử dụng API `admin/api/account/student?ms=?` 

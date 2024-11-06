@@ -105,8 +105,8 @@ func AccountGetById(c *gin.Context) {
 
 	// Trả về thông tin user
 	c.JSON(http.StatusOK, gin.H{
-		"status":      "User found successfully",
-		"foundedUser": user,
+		"status":  "User found successfully",
+		"account": user,
 	})
 }
 

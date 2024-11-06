@@ -1,0 +1,1058 @@
+{
+	"info": {
+		"_postman_id": "d5d20509-0b94-475c-a9d5-a21f86bf6165",
+		"name": "Backend Golang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34739877"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "index",
+					"item": [
+						{
+							"name": "LoginController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3ODEzNjA5NTEyMTQ2Nzk5MDcyIiwiaGQiOiJoY211dC5lZHUudm4iLCJlbWFpbCI6InRoYWkubHlkem5oYXRsb3AyazRAaGNtdXQuZWR1LnZuIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI0X3dFNkRuTldZZnhIVTE3QTRfR0xRIiwibm9uY2UiOiI5OTQ5NDE5MTEyOTg2ODA5NjE2MjI1NDM5MDM5MzMyODg0MjQ4ODMyMDE1MDM5ODUiLCJuYmYiOjE3MzA4NzM1ODUsIm5hbWUiOiJUSMOBSSBMw50gVsSoTkgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS2Z1NXhPNHFMTFVaTk9jZkF4S2RTM3AxQnNIY3NIaERyY2QzakVkTkNIQ043LVVwST1zOTYtYyIsImdpdmVuX25hbWUiOiJUSMOBSSIsImZhbWlseV9uYW1lIjoiTMOdIFbEqE5IIiwiaWF0IjoxNzMwODczODg1LCJleHAiOjE3MzA4Nzc0ODUsImp0aSI6IjBhNGEwMWRmOGE1ZjMwMDRjMzZiMDExNWM4NzNmYWNjOWU0ZDJjNjQifQ.gtXmazdF_W41d-GFvdGyXOmlJjSYo59BWATVvbTSnkwuJtVO67769uqkjngB2ctWpXisc9Ttzp7jSL2W5bwiSsm8HiGDN6t0ritibjmucQtkak_sCgYjYb483vOPvyk5n60bCX3c1VbCV__wNeMUjLRfw73Uq5IjMQyGSRNcKJZtG_8wRNwMNEavHFDhjW3zAks9wrYsmWJbnj9KxON3wsy6PkYW8tWUPlgqq5GlyUjv0k4qvEAcfWiynXl4SJ8hV16n-9lRI0-fUlcx_DMyquSs3ftsSpQUsS2DRrLuvFBPidlFIpHPSkyz0-DRHeCB7NWiGEFviX0bODoGafgJCg\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/login",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LogoutController",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/logout",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateAdminController",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\t    \r\n    \"email\": \"\" ,\r\n\t\"name\" :  \"\" ,  \r\n\t\"faculty\": \"\"  , \r\n\t\"ms\":      \"\" \r\n    //nhập giá trị vào \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/create",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ProfileController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/profile",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "account",
+					"item": [
+						{
+							"name": "TeacherAccountGet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/teacher",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"teacher"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountGetById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/671251ede5534306db8a4f8f",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"671251ede5534306db8a4f8f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountCreateController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDg3MzYzNn0.I1h9rDEmHshBbNL1RTXclsVLijtW8tVr9U07NjcjS2M",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"email\": \"afabskfakfla@hcmut.edu.vn\",\r\n        \"name\": \"thi231231h\",\r\n        \"ms\": \"2841212\",\r\n        \"faculty\": \"KHMT\",\r\n        \"role\": \"student\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/create",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "StudentAccountGet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/student",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeletedAccountController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/delete/67193b292a9a34cfa293841c",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"delete",
+										"67193b292a9a34cfa293841c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeAccountController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Le Van A\",\r\n    \"faculty\": \"KTHH\",\r\n    \"role\": \"teacher\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/account/change/67173060b0f12f8509e5a5b9",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"account",
+										"change",
+										"67173060b0f12f8509e5a5b9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "class",
+					"item": [
+						{
+							"name": "GetAllClassesByAccountID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/account/67127615b086b436604f0f22",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"account",
+										"67127615b086b436604f0f22"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetClassByCourseID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/course/6527f1e90d65e723e5b33a76",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"course",
+										"6527f1e90d65e723e5b33a76"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateClass",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"semester\":       \"HK241\",\r\n    \"name\":           \"L12\",\r\n    \"course_id\":      \"6709371c3253c4bcf9dbc460\",\r\n    \"listStudent_ms\": [\r\n        \"2222222\",\r\n        \"1231231234\",\r\n        \"12100000\",\r\n        \"12112322313100000\"\r\n    ],\r\n    \"teacher_id\":     \"67173060b0f12f8509e5a5b9\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/create",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetClassByClassID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteClassController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/delete/6726d88b084e07a640c7050e",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"delete",
+										"6726d88b084e07a640c7050e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddStudentsToCourseHandler",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"class_id\": \"67175e3bf3296e25ac8d8fc9\",\r\n    \"listStudent_ms\": [\"1242112\", \"12313112\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/add",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ChangeClassController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"semester\":       \"HK241\",\r\n    \"name\":           \"L15\",\r\n    \"course_id\":      \"6709371c3253c4bcf9dbc460\",\r\n    \"teacher_id\":     \"67173060b0f12f8509e5a5b9\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/change/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"change",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "course",
+					"item": [
+						{
+							"name": "CreateCourse",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/class/change/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"class",
+										"change",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetCourseByCourseID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/course/67161b499bf8b9533f245f57",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"course",
+										"67161b499bf8b9533f245f57"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllCourseController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/course/all",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"course",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteCourseController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/course/delete/6709371c3253c4bcf9dbc460",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"course",
+										"delete",
+										"6709371c3253c4bcf9dbc460"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ms\": \"CO3001\",\r\n    \"credit\": 3,\r\n    \"name\": \"Cong nghe phan mem\",\r\n    \"desc\": \"Mon nay lay 10 diem\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/course/change/67161b499bf8b9533f245f57",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"course",
+										"change",
+										"67161b499bf8b9533f245f57"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "resultScore",
+					"item": [
+						{
+							"name": "GetResultScoreController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/resultScore/66f95884a2233f861b7d6a94",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"resultScore",
+										"66f95884a2233f861b7d6a94"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ResultScoreController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"score\": [\r\n        {\r\n            \"MMSV\": \"3331333\",\r\n            \"Data\": {\r\n                \"BT\": [8.5, 9.0, 7.5],\r\n                \"TN\": [7.0, 6.5, 8.0],\r\n                \"BTL\": [8.0, 7.5],\r\n                \"GK\": 7.5,\r\n                \"CK\": 8.0\r\n            }\r\n        },\r\n        {\r\n            \"MMSV\": \"12313112\",\r\n            \"Data\": {\r\n                \"BT\": [9.0, 9.5, 8.5],\r\n                \"TN\": [8.0, 7.5, 9.0],\r\n                \"BTL\": [8.5, 9.0],\r\n                \"GK\": 8.0,\r\n                \"CK\": 8.5\r\n            }\r\n        }\r\n    ],\r\n    \"class_id\": \"672b158fe2a2c92f9d83d7ce\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/resultScore/create",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"resultScore",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "index",
+					"item": [
+						{
+							"name": "LoginController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0ODY1MjcwNDQ0MDg4Mzc0NjMxIiwiZW1haWwiOiJseXZpbmh0aGFpMzIxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoibkRsYzh6WU5xWjRPTFpxNjFMX0lrZyIsIm5vbmNlIjoiMjAwMDAyNzAwNDM4MjMzNTg0OTUzNTMzOTcxNTgxMDE0MzU3NzQ1NzIwMjAzNTYzIiwibmJmIjoxNzMwODkzOTY5LCJuYW1lIjoiVG_DoW4gMTIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jTGwxQ0dqM3Y2dXYwZlhmdFpDZDRaSm43bHJvSFl1emtQdVdKeW8zbl96bTc1dGVfNVo9czk2LWMiLCJnaXZlbl9uYW1lIjoiVG_DoW4gMTIiLCJpYXQiOjE3MzA4OTQyNjksImV4cCI6MTczMDg5Nzg2OSwianRpIjoiNzg0OGIwOGU1Y2E0MGQxYWY4Mzc3YzRmYTAyNGYwNmY1MGIyNTIxNCJ9.Uw9Cklr5AbnEsw73WvOcR8Nt2rBvgjZXOwdwtI4Qr_dWmrDTJK_liSyHgKlr6l5Xs__cp6OATnPzm--9rD8WpPgNlJtpLGjcg601OufKdbbdXhytJ-4pD34W3J5N6v8cgy0fRflDBROXJYqVk9r8uAVy-8HUFanPtKCSueoXwHFWD4_NzvVtdCsD1fSukdWx-ShBpM2B1D69EeoYSizJm0bNKriQgzMbzDbFjxAdEtAOUY0LkBz_u8LW0ME3WW2UxosOx7KAsrvgICfHcM8ym18f7QZ_169b2AUzSV1HqJFjzVPutMkXlzKhWt5wmY7ic7sA1B4TAfAyQ0QZO2NC0w\",\r\n    \"role\": \"student\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/login",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "LogoutController",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/logout",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/info",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "class",
+					"item": [
+						{
+							"name": "ClassDetailController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/class/account",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"class",
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ClassAccountController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/class/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"class",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "resultScore",
+					"item": [
+						{
+							"name": "CreateResultScoreController",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/resultScore/create",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"resultScore",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ResultController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/resultScore/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"resultScore",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ResultPatchController",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/resultScore/67175e3bf3296e25ac8d8fc9",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"resultScore",
+										"67175e3bf3296e25ac8d8fc9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL_ADMIN",
+			"value": "http://localhost:8080/admin/api",
+			"type": "string"
+		},
+		{
+			"key": "BASE_URL_CLIENT",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+}
