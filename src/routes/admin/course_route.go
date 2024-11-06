@@ -7,6 +7,8 @@ import (
 )
 
 func CourseRoute(r *gin.RouterGroup) {
-	r.POST("create", controller_admin.CreateCourse)
-	r.GET("course/:id_course", controller_admin.GetCourseByCourseID)
+	r.POST("/create", controller_admin.CreateCourse)           // tạo khóa học
+	r.GET("/:id_course", controller_admin.GetCourseByCourseID) // lấy chi tiết khóa học
+	r.GET("/all", controller_admin.GetAllCourseController)     // lấy ra tất cả khóa học
+	// làm query cho tất cả khóa học này là tìm theo ms cho get all trên
 }

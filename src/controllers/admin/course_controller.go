@@ -1,6 +1,7 @@
 package controller_admin
 
 import (
+	"LearnGo/helper"
 	"LearnGo/models"
 	"context"
 	"errors"
@@ -116,5 +117,24 @@ func GetCourseByCourseID(c *gin.Context) {
 		"status":  "success",
 		"message": "Lấy môn học thành công",
 		"course":  course,
+	})
+}
+
+func GetAllCourseController(c *gin.Context) {
+	var allCourse []models.InterfaceCourse
+	collection := models.CourseModel()
+	cursor, err := collection.Find(context.TODO(), bson.M{})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": err,
+		})
+	}
+	cursor.All(context.TODO(), &allCourse)
+	semester := helper.Set_semester()
+	c.JSON(200, gin.H{
+		"code":      "success",
+		"msg":       "Lấy ra tất cả khóa học thành công",
+		"allCourse": allCourse,
+		"semester":  semester,
 	})
 }

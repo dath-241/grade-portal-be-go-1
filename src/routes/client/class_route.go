@@ -7,6 +7,6 @@ import (
 )
 
 func ClassRoute(r *gin.RouterGroup) {
-	r.GET("/account", controller_client.ClassAccountController)
-	r.GET("/:id", controller_client.ClassDetailController)
+	r.GET("/account", controller_client.ClassAccountController) // lấy ra tất cả các class của account đó
+	r.GET("/:id", controller_client.ClassDetailController)      // lấy ra chi tiết lớp học
 }

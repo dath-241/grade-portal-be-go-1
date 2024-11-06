@@ -74,8 +74,8 @@ func AccountCreateController(c *gin.Context) {
 	})
 }
 
-func AccountGetByMS(c *gin.Context) {
-	ms := c.Param("ms") // Lấy giá trị "" từ URL
+func AccountGetById(c *gin.Context) {
+	ms := c.Param("id") // Lấy giá trị "" từ URL
 
 	userCollection := models.UserModel()
 
@@ -83,7 +83,7 @@ func AccountGetByMS(c *gin.Context) {
 	var user models.InterfaceUser
 
 	// Tìm trong MongoDB theo trường MS
-	err := userCollection.FindOne(context.TODO(), bson.M{"ms": ms}).Decode(&user)
+	err := userCollection.FindOne(context.TODO(), bson.M{"id": ms}).Decode(&user)
 	if err != nil {
 		if err.Error() == "mongo: no documents in result" {
 			// Nếu không tìm thấy user

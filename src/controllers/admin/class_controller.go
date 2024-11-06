@@ -3,7 +3,6 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -22,7 +21,6 @@ func CreateClass(c *gin.Context) {
 		return
 	}
 	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
-	fmt.Println(teacher_id, data)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code":    "error",
@@ -294,4 +292,101 @@ func AddStudentsToCourseHandler(c *gin.Context) {
 		"code":    "success",
 		"message": "Students added to course successfully",
 	})
+}
+
+func DeleteClassController(c *gin.Context) {
+	param := c.Param("id")
+	classId, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": err,
+		})
+		return
+	}
+	collection := models.ClassModel()
+	_, err = collection.DeleteOne(context.TODO(), bson.M{"_id": classId})
+	if err != nil {
+		c.JSON(500, gin.H{"code": err})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "xoa class thanh cong",
+	})
+}
+
+func ChangeClassController(c *gin.Context) {
+	param := c.Param("id")
+	classId, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": err,
+		})
+		return
+	}
+	var data InterfaceClassController
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"message": "Dữ liệu không hợp lệ",
+		})
+		return
+	}
+	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "teacher_id không hợp lệ",
+		})
+		return
+	}
+	course_id, err := bson.ObjectIDFromHex(data.CourseId)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "course_id không hợp lệ",
+		})
+		return
+	}
+	// Kiểm tra parse data vào có lỗi ko
+
+	collection := models.ClassModel()
+
+	// Kiểm tra xem lớp học có bị trùng ko bằng FindOne
+	isDuplicate, err := CheckDuplicateClass(collection, data.Semester, course_id, data.Name)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"code":    "error",
+			"message": "Lỗi khi kiểm tra dữ liệu",
+		})
+		return
+	}
+
+	// Nếu lớp học đã tồn tại, trả về lỗi
+	if isDuplicate {
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"message": "Lớp học đã tồn tại",
+		})
+		return
+	}
+	// Thêm nếu không bị trùng lăp
+	createBy, _ := c.Get("ID")
+
+	_, err = collection.UpdateOne(context.TODO(), bson.M{"_id": classId}, bson.M{
+		"semester":       data.Semester,
+		"name":           data.Name,
+		"course_id":      course_id,
+		"listStudent_ms": data.ListStudentMs,
+		"teacher_id":     teacher_id,
+		"updatedBy":      createBy,
+	})
+
+	if err != nil {
+		c.JSON(500, gin.H{
+			"code":    "error",
+			"message": "Lỗi khi tạo lớp học",
+		})
+		return
+	}
 }
