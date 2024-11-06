@@ -90,6 +90,7 @@ func CreateResultScoreController(c *gin.Context) {
 }
 
 func ResultPatchController(c *gin.Context) {
+	fmt.Print(1)
 	id := c.Param("id")
 	data, _ := c.Get("user")
 	user := data.(models.InterfaceAccount)
@@ -103,8 +104,10 @@ func ResultPatchController(c *gin.Context) {
 			"class_id": class_id,
 		},
 		bson.M{
-			"score":     dataResult.SCORE,
-			"updatedBy": user.ID,
+			"$set": bson.M{
+				"score":     dataResult.SCORE,
+				"updatedBy": user.ID,
+			},
 		},
 	)
 	if err != nil {
