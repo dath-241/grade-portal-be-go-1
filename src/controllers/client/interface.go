@@ -2,7 +2,6 @@ package controller_client
 
 type InterfaceAccountController struct {
 	IDToken string `json:"idToken"`
-	Role    string `json:"role"`
 }
 
 type InterfaceScoreController struct {
