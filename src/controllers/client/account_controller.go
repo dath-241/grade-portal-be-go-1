@@ -28,7 +28,6 @@ func LoginController(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "khong lay duoc thong tin nguoi dung"})
 		return
 	}
-	fmt.Println(email, data.Role)
 	// tim kiem nguoi dung da co trong db khong
 	collection := models.AccountModel()
 	var user models.InterfaceAccount
@@ -36,7 +35,6 @@ func LoginController(c *gin.Context) {
 		context.TODO(),
 		bson.M{
 			"email": email,
-			"role":  data.Role,
 		},
 	).Decode(&user)
 	fmt.Println(user)
@@ -49,6 +47,7 @@ func LoginController(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"code":  "Success",
 		"token": token,
+		"role":  user.Role,
 	})
 }
 
