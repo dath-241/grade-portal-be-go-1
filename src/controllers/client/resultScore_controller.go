@@ -60,6 +60,16 @@ func CreateResultScoreController(c *gin.Context) {
 			"massage": "Lớp chưa có giáo viên",
 		})
 	}
+	var classDetail models.InterfaceClass
+	collectionClass := models.ClassModel()
+
+	if err = collectionClass.FindOne(context.TODO(), bson.M{"_id": class_id}).Decode(&classDetail); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Khong tim thay lop hoc do",
+		})
+		return
+	}
 	collection := models.ResultScoreModel()
 	var ResultScore models.InterfaceResultScore
 	err = collection.FindOne(
@@ -77,6 +87,8 @@ func CreateResultScoreController(c *gin.Context) {
 		return
 	}
 	collection.InsertOne(context.TODO(), bson.M{
+		"semester":  classDetail.Semester,
+		"course_id": classDetail.CourseId,
 		"score":     dataResult.SCORE,
 		"class_id":  class_id,
 		"expiredAt": time.Now().AddDate(0, 6, 0),
@@ -122,5 +134,4 @@ func ResultPatchController(c *gin.Context) {
 		"code":    "success",
 		"massage": "Thay đổi thành công",
 	})
-
 }

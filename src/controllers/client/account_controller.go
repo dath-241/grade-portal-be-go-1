@@ -72,3 +72,32 @@ func AccountController(c *gin.Context) {
 		"user": user,
 	})
 }
+
+func GetInfoByIDController(c *gin.Context) {
+	param := c.Param("id")
+	teacher_id, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Teacher ID sai",
+		})
+		return
+	}
+	collection := models.AccountModel()
+	var teacher struct {
+		Name  string `bson:"name"`
+		Email string `bson:"email"`
+	}
+	err = collection.FindOne(context.TODO(), bson.M{"_id": teacher_id, "role": "teacher"}).Decode(&teacher)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Teacher ID sai",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code":    "success",
+		"teacher": teacher,
+	})
+}

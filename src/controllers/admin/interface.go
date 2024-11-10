@@ -62,6 +62,11 @@ type InterfaceCourseController struct {
 	Credit int    `json:"credit"`
 	Name   string `json:"name"`
 	Desc   string `json:"desc"`
+	BT     int    `json:"bt"`
+	TN     int    `json:"tn"`
+	BTL    int    `json:"btl"`
+	GK     int    `json:"gk"`
+	CK     int    `json:"ck"`
 }
 
 type InterfaceAccountChangeController struct {
