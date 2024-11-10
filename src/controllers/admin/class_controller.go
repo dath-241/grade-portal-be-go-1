@@ -42,6 +42,7 @@ func CreateClass(c *gin.Context) {
 
 	// Kiểm tra xem lớp học có bị trùng ko bằng FindOne
 	isDuplicate, err := CheckDuplicateClass(collection, data.Semester, course_id, data.Name)
+
 	if err != nil {
 		c.JSON(500, gin.H{
 			"code":    "error",
@@ -81,8 +82,8 @@ func CreateClass(c *gin.Context) {
 
 	// Trả về kết quả thành công
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"message": "Tạo lớp học thành công",
+		"code": "success",
+		"msg":  "Tạo lớp học thành công",
 	})
 }
 

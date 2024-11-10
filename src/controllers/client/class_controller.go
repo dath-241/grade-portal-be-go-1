@@ -128,3 +128,28 @@ func ClassDetailController(c *gin.Context) {
 		"massage": "Bạn khồn được phép vào trang này",
 	})
 }
+
+func CountDocumentController(c *gin.Context) {
+	param := c.Param("id")
+	courseId, err := bson.ObjectIDFromHex(param)
+	if err != nil {
+		c.JSON(404, gin.H{
+			"status":  "error",
+			"message": "Không tìm thấy môn học",
+		})
+		return
+	}
+	collection := models.ClassModel()
+	count, err := collection.CountDocuments(context.TODO(), bson.M{"course_id": courseId})
+	if err != nil {
+		c.JSON(404, gin.H{
+			"status":  "error",
+			"message": "Không đếm được các class",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code":  "success",
+		"count": count,
+	})
+}

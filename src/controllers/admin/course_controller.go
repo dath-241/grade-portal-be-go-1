@@ -24,6 +24,14 @@ func CreateCourse(c *gin.Context) {
 		return
 	}
 
+	if data.BT+data.TN+data.BTL+data.GK+data.CK != 100 {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Sai hệ số, tổng hệ số tối đa là 100",
+		})
+		return
+	}
+
 	collection := models.CourseModel()
 
 	// Kiểm tra xem khóa học có bị trùng không
@@ -53,6 +61,7 @@ func CreateCourse(c *gin.Context) {
 		"name":      data.Name,
 		"desc":      data.Desc,
 		"createdBy": createBy,
+		"HS":        [5]int{data.BT, data.TN, data.BTL, data.GK, data.CK},
 	})
 
 	if err != nil {
@@ -92,7 +101,7 @@ func CheckDuplicateCourse(collection *mongo.Collection, ms string, name string) 
 
 // API lấy môn học theo mã môn học
 func GetCourseByCourseID(c *gin.Context) {
-	param := c.Param("id_course")
+	param := c.Param("id")
 	course_id, er := bson.ObjectIDFromHex(param)
 	if er != nil {
 		c.JSON(400, gin.H{

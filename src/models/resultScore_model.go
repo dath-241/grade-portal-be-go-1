@@ -19,12 +19,14 @@ type InterfaceScore struct {
 }
 
 type InterfaceResultScore struct {
-	ID    bson.ObjectID `bson:"_id,omitempty"`
-	SCORE []struct {
+	ID       bson.ObjectID `bson:"_id,omitempty"`
+	Semester string        `bson:"semester"`
+	SCORE    []struct {
 		MSSV string         `bson:"mssv"`
 		Data InterfaceScore `bson:"data"`
 	} `bson:"score"`
 	ClassID   bson.ObjectID `bson:"class_id"`
+	CourseID  bson.ObjectID `bson:"course_id"`
 	ExpiredAt time.Time     `bson:"expiredAt"`
 	CreatedBy bson.ObjectID `bson:"createdBy"`
 	UpdatedBy bson.ObjectID `bson:"updatedBy"`

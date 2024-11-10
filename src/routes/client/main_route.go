@@ -13,5 +13,6 @@ func MainRoute(r *gin.Engine) {
 	protectedGroup := r.Group("/api")
 	protectedGroup.Use(middlewares_client.RequireUser)
 	ClassRoute(protectedGroup.Group("/class"))
+	CourseRoute(protectedGroup.Group("/course"))
 	ResultScoreRoute(protectedGroup.Group("/resultScore"))
 }

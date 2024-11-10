@@ -11,6 +11,7 @@ type InterfaceCourse struct {
 	Credit    int           `bson:"credit"`
 	Name      string        `bson:"name"`
 	Desc      string        `bson:"desc"`
+	HS        [5]int        `bson:"hs"`
 	CreatedBy bson.ObjectID `bson:"createdby"`
 	UpdatedBy bson.ObjectID `bson:"updatedby"`
 }

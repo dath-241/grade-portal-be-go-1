@@ -37,7 +37,20 @@ func ResultScoreController(c *gin.Context) {
 		})
 		return
 	}
+
+	var classDetail models.InterfaceClass
+	collectionClass := models.ClassModel()
+
+	if err = collectionClass.FindOne(context.TODO(), bson.M{"_id": class_id}).Decode(&classDetail); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Khong tim thay lop hoc do",
+		})
+		return
+	}
 	collection.InsertOne(context.TODO(), bson.M{
+		"semester":  classDetail.Semester,
+		"course_id": classDetail.CourseId,
 		"score":     data.SCORE,
 		"class_id":  class_id,
 		"expiredAt": time.Now().AddDate(0, 6, 0),
