@@ -80,3 +80,19 @@ type InterfaceAddStudentClassController struct {
 	ClassId       string   `json:"class_id"`
 	ListStudentMs []string `json:"listStudent_ms"`
 }
+
+// hall of fame
+type InterfaceHallOfFame struct {
+	Semester string `bson:"semester"`
+	Tier     []Tier `bson:"tier"`
+}
+
+type Tier struct {
+	CourseID string        `bson:"course_id"`
+	Data     []StudentData `bson:"data"`
+}
+
+type StudentData struct {
+	MSSV string  `bson:"mssv"`
+	DTB  float32 `bson:"dtb"`
+}
