@@ -4,7 +4,6 @@ import (
 	"LearnGo/models"
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -26,11 +25,19 @@ func ClassTeacherController(c *gin.Context) {
 		"teacher_id": user.ID,
 	})
 	if err != nil {
-		log.Fatalf("Find error: %v", err)
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "",
+		})
+		return
 	}
 	defer cursor.Close(context.TODO())
 	if err := cursor.All(context.TODO(), &classTeacherAll); err != nil {
-		log.Fatalf("Cursor All error: %v", err)
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "Bạn không được quyền vào đây",
+		})
+		return
 	}
 	c.JSON(200, gin.H{
 		"code":     "success",
@@ -48,11 +55,19 @@ func ClassStudentController(c *gin.Context) {
 		"listStudent_ms": user.Ms,
 	})
 	if err != nil {
-		log.Fatalf("Find error: %v", err)
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "",
+		})
+		return
 	}
 	defer cursor.Close(context.TODO())
 	if err := cursor.All(context.TODO(), &classStudentAll); err != nil {
-		log.Fatalf("Cursor All error: %v", err)
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "",
+		})
+		return
 	}
 	c.JSON(200, gin.H{
 		"code":     "success",
