@@ -8,13 +8,11 @@ import (
 type InterfaceHallOfFame struct {
 	ID       bson.ObjectID `bson:"_id,omitempty"`
 	Semester string        `bson:"semester"`
-	Tier     []struct {
-		CourseId bson.ObjectID `bson:"course_id"`
-		Data     []struct {
-			MSSV string  `bson:"mssv"`
-			DTB  float32 `bson:"dtb"`
-		}
-	}
+	CourseId bson.ObjectID `bson:"course_id"`
+	Data     [10]struct {
+		MSSV string  `bson:"mssv"`
+		DTB  float32 `bson:"dtb"`
+	} `bson:"data"`
 }
 
 func HallOfFameModel() *mongo.Collection {
