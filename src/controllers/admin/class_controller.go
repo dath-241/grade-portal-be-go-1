@@ -3,7 +3,6 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -215,7 +214,11 @@ func GetClassByClassID(c *gin.Context) {
 				"message": "Không tìm thấy lớp",
 			})
 		} else {
-			log.Fatalf("Find error: %v", err)
+			c.JSON(401, gin.H{
+				"code":    "error",
+				"massage": "ban khong co quyen vao day",
+			})
+			return
 		}
 		return
 	}

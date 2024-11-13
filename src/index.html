@@ -87,7 +87,8 @@
             'Content-Type': 'application/json'
           },
           credentials: 'include', // Đảm bảo rằng cookie sẽ được gửi
-          body: JSON.stringify({ idToken: idToken }) // Gửi ID Token trong body
+          body: JSON.stringify({ idToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFkYzBmMTcyZThkNmVmMzgyZDZkM2EyMzFmNmMxOTdkZDY4Y2U1ZWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3ODEzNjA5NTEyMTQ2Nzk5MDcyIiwiaGQiOiJoY211dC5lZHUudm4iLCJlbWFpbCI6InRoYWkubHlkem5oYXRsb3AyazRAaGNtdXQuZWR1LnZuIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJDV0VGbHhPS1ZoTEkxX3BpbnRES3BnIiwibm9uY2UiOiI3NzcyNjAzNjAzOTQ0NTY3NzgyNzA3MzI5ODI3MTgwODk1OTM0ODMzNzA4NDQ1MDciLCJuYmYiOjE3MzEzOTczOTQsIm5hbWUiOiJUSMOBSSBMw50gVsSoTkgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS2Z1NXhPNHFMTFVaTk9jZkF4S2RTM3AxQnNIY3NIaERyY2QzakVkTkNIQ043LVVwST1zOTYtYyIsImdpdmVuX25hbWUiOiJUSMOBSSIsImZhbWlseV9uYW1lIjoiTMOdIFbEqE5IIiwiaWF0IjoxNzMxMzk3Njk0LCJleHAiOjE3MzE0MDEyOTQsImp0aSI6IjUxNTUzZTY0ZDM4YTE5MGU5MDhmZWRkZjg0YjUwMGU0ZWNiZTA0MjIifQ.mpmJjDcCYUuhG2_xPDnhDv26Ga9zCGBYw8-nY5VzdGT6Rn1YObSBKpFE5yHBWuoXonWgXtKCetYnaASwOzoGKf3Utb8_nv6ax6JR8OLzi-cc_Qz0usx1Vey7kwgtD7rUzEgc1tJAJNVRg-G600tmaVuaQaWdHL0VNwpiPstlI56k-B-piSLPmaO1LGBhge0Vzn3ZtdXI2rZhGccvj4OTeCZ4U9k82Wr-mXNLMEnsi-WONqaoATLq3uIHus2kirD1BP1jCXHYL-DEGjm3AWtJBu-wbjjmCk2kSvqNOhydTJexNNwyIcOhEXkUHrhEvYCQQ1-0Z-ZJGlc5D7OvAuUZ3g"
+ }) // Gửi ID Token trong body
         })
 
         if (response.ok) {
