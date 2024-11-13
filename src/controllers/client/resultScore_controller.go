@@ -21,7 +21,11 @@ func ResultController(c *gin.Context) {
 	if err := collection.FindOne(context.TODO(), bson.M{
 		"class_id": class_id,
 	}).Decode(&resultScore); err != nil {
-		log.Fatalf("Find error: %v", err)
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "ban khong co quyen vao day",
+		})
+		return
 	}
 	if user.Role == "teacher" {
 		c.JSON(200, gin.H{
