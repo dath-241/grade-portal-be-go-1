@@ -3,38 +3,57 @@ package controller_admin
 import (
 	"LearnGo/models"
 	"context"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
-	"go.mongodb.org/mongo-driver/v2/mongo"
 
 	"LearnGo/helper"
 )
 
-func GetPrevSemesterHallOfFame(c *gin.Context) {
+func GetPrevSemesterAllHallOfFame(c *gin.Context) {
 	collection := models.HallOfFameModel()
-	var data InterfaceHallOfFame
-	semester := helper.Set_semester().PREV
+	semester := helper.Set_semester().CUREENT
+	var halloffame_data InterfaceHallOfFame
 
+	var tier_data []InterfaceTier
 	filter := bson.M{
 		"semester": semester,
 	}
-	err := collection.FindOne(context.TODO(), filter).Decode((&data))
 
-	// Kiểm tra lỗi khi tìm kiếm
-	if err == mongo.ErrNoDocuments {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Không tìm thấy dữ liệu cho học kỳ trước"})
-		return
-	} else if err != nil {
+	// Sử dụng Find để lấy tất cả các tài liệu khớp với filter
+	cursor, err := collection.Find(context.TODO(), filter)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Đã xảy ra lỗi khi truy vấn dữ liệu"})
 		return
 	}
+	defer cursor.Close(context.TODO())
 
-	// Trả về dữ liệu nếu tìm thấy
+	// Duyệt qua các tài liệu và thêm chúng vào results
+	for cursor.Next(context.TODO()) {
+		var data InterfaceTier
+		if err := cursor.Decode(&data); err != nil {
+			log.Println(err)
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Đã xảy ra lỗi khi giải mã dữ liệu"})
+			return
+		}
+		tier_data = append(tier_data, data)
+	}
+
+	// Kiểm tra xem có kết quả nào không
+	if len(tier_data) == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Không tìm thấy dữ liệu cho học kỳ trước"})
+		return
+	} else {
+		halloffame_data.Semester = semester
+		halloffame_data.Tier = tier_data
+	}
+
+	// Trả về tất cả các bản ghi nếu tìm thấy
 	c.JSON(200, gin.H{
 		"status":  "success",
 		"message": "Lấy hall of fame thành công",
-		"data":    data,
+		"data":    halloffame_data,
 	})
 }
