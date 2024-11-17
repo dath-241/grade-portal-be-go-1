@@ -1,6 +1,8 @@
 package helper
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"math/rand"
@@ -65,4 +67,9 @@ func RandomNumber(length int) string {
 		result[i] = characters[random.Intn(len(characters))]
 	}
 	return string(result)
+}
+func HashOtp(otp string) string {
+	hash := sha256.New()
+	hash.Write([]byte(otp))
+	return hex.EncodeToString(hash.Sum(nil))
 }

@@ -119,6 +119,7 @@ func CheckDuplicateOtp(ms string) bool {
 
 	return true
 }
+
 func CreateOtb(c *gin.Context) {
 	var otpRequest OtpRequest
 	if err := c.ShouldBindJSON(&otpRequest); err != nil {
@@ -135,33 +136,34 @@ func CreateOtb(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "ms không tồn tại",
+			"msg":  "Mã số không tồn tại",
 		})
 		return
 	}
 	if CheckDuplicateOtp(ms) {
 		c.JSON(200, gin.H{
 			"code": "error",
-			"msg":  "otb đã được gửi trước đó",
+			"msg":  "OTP đã được gửi trước đó",
 		})
 		return
 	}
-	subject := "Xác thực mã OTB"
+	subject := "Xác thực mã OTP"
 	otp := helper.RandomNumber(6)
 	err = helper.SendMail(account.Email, subject, otp)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Gửi mail thất bại",
+			"msg":  "Gửi email thất bại",
 		})
 		return
 	}
+	otphash := helper.HashOtp(otp)
 	otpCollection := models.OtpModel()
 	_, err = otpCollection.InsertOne(context.TODO(), bson.M{
 		"email":     account.Email,
 		"ms":        ms,
-		"otb":       otp,
-		"create_at": time.Now(),
+		"otp":       otphash,
+		"expiredAt": time.Now().Add(0), // Cập nhật đúng kiểu dữ liệu
 	})
 	if err != nil {
 		c.JSON(400, gin.H{
