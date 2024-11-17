@@ -80,3 +80,8 @@ type InterfaceAddStudentClassController struct {
 	ClassId       string   `json:"class_id"`
 	ListStudentMs []string `json:"listStudent_ms"`
 }
+
+type avgStudentScore struct {
+	MSSV     string  `bson:"mssv"`     // Mã số sinh viên
+	AvgScore float32 `bson:"avgscore"` // Điểm trung bình
+}

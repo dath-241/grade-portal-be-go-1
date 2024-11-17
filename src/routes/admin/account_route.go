@@ -13,4 +13,5 @@ func AccountRoute(r *gin.RouterGroup) {
 	r.GET("/student", controller_admin.StudentAccountGet)              // lấy ra tất cả account student
 	r.DELETE("/delete/:id", controller_admin.DeletedAccountController) // Xóa account theo id của họ
 	r.PATCH("/change/:id", controller_admin.ChangeAccountController)
+
 }
