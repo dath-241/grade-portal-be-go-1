@@ -3,6 +3,7 @@ package helper
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 	"os"
 	"time"
 
@@ -54,4 +55,14 @@ func ParseJWT(tokenString string) (*Claims, error) {
 	} else {
 		return nil, errors.New("token không hợp lệ")
 	}
+}
+
+func RandomNumber(length int) string {
+	const characters = "0123456789"
+	result := make([]byte, length)
+	random := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for i := 0; i < length; i++ {
+		result[i] = characters[random.Intn(len(characters))]
+	}
+	return string(result)
 }
