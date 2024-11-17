@@ -23,4 +23,5 @@ func MainRoute(r *gin.Engine) {
 	ClassRoute(protectedGroup.Group("/class"))
 	CourseRoute(protectedGroup.Group("/course"))
 	// add admin
+	HallOfFameRoute(protectedGroup.Group("/hallOfFame"))
 }
