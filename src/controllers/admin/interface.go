@@ -80,3 +80,24 @@ type InterfaceAddStudentClassController struct {
 	ClassId       string   `json:"class_id"`
 	ListStudentMs []string `json:"listStudent_ms"`
 }
+
+// hall of fame
+type InterfaceHallOfFame struct {
+	Semester string          `json:"semester"`
+	Tier     []InterfaceTier `json:"tier"`
+}
+
+type InterfaceTier struct {
+	CourseID any                    `json:"course_id" bson:"course_id"`
+	Data     []InterfaceStudentData `json:"data"`
+}
+
+type InterfaceStudentData struct {
+	MSSV string  `json:"mssv"`
+	DTB  float32 `json:"dtb"`
+}
+
+type avgStudentScore struct {
+	MSSV     string  `bson:"mssv"`     // Mã số sinh viên
+	AvgScore float32 `bson:"avgscore"` // Điểm trung bình
+}
