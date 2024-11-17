@@ -7,5 +7,5 @@ import (
 )
 
 func CourseRoute(r *gin.RouterGroup) {
-	r.GET("/:id", controller_client.GetCourseByCourseID) // lấy ra chi tiết lớp học
+	r.GET("/:id", controller_client.GetCourseByCourseID) // lấy ra chi tiết khoa học
 }
