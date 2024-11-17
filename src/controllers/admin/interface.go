@@ -96,3 +96,8 @@ type InterfaceStudentData struct {
 	MSSV string  `json:"mssv"`
 	DTB  float32 `json:"dtb"`
 }
+
+type avgStudentScore struct {
+	MSSV     string  `bson:"mssv"`     // Mã số sinh viên
+	AvgScore float32 `bson:"avgscore"` // Điểm trung bình
+}

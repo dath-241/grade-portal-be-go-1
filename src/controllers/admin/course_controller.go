@@ -81,7 +81,7 @@ func CreateCourse(c *gin.Context) {
 
 func CheckDuplicateCourse(collection *mongo.Collection, ms string, name string) (bool, error) {
 	if ms == "" {
-		return true, errors.New("Lỗi ms không có")
+		return true, errors.New("lỗi ms không có")
 	}
 	filter := bson.M{
 		"ms": ms,

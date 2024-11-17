@@ -14,4 +14,5 @@ func ClassRoute(r *gin.RouterGroup) {
 	r.PATCH("/add", controller_admin.AddStudentsToCourseHandler)     //thêm học sinh vào lớp học đó
 	r.DELETE("/delete/:id", controller_admin.DeleteClassController)  // xóa lớp học theo id lớp học
 	r.PATCH("/change/:id", controller_admin.ChangeClassController)   // chinhr sửa thông tin lớp học
+
 }

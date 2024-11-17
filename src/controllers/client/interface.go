@@ -19,3 +19,18 @@ type InterfaceResultScoreController struct {
 	} `json:"score"`
 	ClassID string `json:"class_id"`
 }
+
+type InterfaceHallOfFame struct {
+	Semester string          `json:"semester"`
+	Tier     []InterfaceTier `json:"tier"`
+}
+
+type InterfaceTier struct {
+	CourseID any                    `json:"course_id" bson:"course_id"`
+	Data     []InterfaceStudentData `json:"data"`
+}
+
+type InterfaceStudentData struct {
+	MSSV string  `json:"mssv"`
+	DTB  float32 `json:"dtb"`
+}
