@@ -34,3 +34,6 @@ type InterfaceStudentData struct {
 	MSSV string  `json:"mssv"`
 	DTB  float32 `json:"dtb"`
 }
+type OtpRequest struct {
+	Ms string `json:"ms"`
+}

@@ -6,10 +6,12 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"time"
 
 	"cloud.google.com/go/auth/credentials/idtoken"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
 )
 
 func LoginController(c *gin.Context) {
@@ -99,5 +101,79 @@ func GetInfoByIDController(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"code":    "success",
 		"teacher": teacher,
+	})
+}
+func CheckDuplicateOtp(ms string) bool {
+
+	filter := bson.M{
+		"ms": ms,
+	}
+	collection := models.OtpModel()
+	var result bson.M
+	err := collection.FindOne(context.TODO(), filter).Decode(&result)
+	if err == mongo.ErrNoDocuments {
+		return false // Không tìm thấy bản ghi
+	} else if err != nil {
+		return false // Có lỗi khác
+	}
+
+	return true
+}
+
+func CreateOtb(c *gin.Context) {
+	var otpRequest OtpRequest
+	if err := c.ShouldBindJSON(&otpRequest); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	ms := otpRequest.Ms
+	accCollection := models.AccountModel()
+	var account models.InterfaceAccount
+	err := accCollection.FindOne(context.TODO(), bson.M{"ms": ms}).Decode(&account)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Mã số không tồn tại",
+		})
+		return
+	}
+	if CheckDuplicateOtp(ms) {
+		c.JSON(200, gin.H{
+			"code": "error",
+			"msg":  "OTP đã được gửi trước đó",
+		})
+		return
+	}
+	subject := "Xác thực mã OTP"
+	otp := helper.RandomNumber(6)
+	err = helper.SendMail(account.Email, subject, otp)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Gửi email thất bại",
+		})
+		return
+	}
+	otphash := helper.HashOtp(otp)
+	otpCollection := models.OtpModel()
+	_, err = otpCollection.InsertOne(context.TODO(), bson.M{
+		"email":     account.Email,
+		"ms":        ms,
+		"otp":       otphash,
+		"expiredAt": time.Now().Add(5 * 60 * 1000),
+	})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Lưu OTP thất bại",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "Gửi OTP thành công",
 	})
 }
