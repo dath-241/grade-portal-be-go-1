@@ -163,7 +163,7 @@ func CreateOtb(c *gin.Context) {
 		"email":     account.Email,
 		"ms":        ms,
 		"otp":       otphash,
-		"expiredAt": time.Now().Add(0), // Cập nhật đúng kiểu dữ liệu
+		"expiredAt": time.Now().Add(5 * 60 * 1000),
 	})
 	if err != nil {
 		c.JSON(400, gin.H{

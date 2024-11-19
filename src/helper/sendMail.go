@@ -87,6 +87,7 @@ func SendMail(email, subject, text string) error {
             </div>
             <div class="contact-footer">
                 <p>Thiết kế bởi <strong>BE_GO1</strong></p>
+                <p>Liên hệ với chúng tôi qua email: <a href="mailto:admin@thaily.id.vn">admin@thaily.id.vn</a></p>
             </div>
         </body>
     </html>
