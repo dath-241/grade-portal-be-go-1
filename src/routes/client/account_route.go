@@ -12,4 +12,5 @@ func AccountRoute(r *gin.RouterGroup) {
 	r.POST("/logout", middlewares_client.RequireUser, controller_client.LogoutController)
 	r.GET("/info", middlewares_client.RequireUser, controller_client.AccountController)
 	r.GET("/:id", controller_client.GetInfoByIDController)
+	r.POST("/otp", controller_client.CreateOtb)
 }
