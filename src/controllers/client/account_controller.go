@@ -4,7 +4,6 @@ import (
 	"LearnGo/helper"
 	"LearnGo/models"
 	"context"
-	"fmt"
 	"os"
 	"time"
 
@@ -20,7 +19,6 @@ func LoginController(c *gin.Context) {
 	c.BindJSON(&data)
 	payload, err := idtoken.Validate(context.Background(), data.IDToken, os.Getenv("YOUR_CLIENT_ID"))
 	if err != nil {
-		fmt.Println("Khong co token:", err)
 		c.JSON(401, gin.H{"error": "Token khong hop le"})
 		return
 	}
@@ -39,7 +37,6 @@ func LoginController(c *gin.Context) {
 			"email": email,
 		},
 	).Decode(&user)
-	fmt.Println(user)
 	if err != nil {
 		c.JSON(400, gin.H{"error": "khong lay duoc thong tin nguoi dung trong dữ liệu vui lòng liên hệ admin để thêm bạn vào"})
 		return
@@ -175,5 +172,157 @@ func CreateOtb(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"code": "success",
 		"msg":  "Gửi OTP thành công",
+	})
+}
+
+func ResetPasswordController(c *gin.Context) {
+	var resgister RegisterInterface
+	if err := c.ShouldBindJSON(&resgister); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	var account models.InterfaceAccount
+	collection_account := models.AccountModel()
+	err := collection_account.FindOne(context.TODO(), bson.M{"ms": resgister.Ms}).Decode(&account)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	var otp models.InterfaceOtp
+	collection_otp := models.OtpModel()
+	err = collection_otp.FindOne(context.TODO(), bson.M{
+		"email": account.Email,
+		"ms":    resgister.Ms,
+		"otp":   helper.HashOtp(resgister.Otp),
+	}).Decode(&otp)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	_, err = collection_otp.DeleteOne(context.TODO(), bson.M{
+		"email": account.Email,
+		"ms":    resgister.Ms,
+		"otp":   helper.HashOtp(resgister.Otp),
+	})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	_, err = collection_account.UpdateOne(context.TODO(), bson.M{
+		"_id": account.ID,
+	}, bson.M{
+		"$set": bson.M{
+			"password": helper.HashOtp(resgister.Password),
+		},
+	})
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"code": "success",
+		"msg":  "Thay đổi password thành công",
+	})
+}
+
+func LoginTeleController(c *gin.Context) {
+	var login LoginInterface
+	if err := c.ShouldBindJSON(&login); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	collection := models.AccountModel()
+	var account models.InterfaceAccountTelegram
+	err := collection.FindOne(context.TODO(), bson.M{
+		"ms": login.Ms,
+	}).Decode(&account)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	if helper.HashOtp(login.Password) != account.Password {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+		})
+		return
+	}
+	var classAccount []models.InterfaceClass
+	collection_class := models.ClassModel()
+	cursor_class, err := collection_class.Find(context.TODO(), bson.M{
+		"listStudent_ms": account.Ms,
+	})
+	if err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "1",
+		})
+		return
+	}
+	defer cursor_class.Close(context.TODO())
+	if err := cursor_class.All(context.TODO(), &classAccount); err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "2",
+		})
+		return
+	}
+	var IDs []bson.ObjectID
+	for _, item := range classAccount {
+		IDs = append(IDs, item.CourseId)
+	}
+	var listCourse []models.InterfaceCourse
+	collection_course := models.CourseModel()
+	cursor_course, err := collection_course.Find(context.TODO(), bson.M{
+		"_id": bson.M{
+			"$in": IDs,
+		},
+	})
+	if err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "3",
+		})
+		return
+	}
+	defer cursor_course.Close(context.TODO())
+	if err := cursor_course.All(context.TODO(), &listCourse); err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "4",
+		})
+		return
+	}
+	var msList []string
+	for _, item := range listCourse {
+		msList = append(msList, item.MS)
+	}
+	token := helper.CreateJWT(account.ID)
+	c.JSON(200, gin.H{
+		"code":       "success",
+		"token":      token,
+		"listCourse": msList,
+		"role":       account.Role,
 	})
 }
