@@ -268,10 +268,14 @@ func LoginTeleController(c *gin.Context) {
 		})
 		return
 	}
+	// semenster := helper.Set_semester()
 	var classAccount []models.InterfaceClass
 	collection_class := models.ClassModel()
 	cursor_class, err := collection_class.Find(context.TODO(), bson.M{
 		"listStudent_ms": account.Ms,
+		// "semester": bson.M{
+		// 	"$in": [2]string{semenster.PREV, semenster.CUREENT},
+		// },
 	})
 	if err != nil {
 		c.JSON(401, gin.H{
@@ -289,8 +293,10 @@ func LoginTeleController(c *gin.Context) {
 		return
 	}
 	var IDs []bson.ObjectID
+	checkMap := make(map[bson.ObjectID]string)
 	for _, item := range classAccount {
 		IDs = append(IDs, item.CourseId)
+		checkMap[item.CourseId] = item.Semester
 	}
 	var listCourse []models.InterfaceCourse
 	collection_course := models.CourseModel()
@@ -316,7 +322,7 @@ func LoginTeleController(c *gin.Context) {
 	}
 	var msList []string
 	for _, item := range listCourse {
-		msList = append(msList, item.MS)
+		msList = append(msList, item.MS+"-"+checkMap[item.ID])
 	}
 	token := helper.CreateJWT(account.ID)
 	c.JSON(200, gin.H{
