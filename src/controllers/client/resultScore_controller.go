@@ -166,6 +166,7 @@ func ResultCourseController(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"code":  "success",
 				"msg":   "Lấy điểm thành công",
+				"name":  course.Name,
 				"score": item.Data,
 			})
 			return
@@ -202,6 +203,7 @@ func ResultAllController(c *gin.Context) {
 	}
 	type score struct {
 		Ms   string                `json:"ms"`
+		Name string                `json:"name"`
 		Data models.InterfaceScore `json:"data"`
 	}
 	var scores []score
@@ -217,7 +219,7 @@ func ResultAllController(c *gin.Context) {
 					})
 					return
 				}
-				scores = append(scores, score{course.MS + "-" + item.Semester, sco.Data})
+				scores = append(scores, score{course.MS + "-" + item.Semester, course.Name, sco.Data})
 			}
 		}
 	}
