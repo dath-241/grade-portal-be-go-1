@@ -4,6 +4,7 @@ import (
 	"LearnGo/models"
 	"context"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -140,10 +141,11 @@ func ResultPatchController(c *gin.Context) {
 func ResultCourseController(c *gin.Context) {
 	data, _ := c.Get("user")
 	account := data.(models.InterfaceAccount)
-	ms := c.Param("ms")
+	param := c.Param("ms")
+	params := strings.Split(param, "-")
 	var course models.InterfaceCourse
 	collection_course := models.CourseModel()
-	if err := collection_course.FindOne(context.TODO(), bson.M{"ms": ms}).Decode(&course); err != nil {
+	if err := collection_course.FindOne(context.TODO(), bson.M{"ms": params[0]}).Decode(&course); err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
 			"msg":  "MS course sai",
@@ -152,7 +154,7 @@ func ResultCourseController(c *gin.Context) {
 	}
 	var resultScore models.InterfaceResultScore
 	collection_result := models.ResultScoreModel()
-	if err := collection_result.FindOne(context.TODO(), bson.M{"course_id": course.ID}).Decode(&resultScore); err != nil {
+	if err := collection_result.FindOne(context.TODO(), bson.M{"course_id": course.ID, "semester": params[1]}).Decode(&resultScore); err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
 			"msg":  "ID course sai",
@@ -215,7 +217,7 @@ func ResultAllController(c *gin.Context) {
 					})
 					return
 				}
-				scores = append(scores, score{course.MS, sco.Data})
+				scores = append(scores, score{course.MS + "-" + item.Semester, sco.Data})
 			}
 		}
 	}
