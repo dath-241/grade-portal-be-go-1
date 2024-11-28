@@ -21,6 +21,18 @@ type InterfaceAccount struct {
 	ExpiredAt time.Time     `bson:"expiredAt"` // Tag cho thời gian hết hạn
 }
 
+type InterfaceAccountTelegram struct {
+	ID        bson.ObjectID `bson:"_id,omitempty"` // Tag cho ID
+	Email     string        `bson:"email"`         // Tag cho email
+	Name      string        `bson:"name"`          // Tag cho role
+	Ms        string        `bson:"ms"`
+	Password  string        `bson:"password"`
+	Faculty   string        `bson:"faculty"`
+	Role      string        `bson:"role"`
+	CreatedBy bson.ObjectID `bson:"createdBy"` // Tag cho thời gian tạo
+	ExpiredAt time.Time     `bson:"expiredAt"` // Tag cho thời gian hết hạn
+}
+
 func AccountModel() *mongo.Collection {
 	InitModel("project", "account")
 	indexModel := mongo.IndexModel{

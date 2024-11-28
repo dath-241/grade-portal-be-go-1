@@ -18,8 +18,8 @@ type InterfaceScoreController struct {
 
 type InterfaceResultScoreController struct {
 	SCORE []struct {
-		MSSV string                   `json:"MSSV"`
-		Data InterfaceScoreController `json:"Data"`
+		MSSV string                   `json:"mssv"`
+		Data InterfaceScoreController `json:"data"`
 	} `json:"score"`
 	ClassID string `json:"class_id"`
 }
