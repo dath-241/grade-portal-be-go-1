@@ -4,6 +4,7 @@ import (
 	"LearnGo/helper"
 	"LearnGo/models"
 	"context"
+	"fmt"
 	"os"
 	"time"
 
@@ -147,6 +148,7 @@ func CreateOtb(c *gin.Context) {
 	subject := "Xác thực mã OTP"
 	otp := helper.RandomNumber(6)
 	err = helper.SendMail(account.Email, subject, otp)
+	fmt.Println(err)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
