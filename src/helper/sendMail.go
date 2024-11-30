@@ -97,7 +97,8 @@ func SendMail(email, subject, text string) error {
 	mailer.SetBody("text/html", otpHtml)
 
 	// Cấu hình SMTP server
-	dialer := gomail.NewDialer("smtp.gmail.com", 587, os.Getenv("EMAIL_USER"), os.Getenv("EMAIL_PASS"))
+	dialer := gomail.NewDialer("s129d209.emailserver.vn", 587, os.Getenv("EMAIL_USER"), os.Getenv("EMAIL_PASS"))
+	// dialer.SSL = true
 	return dialer.DialAndSend(mailer)
 
 }
