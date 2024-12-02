@@ -3,8 +3,8 @@ package controller_client
 import (
 	"LearnGo/models"
 	"context"
-	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -106,7 +106,6 @@ func CreateResultScoreController(c *gin.Context) {
 }
 
 func ResultPatchController(c *gin.Context) {
-	fmt.Print(1)
 	id := c.Param("id")
 	data, _ := c.Get("user")
 	user := data.(models.InterfaceAccount)
@@ -131,11 +130,102 @@ func ResultPatchController(c *gin.Context) {
 	}
 
 	if result.MatchedCount != 0 {
-		fmt.Println("matched and replaced an existing document")
 		return
 	}
 	c.JSON(200, gin.H{
 		"code":    "success",
 		"massage": "Thay đổi thành công",
+	})
+}
+
+func ResultCourseController(c *gin.Context) {
+	data, _ := c.Get("user")
+	account := data.(models.InterfaceAccount)
+	param := c.Param("ms")
+	params := strings.Split(param, "-")
+	var course models.InterfaceCourse
+	collection_course := models.CourseModel()
+	if err := collection_course.FindOne(context.TODO(), bson.M{"ms": params[0]}).Decode(&course); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "MS course sai",
+		})
+		return
+	}
+	var resultScore models.InterfaceResultScore
+	collection_result := models.ResultScoreModel()
+	if err := collection_result.FindOne(context.TODO(), bson.M{"course_id": course.ID, "semester": params[1]}).Decode(&resultScore); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "ID course sai",
+		})
+		return
+	}
+	for _, item := range resultScore.SCORE {
+		if item.MSSV == account.Ms {
+			c.JSON(200, gin.H{
+				"code":  "success",
+				"msg":   "Lấy điểm thành công",
+				"name":  course.Name,
+				"score": item.Data,
+			})
+			return
+		}
+	}
+	c.JSON(400, gin.H{
+		"code":    "error",
+		"massage": "",
+	})
+}
+
+func ResultAllController(c *gin.Context) {
+	data, _ := c.Get("user")
+	account := data.(models.InterfaceAccount)
+	collection := models.ResultScoreModel()
+	var result []models.InterfaceResultScore
+	cursor, err := collection.Find(context.TODO(), bson.M{
+		"score.mssv": account.Ms,
+	})
+	if err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "3",
+		})
+		return
+	}
+	defer cursor.Close(context.TODO())
+	if err := cursor.All(context.TODO(), &result); err != nil {
+		c.JSON(401, gin.H{
+			"code":    "error",
+			"massage": "4",
+		})
+		return
+	}
+	type score struct {
+		Ms   string                `json:"ms"`
+		Name string                `json:"name"`
+		Data models.InterfaceScore `json:"data"`
+	}
+	var scores []score
+	for _, item := range result {
+		for _, sco := range item.SCORE {
+			if sco.MSSV == account.Ms {
+				collection_course := models.CourseModel()
+				var course models.InterfaceCourse
+				if err := collection_course.FindOne(context.TODO(), bson.M{"_id": item.CourseID}).Decode(&course); err != nil {
+					c.JSON(400, gin.H{
+						"code": "error",
+						"msg":  "MS course sai",
+					})
+					return
+				}
+				scores = append(scores, score{course.MS + "-" + item.Semester, course.Name, sco.Data})
+			}
+		}
+	}
+	c.JSON(200, gin.H{
+		"code":   "success",
+		"msg":    "Lấy điểm thành công",
+		"scores": scores,
 	})
 }

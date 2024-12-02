@@ -14,8 +14,8 @@ type InterfaceScoreController struct {
 
 type InterfaceResultScoreController struct {
 	SCORE []struct {
-		MSSV string                   `json:"MMSV"`
-		Data InterfaceScoreController `json:"Data"`
+		MSSV string                   `json:"mssv"`
+		Data InterfaceScoreController `json:"data"`
 	} `json:"score"`
 	ClassID string `json:"class_id"`
 }
@@ -34,6 +34,18 @@ type InterfaceStudentData struct {
 	MSSV string  `json:"mssv"`
 	DTB  float32 `json:"dtb"`
 }
+
 type OtpRequest struct {
 	Ms string `json:"ms"`
+}
+
+type RegisterInterface struct {
+	Ms       string `json:"ms"`
+	Password string `json:"password"`
+	Otp      string `json:"otp"`
+}
+
+type LoginInterface struct {
+	Ms       string `json:"ms"`
+	Password string `json:"password"`
 }
