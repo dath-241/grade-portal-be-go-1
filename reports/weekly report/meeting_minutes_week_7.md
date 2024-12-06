@@ -1,7 +1,7 @@
-# Meeting Minutes - [2/11/2024]
+# Meeting Minutes - [19/11/2024]
 
-Start: 21:30 2/11/2024
-End: 22:10 2/11/2024
+Start: 21:30 19/11/2024
+End: 22:10 19/11/2024
 
 **Người tham dự**:
 
