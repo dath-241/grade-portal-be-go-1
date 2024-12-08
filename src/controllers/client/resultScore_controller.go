@@ -90,7 +90,7 @@ func CreateResultScoreController(c *gin.Context) {
 		})
 		return
 	}
-	collection.InsertOne(context.TODO(), bson.M{
+	if _, err = collection.InsertOne(context.TODO(), bson.M{
 		"semester":  classDetail.Semester,
 		"course_id": classDetail.CourseId,
 		"score":     dataResult.SCORE,
@@ -98,10 +98,15 @@ func CreateResultScoreController(c *gin.Context) {
 		"expiredAt": time.Now().AddDate(0, 6, 0),
 		"createdBy": user.ID,
 		"updatedBy": user.ID,
-	})
+	}); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Cap nhat bang diem thất bại",
+		})
+	}
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"massage": "Cap nhat bang diem thanh cong",
+		"code": "success",
+		"msg":  "Cap nhat bang diem thanh cong",
 	})
 }
 
