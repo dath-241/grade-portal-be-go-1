@@ -3,7 +3,6 @@ package controller_client
 import (
 	"LearnGo/models"
 	"context"
-	"log"
 	"strings"
 	"time"
 
@@ -133,10 +132,18 @@ func ResultPatchController(c *gin.Context) {
 		},
 	)
 	if err != nil {
-		log.Panic(err)
+		c.JSON(400, gin.H{
+			"code":    "error",
+			"massage": "loi",
+		})
+		return
 	}
 
 	if result.MatchedCount != 0 {
+		c.JSON(200, gin.H{
+			"code":    "success",
+			"massage": "Thay đổi thành công",
+		})
 		return
 	}
 	c.JSON(200, gin.H{
