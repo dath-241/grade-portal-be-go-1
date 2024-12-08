@@ -26,7 +26,7 @@ func main() {
 	// Cấu hình CORS
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"https://test-jcz3.vercel.app", "http://localhost:3000"}, // Chỉ cho phép origin cụ thể
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
