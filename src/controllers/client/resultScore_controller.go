@@ -60,9 +60,10 @@ func CreateResultScoreController(c *gin.Context) {
 	class_id, err := bson.ObjectIDFromHex(dataResult.ClassID)
 	if err != nil {
 		c.JSON(204, gin.H{
-			"code":    "error",
-			"massage": "Lớp chưa có giáo viên",
+			"code": "error",
+			"msg":  "Lớp chưa có giáo viên",
 		})
+		return
 	}
 	var classDetail models.InterfaceClass
 	collectionClass := models.ClassModel()
@@ -85,8 +86,8 @@ func CreateResultScoreController(c *gin.Context) {
 	// co ban ghi resultScore truoc do
 	if err == nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "Bảng ghi của lớp học này đã được lưu trong database trước đó",
+			"code": "error",
+			"msg":  "Bảng ghi của lớp học này đã được lưu trong database trước đó",
 		})
 		return
 	}
@@ -103,6 +104,7 @@ func CreateResultScoreController(c *gin.Context) {
 			"code": "error",
 			"msg":  "Cap nhat bang diem thất bại",
 		})
+		return
 	}
 	c.JSON(200, gin.H{
 		"code": "success",
