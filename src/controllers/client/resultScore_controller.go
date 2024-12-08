@@ -133,22 +133,22 @@ func ResultPatchController(c *gin.Context) {
 	)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "loi",
+			"code": "error",
+			"msg":  "loi",
 		})
 		return
 	}
 
 	if result.MatchedCount != 0 {
 		c.JSON(200, gin.H{
-			"code":    "success",
-			"massage": "Thay đổi thành công",
+			"code": "success",
+			"msg":  "Thay đổi thành công",
 		})
 		return
 	}
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"massage": "Thay đổi thành công",
+		"code": "success",
+		"msg":  "Thay đổi thành công",
 	})
 }
 
@@ -187,8 +187,8 @@ func ResultCourseController(c *gin.Context) {
 		}
 	}
 	c.JSON(400, gin.H{
-		"code":    "error",
-		"massage": "",
+		"code": "error",
+		"msg":  "",
 	})
 }
 
@@ -202,16 +202,16 @@ func ResultAllController(c *gin.Context) {
 	})
 	if err != nil {
 		c.JSON(401, gin.H{
-			"code":    "error",
-			"massage": "3",
+			"code": "error",
+			"msg":  "3",
 		})
 		return
 	}
 	defer cursor.Close(context.TODO())
 	if err := cursor.All(context.TODO(), &result); err != nil {
 		c.JSON(401, gin.H{
-			"code":    "error",
-			"massage": "4",
+			"code": "error",
+			"msg":  "4",
 		})
 		return
 	}

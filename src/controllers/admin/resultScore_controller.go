@@ -16,8 +16,8 @@ func ResultScoreController(c *gin.Context) {
 	class_id, err := bson.ObjectIDFromHex(data.ClassID)
 	if err != nil {
 		c.JSON(204, gin.H{
-			"code":    "error",
-			"massage": "Lớp chưa có giáo viên",
+			"code": "error",
+			"msg":  "Lớp chưa có giáo viên",
 		})
 	}
 	createBy, _ := c.Get("ID")
@@ -32,8 +32,8 @@ func ResultScoreController(c *gin.Context) {
 	// co ban ghi resultScore truoc do
 	if err == nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "Bảng ghi của lớp học này đã được lưu trong database trước đó",
+			"code": "error",
+			"msg":  "Bảng ghi của lớp học này đã được lưu trong database trước đó",
 		})
 		return
 	}
@@ -58,8 +58,8 @@ func ResultScoreController(c *gin.Context) {
 		"updatedBy": createBy,
 	})
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"massage": "Cap nhat bang diem thanh cong",
+		"code": "success",
+		"msg":  "Cap nhat bang diem thanh cong",
 	})
 }
 
