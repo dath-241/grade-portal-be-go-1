@@ -185,7 +185,7 @@ func ChangeCourseController(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  err,
+			"msg":  1,
 		})
 		return
 	}
@@ -207,10 +207,23 @@ func ChangeCourseController(c *gin.Context) {
 	adminId, _ := c.Get("ID")
 	data.UpdatedBy = adminId
 	fmt.Print(data)
-	if _, err = collection.UpdateOne(context.TODO(), bson.M{"_id": course_id}, data); err != nil {
+	if _, err = collection.UpdateOne(
+		context.TODO(),
+		bson.M{
+			"_id": course_id,
+		},
+		bson.M{
+			"$set": bson.M{
+				"ms":        data.Ms,
+				"credit":    data.Credit,
+				"name":      data.Name,
+				"desc":      data.Desc,
+				"updatedBy": data.UpdatedBy,
+			},
+		}); err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  err,
+			"msg":  2,
 		})
 		return
 	}
