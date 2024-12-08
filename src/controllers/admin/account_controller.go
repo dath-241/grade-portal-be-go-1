@@ -16,7 +16,10 @@ func AccountCreateController(c *gin.Context) {
 	var newUsers []InterfaceAccountController
 	// Bind JSON từ body của request vào struct
 	if err := c.ShouldBindJSON(&newUsers); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
 		return
 	}
 	userCollection := models.AccountModel()
@@ -262,7 +265,10 @@ func ChangeAccountController(c *gin.Context) {
 	}
 	var User InterfaceAccountChangeController
 	if err := c.ShouldBindJSON(&User); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request data"})
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
 		return
 	}
 	User.CreatedBy = CreatedBy

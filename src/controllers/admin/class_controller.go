@@ -22,16 +22,16 @@ func CreateClass(c *gin.Context) {
 	teacher_id, err := bson.ObjectIDFromHex(data.TeacherId)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "teacher_id không hợp lệ",
+			"code": "error",
+			"msg":  "teacher_id không hợp lệ",
 		})
 		return
 	}
 	course_id, err := bson.ObjectIDFromHex(data.CourseId)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "course_id không hợp lệ",
+			"code": "error",
+			"msg":  "course_id không hợp lệ",
 		})
 		return
 	}
@@ -210,13 +210,13 @@ func GetClassByClassID(c *gin.Context) {
 	if err := collection.FindOne(context.TODO(), bson.M{"_id": class_id}).Decode(&class); err != nil {
 		if err == mongo.ErrNoDocuments {
 			c.JSON(404, gin.H{
-				"status":  "error",
-				"message": "Không tìm thấy lớp",
+				"status": "error",
+				"msg":    "Không tìm thấy lớp",
 			})
 		} else {
 			c.JSON(401, gin.H{
-				"code":    "error",
-				"massage": "ban khong co quyen vao day",
+				"code": "error",
+				"msg":  "ban khong co quyen vao day",
 			})
 			return
 		}
@@ -273,9 +273,9 @@ func AddStudentsToCourseHandler(c *gin.Context) {
 	var request InterfaceAddStudentClassController
 
 	if err := c.BindJSON(&request); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"code":    "error",
-			"message": "Invalid request data",
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
 		})
 		return
 	}
@@ -353,8 +353,8 @@ func ChangeClassController(c *gin.Context) {
 		teacher_id, err := bson.ObjectIDFromHex(teacherIdStr)
 		if err != nil {
 			c.JSON(400, gin.H{
-				"code":    "error",
-				"massage": "teacher_id không hợp lệ",
+				"code": "error",
+				"msg":  "teacher_id không hợp lệ",
 			})
 			return
 		}
@@ -366,8 +366,8 @@ func ChangeClassController(c *gin.Context) {
 		course_id, err = bson.ObjectIDFromHex(courseIdStr)
 		if err != nil {
 			c.JSON(400, gin.H{
-				"code":    "error",
-				"massage": "teacher_id không hợp lệ",
+				"code": "error",
+				"msg":  "teacher_id không hợp lệ",
 			})
 			return
 		}
@@ -375,8 +375,8 @@ func ChangeClassController(c *gin.Context) {
 	}
 	if err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "course_id không hợp lệ",
+			"code": "error",
+			"msg":  "course_id không hợp lệ",
 		})
 		return
 	}
