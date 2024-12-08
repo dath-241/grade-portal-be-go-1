@@ -142,7 +142,7 @@ func ResultPatchController(c *gin.Context) {
 	if result.MatchedCount != 0 {
 		c.JSON(200, gin.H{
 			"code":    "success",
-			"massage": "Không có thay đổi",
+			"massage": "Thay đổi thành công",
 		})
 		return
 	}
