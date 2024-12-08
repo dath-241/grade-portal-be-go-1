@@ -55,7 +55,13 @@ func CreateResultScoreController(c *gin.Context) {
 	user := data.(models.InterfaceAccount)
 	var dataResult InterfaceResultScoreController
 	// lay du lieu tu front end
-	c.BindJSON(&dataResult)
+	if err := c.BindJSON(&dataResult); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
+		return
+	}
 	class_id, err := bson.ObjectIDFromHex(dataResult.ClassID)
 	if err != nil {
 		c.JSON(204, gin.H{
@@ -116,7 +122,13 @@ func ResultPatchController(c *gin.Context) {
 	data, _ := c.Get("user")
 	user := data.(models.InterfaceAccount)
 	var dataResult InterfaceResultScoreController
-	c.BindJSON(&dataResult)
+	if err := c.BindJSON(&dataResult); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
+		return
+	}
 	class_id, _ := bson.ObjectIDFromHex(id)
 	collection := models.ResultScoreModel()
 	result, err := collection.UpdateOne(
