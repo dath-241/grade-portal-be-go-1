@@ -12,7 +12,13 @@ import (
 func ResultScoreController(c *gin.Context) {
 	var data InterfaceResultScoreController
 	// lay du lieu tu front end
-	c.BindJSON(&data)
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
+		return
+	}
 	class_id, err := bson.ObjectIDFromHex(data.ClassID)
 	if err != nil {
 		c.JSON(204, gin.H{

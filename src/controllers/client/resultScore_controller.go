@@ -21,8 +21,8 @@ func ResultController(c *gin.Context) {
 		"class_id": class_id,
 	}).Decode(&resultScore); err != nil {
 		c.JSON(401, gin.H{
-			"code":    "error",
-			"massage": "ban khong co quyen vao day",
+			"code": "error",
+			"msg":  "ban khong co quyen vao day",
 		})
 		return
 	}
@@ -45,8 +45,8 @@ func ResultController(c *gin.Context) {
 		}
 	}
 	c.JSON(401, gin.H{
-		"code":    "error",
-		"massage": "ban khong co quyen vao day",
+		"code": "error",
+		"msg":  "ban khong co quyen vao day",
 	})
 }
 

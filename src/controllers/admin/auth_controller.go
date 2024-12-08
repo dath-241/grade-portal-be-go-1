@@ -15,7 +15,13 @@ import (
 func LoginController(c *gin.Context) {
 	var data AuthController
 	// lấy dữ liệu từ front end
-	c.BindJSON(&data)
+	if err := c.BindJSON(&data); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
+		return
+	}
 	payload, err := idtoken.Validate(context.Background(), data.IDToken, os.Getenv("YOUR_CLIENT_ID"))
 	if err != nil {
 		fmt.Println("Khong co token:", err)
@@ -52,8 +58,8 @@ func LoginController(c *gin.Context) {
 func LogoutController(c *gin.Context) {
 	c.SetCookie("token", "", 3600*24, "/", "", true, true)
 	c.JSON(200, gin.H{
-		"code":    "Success",
-		"massage": "Đăng xuất thành công",
+		"code": "Success",
+		"msg":  "Đăng xuất thành công",
 	})
 }
 
@@ -74,8 +80,8 @@ func CreateAdminController(c *gin.Context) {
 	).Decode(&Admin)
 	if err == nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"massage": "Bảng ghi của admin này đã được lưu trong database trước đó",
+			"code": "error",
+			"msg":  "Bảng ghi của admin này đã được lưu trong database trước đó",
 		})
 		return
 	}

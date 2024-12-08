@@ -199,7 +199,7 @@ func ChangeCourseController(c *gin.Context) {
 	if err = c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  err,
+			"msg":  "Data không nhận được",
 		})
 		return
 	}
