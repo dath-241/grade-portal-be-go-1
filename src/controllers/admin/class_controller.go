@@ -14,8 +14,8 @@ func CreateClass(c *gin.Context) {
 	var data InterfaceClassController
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Dữ liệu không hợp lệ",
+			"code": "error",
+			"msg":  "Dữ liệu không hợp lệ",
 		})
 		return
 	}
@@ -44,8 +44,8 @@ func CreateClass(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi kiểm tra dữ liệu",
+			"code": "error",
+			"msg":  "Lỗi khi kiểm tra dữ liệu",
 		})
 		return
 	}
@@ -53,8 +53,8 @@ func CreateClass(c *gin.Context) {
 	// Nếu lớp học đã tồn tại, trả về lỗi
 	if isDuplicate {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Lớp học đã tồn tại",
+			"code": "error",
+			"msg":  "Lớp học đã tồn tại",
 		})
 		return
 	}
@@ -73,8 +73,8 @@ func CreateClass(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi tạo lớp học",
+			"code": "error",
+			"msg":  "Lỗi khi tạo lớp học",
 		})
 		return
 	}
@@ -185,8 +185,8 @@ func GetAllClassesByAccountID(c *gin.Context) {
 
 	// Trả về danh sách lớp học
 	c.JSON(http.StatusOK, gin.H{
-		"status":  "success",
-		"message": "Lấy lớp học thành công",
+		"status": "success",
+		"msg":    "Lấy lớp học thành công",
 		"data": gin.H{
 			"classes": classes,
 		},
@@ -198,8 +198,8 @@ func GetClassByClassID(c *gin.Context) {
 	class_id, err := bson.ObjectIDFromHex(param)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"status":  "error",
-			"message": "Invalid ID format",
+			"status": "error",
+			"msg":    "Invalid ID format",
 		})
 		return
 	}
@@ -224,9 +224,9 @@ func GetClassByClassID(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{
-		"status":  "success",
-		"message": "Lấy lớp học thành công",
-		"class":   class,
+		"status": "success",
+		"msg":    "Lấy lớp học thành công",
+		"class":  class,
 	})
 }
 
@@ -236,8 +236,8 @@ func GetClassByCourseID(c *gin.Context) {
 	course_id, err := bson.ObjectIDFromHex(param)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"status":  "error",
-			"message": "Invalid ID format",
+			"status": "error",
+			"msg":    "Invalid ID format",
 		})
 		return
 	}
@@ -246,8 +246,8 @@ func GetClassByCourseID(c *gin.Context) {
 	cursor, err := collection.Find(context.TODO(), bson.M{"course_id": course_id})
 	if err != nil {
 		c.JSON(400, gin.H{
-			"status":  err,
-			"message": "Không tìm thấy lớp học",
+			"status": err,
+			"msg":    "Không tìm thấy lớp học",
 		})
 		return
 	}
@@ -255,8 +255,8 @@ func GetClassByCourseID(c *gin.Context) {
 		var class models.InterfaceClass
 		if err := cursor.Decode(&class); err != nil {
 			c.JSON(400, gin.H{
-				"status":  err,
-				"message": "Lỗi khi decode dữ liệu",
+				"status": err,
+				"msg":    "Lỗi khi decode dữ liệu",
 			})
 			return
 		}
@@ -264,7 +264,7 @@ func GetClassByCourseID(c *gin.Context) {
 	}
 	c.JSON(200, gin.H{
 		"status":  "success",
-		"message": "Lấy lớp học thành công",
+		"msg":     "Lấy lớp học thành công",
 		"classes": classes,
 	})
 }
@@ -298,15 +298,15 @@ func AddStudentsToCourseHandler(c *gin.Context) {
 	_, err = collection.UpdateOne(context.TODO(), filter, update)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"code":    "error",
-			"message": "Failed to add students to course",
+			"code": "error",
+			"msg":  "Failed to add students to course",
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"code":    "success",
-		"message": "Students added to course successfully",
+		"code": "success",
+		"msg":  "Students added to course successfully",
 	})
 }
 
@@ -343,8 +343,8 @@ func ChangeClassController(c *gin.Context) {
 	var data InterfaceChangeClassController
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Dữ liệu không hợp lệ",
+			"code": "error",
+			"msg":  "Dữ liệu không hợp lệ",
 		})
 		return
 	}
@@ -388,8 +388,8 @@ func ChangeClassController(c *gin.Context) {
 	isDuplicate, err := CheckDuplicateClass(collection, data.Semester, course_id, data.Name)
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi kiểm tra dữ liệu",
+			"code": "error",
+			"msg":  "Lỗi khi kiểm tra dữ liệu",
 		})
 		return
 	}
@@ -397,8 +397,8 @@ func ChangeClassController(c *gin.Context) {
 	// Nếu lớp học đã tồn tại, trả về lỗi
 	if isDuplicate {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Lớp học đã tồn tại",
+			"code": "error",
+			"msg":  "Lớp học đã tồn tại",
 		})
 		return
 	}
@@ -409,8 +409,8 @@ func ChangeClassController(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi tạo lớp học",
+			"code": "error",
+			"msg":  "Lỗi khi tạo lớp học",
 		})
 		return
 	}
