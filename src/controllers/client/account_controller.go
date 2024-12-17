@@ -288,7 +288,7 @@ func LoginTeleController(c *gin.Context) {
 	if err != nil {
 		c.JSON(401, gin.H{
 			"code": "error",
-			"msg":  "1",
+			"msg":  "Không tìm thấy accountaccount",
 		})
 		return
 	}
@@ -296,7 +296,7 @@ func LoginTeleController(c *gin.Context) {
 	if err := cursor_class.All(context.TODO(), &classAccount); err != nil {
 		c.JSON(401, gin.H{
 			"code": "error",
-			"msg":  "2",
+			"msg":  "Không lấy được lớp học",
 		})
 		return
 	}
@@ -327,7 +327,7 @@ func LoginTeleController(c *gin.Context) {
 	if err := cursor_course.All(context.TODO(), &listCourse); err != nil {
 		c.JSON(401, gin.H{
 			"code": "error",
-			"msg":  "4",
+			"msg":  "Không lấy được khóa học",
 		})
 		return
 	}
