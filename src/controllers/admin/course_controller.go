@@ -18,8 +18,8 @@ func CreateCourse(c *gin.Context) {
 	// Kiểm tra parse data vào có lỗi không
 	if err := c.BindJSON(&data); err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Dữ liệu không hợp lệ",
+			"code": "error",
+			"msg":  "Dữ liệu không hợp lệ",
 		})
 		return
 	}
@@ -38,8 +38,8 @@ func CreateCourse(c *gin.Context) {
 	isDuplicate, err := CheckDuplicateCourse(collection, data.Ms, data.Name)
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi kiểm tra dữ liệu",
+			"code": "error",
+			"msg":  "Lỗi khi kiểm tra dữ liệu",
 		})
 		return
 	}
@@ -47,8 +47,8 @@ func CreateCourse(c *gin.Context) {
 	// Nếu khóa học đã tồn tại, trả về lỗi
 	if isDuplicate {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Khóa học đã tồn tại",
+			"code": "error",
+			"msg":  "Khóa học đã tồn tại",
 		})
 		return
 	}
@@ -66,16 +66,16 @@ func CreateCourse(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi tạo khóa học",
+			"code": "error",
+			"msg":  "Lỗi khi tạo khóa học",
 		})
 		return
 	}
 
 	// Trả về kết quả thành công
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"message": "Tạo khóa học thành công",
+		"code": "success",
+		"msg":  "Tạo khóa học thành công",
 	})
 }
 
@@ -105,8 +105,8 @@ func GetCourseByCourseID(c *gin.Context) {
 	course_id, er := bson.ObjectIDFromHex(param)
 	if er != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "ID không hợp lệ",
+			"code": "error",
+			"msg":  "ID không hợp lệ",
 		})
 		return
 	}
@@ -117,16 +117,16 @@ func GetCourseByCourseID(c *gin.Context) {
 	if err := collection.FindOne(context.TODO(), bson.M{"_id": course_id}).Decode(&course); err != nil {
 		if err == mongo.ErrNoDocuments {
 			c.JSON(404, gin.H{
-				"status":  "error",
-				"message": "Không tìm thấy môn học",
+				"status": "error",
+				"msg":    "Không tìm thấy môn học",
 			})
 			return
 		}
 	}
 	c.JSON(200, gin.H{
-		"status":  "success",
-		"message": "Lấy môn học thành công",
-		"course":  course,
+		"status": "success",
+		"msg":    "Lấy môn học thành công",
+		"course": course,
 	})
 }
 
@@ -143,8 +143,8 @@ func GetAllCourseController(c *gin.Context) {
 	defer cursor.Close(context.TODO())
 	if err := cursor.All(context.TODO(), &allCourse); err != nil {
 		c.JSON(400, gin.H{
-			"code":    "error",
-			"message": "Lỗi khi đọc dữ liệu từ cursor",
+			"code": "error",
+			"msg":  "Lỗi khi đọc dữ liệu từ cursor",
 		})
 		return
 	}

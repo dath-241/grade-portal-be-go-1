@@ -169,8 +169,8 @@ func CreateHallOfFame(c *gin.Context) {
 		}
 	}
 	c.JSON(200, gin.H{
-		"code":    "success",
-		"message": "Cập nhật Hall Of Fame thành công",
+		"code": "success",
+		"msg":  "Cập nhật Hall Of Fame thành công",
 	})
 }
 
@@ -213,8 +213,8 @@ func GetPrevSemesterAllHallOfFame(c *gin.Context) {
 
 	// Trả về tất cả các bản ghi nếu tìm thấy
 	c.JSON(200, gin.H{
-		"status":  "success",
-		"message": "Lấy hall of fame thành công",
-		"data":    halloffame_data,
+		"status": "success",
+		"msg":    "Lấy hall of fame thành công",
+		"data":   halloffame_data,
 	})
 }

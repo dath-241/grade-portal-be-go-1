@@ -313,10 +313,13 @@ func LoginTeleController(c *gin.Context) {
 			"$in": IDs,
 		},
 	})
+	token := helper.CreateJWT(account.ID)
 	if err != nil {
-		c.JSON(401, gin.H{
-			"code": "error",
-			"msg":  "3",
+		c.JSON(200, gin.H{
+			"code":       "success",
+			"token":      token,
+			"listCourse": "NULL",
+			"role":       account.Role,
 		})
 		return
 	}
@@ -332,7 +335,6 @@ func LoginTeleController(c *gin.Context) {
 	for _, item := range listCourse {
 		msList = append(msList, item.MS+"-"+checkMap[item.ID])
 	}
-	token := helper.CreateJWT(account.ID)
 	c.JSON(200, gin.H{
 		"code":       "success",
 		"token":      token,
