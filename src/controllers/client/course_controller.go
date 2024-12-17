@@ -27,15 +27,15 @@ func GetCourseByCourseID(c *gin.Context) {
 	if err := collection.FindOne(context.TODO(), bson.M{"_id": course_id}).Decode(&course); err != nil {
 		if err == mongo.ErrNoDocuments {
 			c.JSON(404, gin.H{
-				"status":  "error",
-				"message": "Không tìm thấy môn học",
+				"status": "error",
+				"msg":    "Không tìm thấy môn học",
 			})
 			return
 		}
 	}
 	c.JSON(200, gin.H{
-		"status":  "success",
-		"message": "Lấy môn học thành công",
-		"course":  course,
+		"status": "success",
+		"msg":    "Lấy môn học thành công",
+		"course": course,
 	})
 }
