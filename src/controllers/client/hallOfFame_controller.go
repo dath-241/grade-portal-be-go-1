@@ -49,8 +49,8 @@ func GetPrevSemesterAllHallOfFame(c *gin.Context) {
 
 	// Trả về tất cả các bản ghi nếu tìm thấy
 	c.JSON(200, gin.H{
-		"status":  "success",
-		"message": "Lấy hall of fame thành công",
-		"data":    halloffame_data,
+		"status": "success",
+		"msg":    "Lấy hall of fame thành công",
+		"data":   halloffame_data,
 	})
 }

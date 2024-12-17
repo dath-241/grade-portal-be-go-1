@@ -149,8 +149,8 @@ func CountDocumentController(c *gin.Context) {
 	courseId, err := bson.ObjectIDFromHex(param)
 	if err != nil {
 		c.JSON(404, gin.H{
-			"status":  "error",
-			"message": "Không tìm thấy môn học",
+			"status": "error",
+			"msg":    "Không tìm thấy môn học",
 		})
 		return
 	}
@@ -158,8 +158,8 @@ func CountDocumentController(c *gin.Context) {
 	count, err := collection.CountDocuments(context.TODO(), bson.M{"course_id": courseId})
 	if err != nil {
 		c.JSON(404, gin.H{
-			"status":  "error",
-			"message": "Không đếm được các class",
+			"status": "error",
+			"msg":    "Không đếm được các class",
 		})
 		return
 	}
