@@ -145,7 +145,7 @@ func CreateOtb(c *gin.Context) {
 		return
 	}
 	if CheckDuplicateOtp(ms) {
-		c.JSON(200, gin.H{
+		c.JSON(400, gin.H{
 			"code": "error",
 			"msg":  "OTP đã được gửi trước đó",
 		})
