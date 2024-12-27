@@ -37,9 +37,17 @@ func RequireUser(c *gin.Context) {
 	}
 	var user models.InterfaceAccount
 	collection := models.AccountModel()
-	collection.FindOne(context.TODO(), bson.M{
+	err := collection.FindOne(context.TODO(), bson.M{
 		"_id": Claims.ID,
 	}).Decode(&user)
+	if err != nil {
+		c.JSON(401, gin.H{
+			"code": "error",
+			"msg":  "Nguoi dung khong ton tai",
+		})
+		c.Abort()
+		return
+	}
 	c.Set("user", user)
 	c.Next()
 }

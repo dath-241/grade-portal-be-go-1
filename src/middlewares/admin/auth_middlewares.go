@@ -2,9 +2,12 @@ package middlewares_admin
 
 import (
 	"LearnGo/helper"
+	"LearnGo/models"
+	"context"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func RequireAuth(c *gin.Context) {
@@ -29,6 +32,18 @@ func RequireAuth(c *gin.Context) {
 		c.JSON(401, gin.H{
 			"code":    "error",
 			"massage": "Nguoi dung chua dang nhap",
+		})
+		c.Abort()
+		return
+	}
+	collection := models.AdminModel()
+	var account models.InterfaceAdmin
+	if err := collection.FindOne(context.TODO(), bson.M{
+		"_id": Claims.ID,
+	}).Decode(&account); err != nil {
+		c.JSON(401, gin.H{
+			"code": "error",
+			"msg":  "Nguoi dung khong ton tai",
 		})
 		c.Abort()
 		return
