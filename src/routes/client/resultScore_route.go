@@ -9,6 +9,7 @@ import (
 
 func ResultScoreRoute(r *gin.RouterGroup) {
 	r.POST("/create", middlewares_client.RequireTeacher, controller_client.CreateResultScoreController)
+	r.POST("/upload", middlewares_client.RequireTeacher, controller_client.UploadResultScoreController)
 	r.GET("/getmark", controller_client.ResultAllController)
 	r.GET("/getmark/:ms", controller_client.ResultCourseController)
 	r.GET("/:id", controller_client.ResultController)

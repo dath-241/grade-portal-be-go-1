@@ -27,6 +27,7 @@ type InterfaceResultScore struct {
 	} `bson:"score"`
 	ClassID   bson.ObjectID `bson:"class_id"`
 	CourseID  bson.ObjectID `bson:"course_id"`
+	DataHash  string        `bson:"dataHash"`
 	ExpiredAt time.Time     `bson:"expiredAt"`
 	CreatedBy bson.ObjectID `bson:"createdBy"`
 	UpdatedBy bson.ObjectID `bson:"updatedBy"`

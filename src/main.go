@@ -2,6 +2,7 @@ package main
 
 import (
 	"LearnGo/config"
+	"LearnGo/helper"
 	routes_admin "LearnGo/routes/admin"
 	routes_client "LearnGo/routes/client"
 	"fmt"
@@ -36,9 +37,10 @@ func main() {
 	// Đăng ký các route
 	routes_admin.MainRoute(app)
 	routes_client.MainRoute(app)
-
+	go func() {
+		helper.LoopAuto()
+	}()
 	// Chạy server
 	fmt.Println("Server đang chạy trên cổng", os.Getenv("PORT"))
 	app.Run(":" + os.Getenv("PORT"))
-
 }

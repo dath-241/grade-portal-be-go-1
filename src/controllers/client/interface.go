@@ -12,6 +12,14 @@ type InterfaceScoreController struct {
 	CK  float32   `json:"CK"`
 }
 
+type InterfaceDataScoreController struct {
+	SCORE []struct {
+		MSSV string                   `json:"mssv"`
+		Data InterfaceScoreController `json:"data"`
+	} `json:"score"`
+	Hash string `json:"hash"`
+}
+
 type InterfaceResultScoreController struct {
 	SCORE []struct {
 		MSSV string                   `json:"mssv"`
@@ -48,4 +56,9 @@ type RegisterInterface struct {
 type LoginInterface struct {
 	Ms       string `json:"ms"`
 	Password string `json:"password"`
+}
+
+type UploadResultInterface struct {
+	ClassID string `json:"class_id"`
+	LinkURL string `json:"link_url"`
 }

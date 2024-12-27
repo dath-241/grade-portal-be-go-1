@@ -1,8 +1,11 @@
 package controller_client
 
 import (
+	"LearnGo/helper"
 	"LearnGo/models"
 	"context"
+	"encoding/json"
+	"fmt"
 	"strings"
 	"time"
 
@@ -254,4 +257,160 @@ func ResultAllController(c *gin.Context) {
 		"msg":    "Lấy điểm thành công",
 		"scores": scores,
 	})
+}
+
+func UploadResultScoreController(c *gin.Context) {
+	data, _ := c.Get("user")
+	user := data.(models.InterfaceAccount)
+	var dataResult UploadResultInterface
+	// lay du lieu tu front end
+	if err := c.BindJSON(&dataResult); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Data không nhận được",
+		})
+		return
+	}
+	class_id, err := bson.ObjectIDFromHex(dataResult.ClassID)
+	if err != nil {
+		c.JSON(204, gin.H{
+			"code": "error",
+			"msg":  "Lớp chưa có giáo viên",
+		})
+		return
+	}
+	var classDetail models.InterfaceClass
+	collectionClass := models.ClassModel()
+
+	if err = collectionClass.FindOne(context.TODO(), bson.M{"_id": class_id}).Decode(&classDetail); err != nil {
+		c.JSON(400, gin.H{
+			"code": "error",
+			"msg":  "Khong tim thay lop hoc do",
+		})
+		return
+	}
+	collection := models.ResultScoreModel()
+	var ResultScore models.InterfaceResultScore
+	err = collection.FindOne(
+		context.TODO(),
+		bson.M{
+			"class_id": class_id,
+		},
+	).Decode(&ResultScore)
+	// co ban ghi resultScore truoc do
+	if err != nil {
+		scoreDataStr, err := helper.ScoreHelper(dataResult.LinkURL+"/export?format=csv", classDetail.ID.Hex()+".csv", ResultScore.DataHash)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Lỗi khi gọi ScoreHelper",
+			})
+			return
+		}
+		if scoreDataStr == "not change" {
+			c.JSON(200, gin.H{
+				"code": "success",
+				"msg":  "Không có thay đổi",
+			})
+			return
+		}
+		var scoreData InterfaceDataScoreController
+		err = json.Unmarshal([]byte(scoreDataStr), &scoreData)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  fmt.Sprintf("Lỗi khi giải mã JSON: %v", err),
+			})
+			return
+		}
+
+		// Parse the string into the expected type
+		err = json.Unmarshal([]byte(scoreDataStr), &scoreData)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Failed to parse score data",
+			})
+			return
+		}
+		if _, err = collection.InsertOne(context.TODO(), bson.M{
+			"semester":  classDetail.Semester,
+			"course_id": classDetail.CourseId,
+			"score":     scoreData.SCORE,
+			"class_id":  class_id,
+			"expiredAt": time.Now().AddDate(0, 6, 0),
+			"createdBy": user.ID,
+			"updatedBy": user.ID,
+			"file":      dataResult.LinkURL + "/export?format=csv",
+			"dataHash":  scoreData.Hash,
+		}); err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Cap nhat bang diem thất bại",
+			})
+			return
+		}
+		c.JSON(200, gin.H{
+			"code": "success",
+			"msg":  "Cap nhat bang diem thanh cong",
+		})
+	} else {
+		scoreDataStr, err := helper.ScoreHelper(dataResult.LinkURL+"/export?format=csv", classDetail.ID.Hex()+".csv", ResultScore.DataHash)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Lỗi khi gọi ScoreHelper",
+			})
+			return
+		}
+		if scoreDataStr == "not change" {
+			c.JSON(200, gin.H{
+				"code": "success",
+				"msg":  "Không có thay đổi",
+			})
+			return
+		}
+		var scoreData InterfaceDataScoreController
+		err = json.Unmarshal([]byte(scoreDataStr), &scoreData)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  fmt.Sprintf("Lỗi khi giải mã JSON: %v", err),
+			})
+			return
+		}
+
+		// Parse the string into the expected type
+		err = json.Unmarshal([]byte(scoreDataStr), &scoreData)
+		if err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Failed to parse score data",
+			})
+			return
+		}
+		if _, err = collection.UpdateOne(context.TODO(), bson.M{
+			"class_id": class_id,
+		}, bson.M{
+			"$set": bson.M{
+				"score":     scoreData.SCORE,
+				"expiredAt": time.Now().AddDate(0, 6, 0),
+				"createdBy": user.ID,
+				"updatedBy": user.ID,
+				"file":      dataResult.LinkURL + "/export?format=csv",
+				"dataHash":  scoreData.Hash,
+			},
+		}); err != nil {
+			c.JSON(400, gin.H{
+				"code": "error",
+				"msg":  "Cap nhat bang diem thất bại",
+			})
+			return
+		}
+		c.JSON(200, gin.H{
+			"code": "success",
+			"msg":  "Cap nhat bang diem thanh cong",
+		})
+	}
+
 }

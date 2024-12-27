@@ -188,7 +188,7 @@ func ResetPasswordController(c *gin.Context) {
 	if err := c.ShouldBindJSON(&resgister); err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ 0",
 		})
 		return
 	}
@@ -198,7 +198,7 @@ func ResetPasswordController(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ 1",
 		})
 		return
 	}
@@ -212,7 +212,7 @@ func ResetPasswordController(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ 2",
 		})
 		return
 	}
@@ -224,7 +224,7 @@ func ResetPasswordController(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ 3",
 		})
 		return
 	}
@@ -238,7 +238,7 @@ func ResetPasswordController(c *gin.Context) {
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": "error",
-			"msg":  "Dữ liệu yêu cầu không hợp lệ",
+			"msg":  "Dữ liệu yêu cầu không hợp lệ 4",
 		})
 		return
 	}
