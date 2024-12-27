@@ -67,7 +67,7 @@ func AutoUpdateScore() {
 			fmt.Println("Không có link URL")
 			continue
 		}
-		scoreDataStr, err := ScoreHelper(item.LinkURL, item.ID.Hex()+".csv", item.Hash)
+		scoreDataStr, err := ScoreHelper(item.LinkURL, item.ClassID.Hex()+".csv", item.Hash)
 		fmt.Println(scoreDataStr)
 		if err != nil {
 			fmt.Println("Lỗi khi lấy dữ liệu từ file CSV")
@@ -114,7 +114,13 @@ func ScoreHelper(url string, fileName string, cacheFile string) (string, error) 
 		} else {
 			fmt.Println("Tải file thành công:", fileName)
 		}
-
+		// Defer để xóa file sau khi sử dụng xong
+		defer func() {
+			err := os.Remove(fileName)
+			if err != nil {
+				fmt.Println("Lỗi khi xóa file:", err)
+			}
+		}()
 		// Làm sạch dữ liệu trong file CSV
 		err = cleanCSV(fileName)
 		if err != nil {
