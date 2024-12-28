@@ -1,0 +1,80 @@
+@startuml
+actor User
+actor Admin
+actor Teacher
+entity "Account" as Account
+entity "Otp" as Otp
+entity "Course" as Course
+entity "Class" as Class
+entity "Score" as Score
+entity "ResultScore" as ResultScore
+entity "Telegram" as Telegram
+entity "Google" as Google
+entity "Link URL" as LinkUrl
+
+' Quy trình 1: Đăng nhập của người dùng qua Google (Web)
+User -> Google : Login via Google
+Google -> Account : Validate user
+Account -> Google : Return user info
+Account -> User : Login success
+
+' Quy trình 2: Đăng nhập của người dùng qua Telegram (Telegram)
+User -> Telegram : Login via Telegram
+Telegram -> Account : Generate OTP
+Account -> Telegram : Send OTP
+Telegram -> User : Send OTP
+User -> Telegram : Enter OTP
+Telegram -> Account : Validate OTP
+Account -> User : Login success
+
+' Quy trình 3: Sinh viên xem điểm của mình
+User -> ResultScore : Request for scores
+ResultScore -> User : Return current scores
+
+' Quy trình 4: Cập nhật điểm tự động
+' Kiểm tra nếu có thay đổi và cập nhật sau 10 phút
+ResultScore -> LinkUrl : Check if score update link exists
+LinkUrl -> ResultScore : Return link URL
+ResultScore -> LinkUrl : Fetch updated scores (every 10 mins)
+LinkUrl -> ResultScore : Return updated scores
+ResultScore -> User : Return updated scores
+
+' Quy trình 5: Thêm điểm cho học sinh (Admin)
+Admin -> Course : Select course
+Course -> Class : Get class information
+Admin -> Score : Add score for student
+Score -> ResultScore : Save score for student
+ResultScore -> Class : Update class result
+ResultScore -> Admin : Show result score
+
+' Quy trình 6: Tạo lớp học mới (Admin)
+Admin -> Class : Create new class
+Class -> Course : Select course for class
+Class -> Admin : Class created successfully
+
+' Quy trình 7: Giảng viên chọn khóa học và lớp học
+Teacher -> Course : Select course
+Course -> Class : Get class details
+Class -> Teacher : Show available classes
+
+' Quy trình 8: Giảng viên nhập điểm cho sinh viên
+Teacher -> Score : Enter score for student
+Score -> ResultScore : Save score data
+ResultScore -> Class : Update class result
+
+' Hệ thống trả lại kết quả cho giảng viên
+ResultScore -> Teacher : Show updated result
+
+' Quy trình 9: Admin quản lý sinh viên
+Admin -> Account : Manage student accounts
+Account -> Admin : Return student management interface
+
+' Quy trình 10: Admin quản lý giáo viên
+Admin -> Account : Manage teacher accounts
+Account -> Admin : Return teacher management interface
+
+' Quy trình 11: Giáo viên quản lý sinh viên
+Teacher -> Account : Manage student accounts
+Account -> Teacher : Return student management interface
+
+@enduml

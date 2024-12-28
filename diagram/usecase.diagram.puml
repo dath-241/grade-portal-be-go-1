@@ -1,0 +1,38 @@
+@startuml
+actor Student as "Sinh viên"
+actor Teacher as "Giảng viên"
+actor Admin as "Admin"
+actor Telegram as "Telegram"
+
+package "Hệ thống điểm và quản lý lớp học" {
+  usecase "Đăng nhập qua Google" as UC1
+  usecase "Đăng nhập qua Telegram" as UC2
+  usecase "Xem điểm" as UC3
+  usecase "Cập nhật điểm tự động" as UC4
+  usecase "Nhập điểm cho sinh viên" as UC5
+  usecase "Tạo lớp học" as UC6
+  usecase "Thêm điểm cho sinh viên" as UC7
+  usecase "Quản lý khóa học" as UC8
+  usecase "Quản lý sinh viên" as UC9
+  usecase "Quản lý giáo viên" as UC10
+  usecase "Quản lý sinh viên trong lớp học" as UC11
+}
+
+' Quan hệ giữa các tác nhân và use case
+Student --> UC1 : "Đăng nhập qua Google"
+Student --> UC2 : "Đăng nhập qua Telegram"
+Student --> UC3 : "Xem điểm"
+Student --> UC4 : "Cập nhật điểm tự động"
+
+Teacher --> UC5 : "Nhập điểm cho sinh viên"
+Teacher --> UC11 : "Quản lý sinh viên trong lớp học"
+
+Admin --> UC6 : "Tạo lớp học"
+Admin --> UC7 : "Thêm điểm cho sinh viên"
+Admin --> UC8 : "Quản lý khóa học"
+Admin --> UC9 : "Quản lý sinh viên"
+Admin --> UC10 : "Quản lý giáo viên"
+
+Telegram --> UC2 : "Cung cấp OTP cho sinh viên"
+
+@enduml
