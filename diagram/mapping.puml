@@ -1,0 +1,104 @@
+@startuml
+
+entity "Account" as account {
+    +ID: bson.ObjectID
+    +Email: string
+    +Name: string
+    +Ms: string
+    +Password: string
+    +Faculty: string
+    +Role: string
+    +CreatedBy: bson.ObjectID
+}
+
+entity "Admin" as admin {
+    +ID: bson.ObjectID
+    +Email: string
+    +Name: string
+    +Ms: string
+    +Faculty: string
+    +CreatedBy: bson.ObjectID
+}
+
+entity "Class" as class {
+    +ID: bson.ObjectID
+    +ClassName: string
+    +TeacherName: string
+    +StudentMs: []string
+    +CreatedAt: time.Time
+    +UpdatedAt: time.Time
+}
+
+entity "Course" as course {
+    +ID: bson.ObjectID
+    +MS: string
+    +Credit: int
+    +Name: string
+    +Desc: string
+    +HS: [5]int
+    +CreatedBy: bson.ObjectID
+    +UpdatedBy: bson.ObjectID
+}
+
+entity "HallOfFame" as hof {
+    +ID: bson.ObjectID
+    +Semester: string
+    +Tier: []Tier
+}
+
+entity "Tier" as tier {
+    +CourseId: bson.ObjectID
+    +Data: [10]Data
+}
+
+entity "Data" as data {
+    +MSSV: string
+    +DTB: float32
+}
+
+entity "Otp" as otp {
+    +ID: bson.ObjectID
+    +Email: string
+    +Ms: string
+    +Otp: string
+    +ExpiredAt: time.Time
+}
+
+entity "ResultScore" as resultScore {
+    +ID: bson.ObjectID
+    +Semester: string
+    +SCORE: []Score
+    +ClassID: bson.ObjectID
+    +CourseID: bson.ObjectID
+    +link_url: string
+    +DataHash: string
+    +ExpiredAt: time.Time
+    +CreatedBy: bson.ObjectID
+    +UpdatedBy: bson.ObjectID
+}
+
+entity "Score" as score {
+    +MSSV: string
+    +Data: InterfaceScore
+}
+
+account --|> otp : "Has"
+account --|> class : "Enrolled in"
+account --|> score : "Has"
+account --|> data : "Has"
+
+admin --|> class : "Creates"
+admin --|> course : "Creates/Updates"
+admin --|> resultScore : "Manages"
+
+class --|> resultScore : "Has"
+class --|> admin : "Created by"
+course --|> tier : "Part of"
+course --|> hof : "Appears in"
+hof --|> tier : "Contains"
+tier --|> data : "Has"
+resultScore --|> score : "Has"
+resultScore --|> class : "Related to"
+resultScore --|> course : "Related to"
+
+@enduml

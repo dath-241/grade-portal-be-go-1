@@ -2,3 +2,6 @@
 ![Deploy Diagram](deploy.diagram.png)
 ![Sequence Diagram](sequence.diagram.png)
 ![Use Case Diagram](usecase.diagram.png)
+![Use Case Diagram](articleture.diagram.png)
+![Use Case Diagram](overview.diagram.png)
+![Use Case Diagram](mapping.png)
