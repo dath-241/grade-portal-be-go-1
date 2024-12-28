@@ -1,0 +1,97 @@
+@startuml
+
+class Account {
+    +ID: bson.ObjectID
+    +Email: string
+    +Name: string
+    +Ms: string
+    +Password: string
+    +Faculty: string
+    +Role: string
+    +CreatedBy: bson.ObjectID
+}
+class Admin{
+    +ID: bson.ObjectID
+    +Email: string
+    +Name: string
+    +Ms: string
+    +Faculty: string
+    +CreatedBy: bson.ObjectID
+}
+
+class Class {
+    +ID: bson.ObjectID
+    +ClassName: string
+    +TeacherName: string
+    +StudentMs: []string
+    +CreatedAt: time.Time
+    +UpdatedAt: time.Time
+}
+
+class Course {
+    +ID: bson.ObjectID
+    +MS: string
+    +Credit: int
+    +Name: string
+    +Desc: string
+    +HS: [5]int
+    +CreatedBy: bson.ObjectID
+    +UpdatedBy: bson.ObjectID
+}
+
+class HallOfFame {
+    +ID: bson.ObjectID
+    +Semester: string
+    +Tier: []Tier
+}
+
+class Tier {
+    +CourseId: bson.ObjectID
+    +Data: [10]Data
+}
+
+class Data {
+    +MSSV: string
+    +DTB: float32
+}
+
+class Otp {
+    +ID: bson.ObjectID
+    +Email: string
+    +Ms: string
+    +Otp: string
+    +ExpiredAt: time.Time
+}
+
+class ResultScore {
+    +ID: bson.ObjectID
+    +Semester: string
+    +SCORE: []Score
+    +ClassID: bson.ObjectID
+    +CourseID: bson.ObjectID
+    +link_url: string
+    +DataHash: string
+    +ExpiredAt: time.Time
+    +CreatedBy: bson.ObjectID
+    +UpdatedBy: bson.ObjectID
+}
+
+class Score {
+    +MSSV: string
+    +Data: InterfaceScore
+}
+
+ResultScore "1" -- "many" Score
+Admin "1" -- "many" Class : CreatedBy
+Admin "1" -- "many" Course : CreatedBy/UpdatedBy
+Admin "1" -- "many" ResultScore : CreatedBy/UpdatedBy
+Class "1" -- "1" ResultScore
+Course "1" -- "many" Tier
+HallOfFame "1" -- "many" Tier
+Tier "1" -- "10" Data
+Account "1" -- "1" Otp
+Account "many" -- "many" Class : StudentMs
+Account "1" -- "many" Score : MSSV
+Account "1" -- "many" Data : MSSV
+
+@enduml

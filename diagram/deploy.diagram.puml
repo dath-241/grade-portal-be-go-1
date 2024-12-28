@@ -1,0 +1,38 @@
+@startuml
+node "Web Server" {
+  artifact "Web Application" as WA
+  component "Google Auth Service" as GAS
+  component "ResultScore Service" as RSS
+  component "OTP Service" as OTP
+}
+
+node "Database Server" {
+  artifact "MongoDB Database" as DB
+}
+
+node "Telegram Server" {
+  artifact "Telegram Bot Service" as TBS
+}
+
+node "Client Device (Web)" {
+  artifact "Web Client (Admin, Teacher, Student)" as WC
+}
+
+node "Client Device (Telegram)" {
+  artifact "Telegram Client (Student)" as TC
+}
+
+' Web Server and Database Server Connections
+WA --> DB : Access Data
+GAS --> WA : Authenticate User
+RSS --> DB : Save/Update ResultScore
+OTP --> DB : Validate OTP
+
+' Telegram Service Connection
+TBS --> OTP : Generate OTP
+
+' Client Devices Connections
+WC --> WA : Interact with Web Application (Admin, Teacher, Student)
+TC --> TBS : Interact with Telegram Bot (Student)
+
+@enduml
