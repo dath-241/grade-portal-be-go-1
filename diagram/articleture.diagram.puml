@@ -1,0 +1,33 @@
+@startuml
+
+!define RECTANGLE class
+
+RECTANGLE Frontend {
+    +StudentView: View
+    +TeacherView: View
+    +AdminView: View
+}
+
+RECTANGLE Backend {
+    +API: RESTful API
+    +FileHandler: Logic to handle CSV/EXCEL files
+    +CSVMonitor: Logic to auto-update scores from link CSV/EXCEL
+}
+
+RECTANGLE Database {
+    +Users: Store Admin, Teacher, and Student info
+    +Courses: Store Course details
+    +Scores: Store Student scores
+    +HallOfFame: Store top-performing students
+    +Link CSV/EXCEL Files: Store link file info for score updates
+}
+
+Frontend --> Backend : "Request/Receive Data"
+Backend --> Database : "Query/Update Data"
+Database --> Frontend : "Respond with Data"
+Frontend --> FileHandler : "Upload Link CSV/EXCEL (Teacher)"
+FileHandler --> Database : "Store/Update Scores"
+CSVMonitor --> FileHandler : "Auto-Download & Update"
+Backend --> CSVMonitor : "Trigger Auto-Update"
+
+@enduml
