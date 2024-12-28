@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5d20509-0b94-475c-a9d5-a21f86bf6165",
+		"_postman_id": "61e4a002-4902-49f0-84dc-53c0d5d34a78",
 		"name": "Backend Golang",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "34739877"
@@ -20,7 +20,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -29,7 +29,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3ODEzNjA5NTEyMTQ2Nzk5MDcyIiwiaGQiOiJoY211dC5lZHUudm4iLCJlbWFpbCI6InRoYWkubHlkem5oYXRsb3AyazRAaGNtdXQuZWR1LnZuIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiI0X3dFNkRuTldZZnhIVTE3QTRfR0xRIiwibm9uY2UiOiI5OTQ5NDE5MTEyOTg2ODA5NjE2MjI1NDM5MDM5MzMyODg0MjQ4ODMyMDE1MDM5ODUiLCJuYmYiOjE3MzA4NzM1ODUsIm5hbWUiOiJUSMOBSSBMw50gVsSoTkgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS2Z1NXhPNHFMTFVaTk9jZkF4S2RTM3AxQnNIY3NIaERyY2QzakVkTkNIQ043LVVwST1zOTYtYyIsImdpdmVuX25hbWUiOiJUSMOBSSIsImZhbWlseV9uYW1lIjoiTMOdIFbEqE5IIiwiaWF0IjoxNzMwODczODg1LCJleHAiOjE3MzA4Nzc0ODUsImp0aSI6IjBhNGEwMWRmOGE1ZjMwMDRjMzZiMDExNWM4NzNmYWNjOWU0ZDJjNjQifQ.gtXmazdF_W41d-GFvdGyXOmlJjSYo59BWATVvbTSnkwuJtVO67769uqkjngB2ctWpXisc9Ttzp7jSL2W5bwiSsm8HiGDN6t0ritibjmucQtkak_sCgYjYb483vOPvyk5n60bCX3c1VbCV__wNeMUjLRfw73Uq5IjMQyGSRNcKJZtG_8wRNwMNEavHFDhjW3zAks9wrYsmWJbnj9KxON3wsy6PkYW8tWUPlgqq5GlyUjv0k4qvEAcfWiynXl4SJ8hV16n-9lRI0-fUlcx_DMyquSs3ftsSpQUsS2DRrLuvFBPidlFIpHPSkyz0-DRHeCB7NWiGEFviX0bODoGafgJCg\"\r\n\r\n}",
+									"raw": "{\r\n    \"idToken\":\"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFiODYxNGZmNjI4OTNiYWRjZTVhYTc5YTc3MDNiNTk2NjY1ZDI0NzgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3ODEzNjA5NTEyMTQ2Nzk5MDcyIiwiaGQiOiJoY211dC5lZHUudm4iLCJlbWFpbCI6InRoYWkubHlkem5oYXRsb3AyazRAaGNtdXQuZWR1LnZuIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIzUkZDWGtVd2pJaUNJcjVLazEtdjlBIiwibm9uY2UiOiIzNTExOTQ4NTM0MTExMDc2MDgwNzI2MDM5MjU5ODYyMDgxNzYwNDYxNjMxMzUxNjc4IiwibmJmIjoxNzM1MzExMTUwLCJuYW1lIjoiVEjDgUkgTMOdIFbEqE5IIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tmdTV4TzRxTExVWk5PY2ZBeEtkUzNwMUJzSGNzSGhEcmNkM2pFZE5DSENONy1VcEk9czk2LWMiLCJnaXZlbl9uYW1lIjoiVEjDgUkiLCJmYW1pbHlfbmFtZSI6IkzDnSBWxKhOSCIsImlhdCI6MTczNTMxMTQ1MCwiZXhwIjoxNzM1MzE1MDUwLCJqdGkiOiI2YzRjYTNlYjk5MmUxZjc5NmIxOTcxZTRmYmRkMTFhZjFhYmYyZGE1In0.rIhKyc1xfu_nE8X-zWlH21LL6foNVbdwhZPqoeOomvYEKinzNnxaY6G_o3U2j9EyCwHCHA8Pu0bbKmR_1JRB-qTJ_SnLv1NJL0Va3U6ZQCkyu-YsBzvIgPKWKQij3nkSdLWHifYmeJjLZ9scaoYRJTsiO5-fPfpUXNmiiQ8Fm_S9ekSjFzcO1mjQIxVigYCOJuv3i5-b5VCJ-X_x3HEF9wB4Hl2jZCn3uI6LlJNW_bxOMQfXDHVaA6rI23pfqloKYwLzK0itucgONhf2jlQB-9vXZX4pvQurWaz_XrX6D6Le2F2NkNo8XPlfQijiyk9EflQVh9NlVgQpJMnCsxw6Gw\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -51,6 +51,16 @@
 						{
 							"name": "LogoutController",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_ADMIN}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"url": {
@@ -68,11 +78,21 @@
 						{
 							"name": "CreateAdminController",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_ADMIN}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\t    \r\n    \"email\": \"\" ,\r\n\t\"name\" :  \"\" ,  \r\n\t\"faculty\": \"\"  , \r\n\t\"ms\":      \"\" \r\n    //nhập giá trị vào \"\"\r\n}",
+									"raw": "{\t    \r\n    \"email\": \"nguyendinhbang53az@gmail.com\" ,\r\n\t\"name\" :  \"Nguyễn Đinh Bàng\" ,  \r\n\t\"faculty\": \"KHMT\", \r\n\t\"ms\":      \"admin124\" \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -99,7 +119,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -131,7 +151,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -162,7 +182,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -179,13 +199,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/account/671251ede5534306db8a4f8f",
+									"raw": "{{BASE_URL_ADMIN}}/account/672b8605226ae67ef9aaa040",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"account",
-										"671251ede5534306db8a4f8f"
+										"672b8605226ae67ef9aaa040"
 									]
 								}
 							},
@@ -199,7 +219,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDg3MzYzNn0.I1h9rDEmHshBbNL1RTXclsVLijtW8tVr9U07NjcjS2M",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -208,7 +228,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "[\r\n    {\r\n        \"email\": \"afabskfakfla@hcmut.edu.vn\",\r\n        \"name\": \"thi231231h\",\r\n        \"ms\": \"2841212\",\r\n        \"faculty\": \"KHMT\",\r\n        \"role\": \"student\"\r\n    }\r\n]",
+									"raw": "[\r\n  {\r\n    \"ms\": \"2210036\",\r\n    \"name\": \"LÊ NGỌC MẠNH\",\r\n    \"email\": \"le.ngocmanh2212031@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210037\",\r\n    \"name\": \"LÊ PHÚC TRƯỜNG\",\r\n    \"email\": \"le.phuctruong0103@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210038\",\r\n    \"name\": \"LÊ QUANG HẢI\",\r\n    \"email\": \"le.quanghai2212055@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210039\",\r\n    \"name\": \"LÊ TRỌNG CẢNH\",\r\n    \"email\": \"le.trongcanh@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210040\",\r\n    \"name\": \"LÊ VĂN TUẤN\",\r\n    \"email\": \"le.vantuankhmt@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210041\",\r\n    \"name\": \"MẠNH LÊ QUANG\",\r\n    \"email\": \"manh.lequang@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210042\",\r\n    \"name\": \"MỘC NGUYỄN THỊ LÝ\",\r\n    \"email\": \"moc.nguyen@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210043\",\r\n    \"name\": \"NGHĨA NGUYỄN LÊ\",\r\n    \"email\": \"nghia.nguyenle@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210044\",\r\n    \"name\": \"NGỌC TRẦN THỊ\",\r\n    \"email\": \"ngoc.tranthithu@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210045\",\r\n    \"name\": \"NHI NGUYỄN THÁI\",\r\n    \"email\": \"nhi.nguyenthaithanh@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210046\",\r\n    \"name\": \"NHẬT NGUYỄN\",\r\n    \"email\": \"nhat.nguyen@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210047\",\r\n    \"name\": \"PHÁT NGUYỄN CÔNG\",\r\n    \"email\": \"phat.nguyencong@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210048\",\r\n    \"name\": \"PHÁT TRẦN HOÀI\",\r\n    \"email\": \"phat.tranhoai@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210049\",\r\n    \"name\": \"PHÁT TRẦN MINH\",\r\n    \"email\": \"phat.tranminh@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210050\",\r\n    \"name\": \"PHƯƠNG NGUYỄN HOÀI\",\r\n    \"email\": \"phuong.nguyenhoai@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210051\",\r\n    \"name\": \"QUANG LÊ CÔNG\",\r\n    \"email\": \"quang.lecong@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210052\",\r\n    \"name\": \"QUỐC NGUYỄN TRUNG\",\r\n    \"email\": \"quoc.nguyen@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210053\",\r\n    \"name\": \"SƠN NGUYỄN HỒNG\",\r\n    \"email\": \"son.nguyenhong@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210054\",\r\n    \"name\": \"THẢO VŨ VĂN\",\r\n    \"email\": \"thao.vuvan@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210055\",\r\n    \"name\": \"THÁI NGUYỄN HỮU\",\r\n    \"email\": \"thai.nguyenhuu@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210056\",\r\n    \"name\": \"THÀNH NGUYỄN HỌC\",\r\n    \"email\": \"thanh.nguyenhoc@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210057\",\r\n    \"name\": \"THÁI TRẦN KHOA\",\r\n    \"email\": \"thai.trankhoa@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210058\",\r\n    \"name\": \"TIẾN NGUYỄN HOÀNG\",\r\n    \"email\": \"tien.nguyenhoang@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210059\",\r\n    \"name\": \"TIẾN NGUYỄN VIỆT\",\r\n    \"email\": \"tien.nguyenviet@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210060\",\r\n    \"name\": \"TOÀN LÊ HỮU\",\r\n    \"email\": \"toan.lehuu@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210061\",\r\n    \"name\": \"TÚ TRẦN MINH\",\r\n    \"email\": \"tu.tranminh@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  },\r\n  {\r\n    \"ms\": \"2210062\",\r\n    \"name\": \"VĂN NGUYỄN HOÀNG\",\r\n    \"email\": \"van.nguyenhoang@hcmut.edu.vn\",\r\n    \"faculty\": \"KHMT\",\r\n    \"role\": \"student\"\r\n  }\r\n]\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -236,7 +256,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -264,7 +284,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -293,7 +313,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -339,7 +359,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -356,14 +376,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/class/account/67127615b086b436604f0f22",
+									"raw": "{{BASE_URL_ADMIN}}/class/account/672b8605226ae67ef9aaa040",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"class",
 										"account",
-										"67127615b086b436604f0f22"
+										"672b8605226ae67ef9aaa040"
 									]
 								}
 							},
@@ -380,7 +400,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -397,14 +417,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/class/course/6527f1e90d65e723e5b33a76",
+									"raw": "{{BASE_URL_ADMIN}}/class/course/672b86fd226ae67ef9aaa045",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"class",
 										"course",
-										"6527f1e90d65e723e5b33a76"
+										"672b86fd226ae67ef9aaa045"
 									]
 								}
 							},
@@ -418,7 +438,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -427,7 +447,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"semester\":       \"HK241\",\r\n    \"name\":           \"L12\",\r\n    \"course_id\":      \"6709371c3253c4bcf9dbc460\",\r\n    \"listStudent_ms\": [\r\n        \"2222222\",\r\n        \"1231231234\",\r\n        \"12100000\",\r\n        \"12112322313100000\"\r\n    ],\r\n    \"teacher_id\":     \"67173060b0f12f8509e5a5b9\"\r\n}",
+									"raw": "{\r\n    \"semester\":       \"HK241\",\r\n    \"name\":           \"L02\",\r\n    \"course_id\":      \"672b86fd226ae67ef9aaa045\",\r\n    \"listStudent_ms\": [\r\n        \"2210001\", \"2210002\"\r\n    ],\r\n    \"teacher_id\":     \"672b85b8226ae67ef9aaa005\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -455,7 +475,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -463,13 +483,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/class/67175e3bf3296e25ac8d8fc9",
+									"raw": "{{BASE_URL_ADMIN}}/class/672b87af226ae67ef9aaa047",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"class",
-										"67175e3bf3296e25ac8d8fc9"
+										"672b87af226ae67ef9aaa047"
 									]
 								}
 							},
@@ -483,7 +503,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -512,7 +532,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -549,7 +569,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -578,6 +598,30 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://canxphung.id.vn/admin/api/class//changess",
+									"protocol": "https",
+									"host": [
+										"canxphung",
+										"id",
+										"vn"
+									],
+									"path": [
+										"admin",
+										"api",
+										"class",
+										"",
+										"changess"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -587,17 +631,35 @@
 						{
 							"name": "CreateCourse",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_ADMIN}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ms\": \"CO3103\",\r\n    \"credit\": 1,\r\n    \"name\": \"L01\",\r\n    \"desc\": \"Đồ án công nghệ phần mềm\",\r\n    \"BT\": 10,\r\n    \"TN\": 10,\r\n    \"BTL\":10,\r\n    \"GK\":30,\r\n    \"CK\":50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/class/change/67175e3bf3296e25ac8d8fc9",
+									"raw": "{{BASE_URL_ADMIN}}/course/create",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
-										"class",
-										"change",
-										"67175e3bf3296e25ac8d8fc9"
+										"course",
+										"create"
 									]
 								}
 							},
@@ -611,7 +673,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -619,13 +681,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/course/67161b499bf8b9533f245f57",
+									"raw": "{{BASE_URL_ADMIN}}/course/672b86fd226ae67ef9aaa045",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"course",
-										"67161b499bf8b9533f245f57"
+										"672b86fd226ae67ef9aaa045"
 									]
 								}
 							},
@@ -639,7 +701,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -667,7 +729,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -689,14 +751,14 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "ChangeCourseController",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -705,7 +767,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"ms\": \"CO3001\",\r\n    \"credit\": 3,\r\n    \"name\": \"Cong nghe phan mem\",\r\n    \"desc\": \"Mon nay lay 10 diem\"\r\n}",
+									"raw": "{\r\n    \"ms\": \"CO3103\",\r\n    \"credit\": 3,\r\n    \"name\": \"Cong nghe phan mem\",\r\n    \"desc\": \"Mon nay lay 10 diem\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -713,14 +775,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/course/change/67161b499bf8b9533f245f57",
+									"raw": "{{BASE_URL_ADMIN}}/course/change/672b86fd226ae67ef9aaa045",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"course",
 										"change",
-										"67161b499bf8b9533f245f57"
+										"672b86fd226ae67ef9aaa045"
 									]
 								}
 							},
@@ -739,7 +801,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -747,13 +809,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL_ADMIN}}/resultScore/66f95884a2233f861b7d6a94",
+									"raw": "{{BASE_URL_ADMIN}}/resultScore/672b87af226ae67ef9aaa047",
 									"host": [
 										"{{BASE_URL_ADMIN}}"
 									],
 									"path": [
 										"resultScore",
-										"66f95884a2233f861b7d6a94"
+										"672b87af226ae67ef9aaa047"
 									]
 								}
 							},
@@ -767,7 +829,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGRlMTZkNmZiZWRhYzllM2I4ZDAwYSIsImV4cCI6MTczMDk2MDMxM30.AvlDrhMIFES-A2kJ6lkrv8EAnTRYbARc486m1eIDfh8",
+											"value": "{{BASE_TOKEN_ADMIN}}",
 											"type": "string"
 										}
 									]
@@ -776,7 +838,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"score\": [\r\n        {\r\n            \"MMSV\": \"3331333\",\r\n            \"Data\": {\r\n                \"BT\": [8.5, 9.0, 7.5],\r\n                \"TN\": [7.0, 6.5, 8.0],\r\n                \"BTL\": [8.0, 7.5],\r\n                \"GK\": 7.5,\r\n                \"CK\": 8.0\r\n            }\r\n        },\r\n        {\r\n            \"MMSV\": \"12313112\",\r\n            \"Data\": {\r\n                \"BT\": [9.0, 9.5, 8.5],\r\n                \"TN\": [8.0, 7.5, 9.0],\r\n                \"BTL\": [8.5, 9.0],\r\n                \"GK\": 8.0,\r\n                \"CK\": 8.5\r\n            }\r\n        }\r\n    ],\r\n    \"class_id\": \"672b158fe2a2c92f9d83d7ce\"\r\n}\r\n",
+									"raw": "{\r\n  \"score\": [\r\n    { \"MSSV\": \"2210000\" },\r\n    { \"MSSV\": \"2210001\" }\r\n  ],\r\n  \"class_id\": \"6732e83c95f2243e7eeb497e\",\r\n  \"course_id\": \"672b86fd226ae67ef9aaa045\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -791,6 +853,67 @@
 									"path": [
 										"resultScore",
 										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HallOfFame",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_ADMIN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/HOF/update",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"HOF",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPrevAllHallOfFame",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_ADMIN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/HOF/all",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"HOF",
+										"all"
 									]
 								}
 							},
@@ -814,7 +937,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"value": "{{BASE_TOKEN_STUDENT}}",
 											"type": "string"
 										}
 									]
@@ -823,7 +946,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImU4NjNmZTI5MmZhMmEyOTY3Y2Q3NTUxYzQyYTEyMTFiY2FjNTUwNzEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0ODY1MjcwNDQ0MDg4Mzc0NjMxIiwiZW1haWwiOiJseXZpbmh0aGFpMzIxQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoibkRsYzh6WU5xWjRPTFpxNjFMX0lrZyIsIm5vbmNlIjoiMjAwMDAyNzAwNDM4MjMzNTg0OTUzNTMzOTcxNTgxMDE0MzU3NzQ1NzIwMjAzNTYzIiwibmJmIjoxNzMwODkzOTY5LCJuYW1lIjoiVG_DoW4gMTIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jTGwxQ0dqM3Y2dXYwZlhmdFpDZDRaSm43bHJvSFl1emtQdVdKeW8zbl96bTc1dGVfNVo9czk2LWMiLCJnaXZlbl9uYW1lIjoiVG_DoW4gMTIiLCJpYXQiOjE3MzA4OTQyNjksImV4cCI6MTczMDg5Nzg2OSwianRpIjoiNzg0OGIwOGU1Y2E0MGQxYWY4Mzc3YzRmYTAyNGYwNmY1MGIyNTIxNCJ9.Uw9Cklr5AbnEsw73WvOcR8Nt2rBvgjZXOwdwtI4Qr_dWmrDTJK_liSyHgKlr6l5Xs__cp6OATnPzm--9rD8WpPgNlJtpLGjcg601OufKdbbdXhytJ-4pD34W3J5N6v8cgy0fRflDBROXJYqVk9r8uAVy-8HUFanPtKCSueoXwHFWD4_NzvVtdCsD1fSukdWx-ShBpM2B1D69EeoYSizJm0bNKriQgzMbzDbFjxAdEtAOUY0LkBz_u8LW0ME3WW2UxosOx7KAsrvgICfHcM8ym18f7QZ_169b2AUzSV1HqJFjzVPutMkXlzKhWt5wmY7ic7sA1B4TAfAyQ0QZO2NC0w\",\r\n    \"role\": \"student\"\r\n}",
+									"raw": "{\r\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFiODYxNGZmNjI4OTNiYWRjZTVhYTc5YTc3MDNiNTk2NjY1ZDI0NzgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4NjY4MzQxNTc5Ny1hcTZuNzRqOWdka3JkN3BkM3U2YTJkNTVmaDU4N2NkMy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6Ijg2NjgzNDE1Nzk3LWFxNm43NGo5Z2RrcmQ3cGQzdTZhMmQ1NWZoNTg3Y2QzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3ODEzNjA5NTEyMTQ2Nzk5MDcyIiwiaGQiOiJoY211dC5lZHUudm4iLCJlbWFpbCI6InRoYWkubHlkem5oYXRsb3AyazRAaGNtdXQuZWR1LnZuIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJIZFlycHN0ZGs4RFBXbjRVOHVyQ3ZBIiwibm9uY2UiOiIzOTMxNzk2NzIyMjMyNTEyMTQ4MjQyMzI1MjEyNzI4Mjk0MDg1MDgxODA0NjYwODI1IiwibmJmIjoxNzM1MzAzNzcwLCJuYW1lIjoiVEjDgUkgTMOdIFbEqE5IIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tmdTV4TzRxTExVWk5PY2ZBeEtkUzNwMUJzSGNzSGhEcmNkM2pFZE5DSENONy1VcEk9czk2LWMiLCJnaXZlbl9uYW1lIjoiVEjDgUkiLCJmYW1pbHlfbmFtZSI6IkzDnSBWxKhOSCIsImlhdCI6MTczNTMwNDA3MCwiZXhwIjoxNzM1MzA3NjcwLCJqdGkiOiJlMDdiOGNmMWZmYWQxNjJkZGE4NDcyOWFkOThkMzYzZWM0OTdkYmVhIn0.sJ_vA-KCSlxR92izwf0X16c8gS16V457SP1nipvRsjNaIdkPfgAOWNQFnyLgHFq2XYU1dL6cGgrUeaHfPH-pxLkzkQ4GlasqL441jarOIkkjWmAkagviptq4puge7aXpei3eMc4YeZMLBeyfuUSM1mVzMtApUYyLd3yC0OzKcwHVsg3aBwZRU1v2Pa2cgQ9aZiRJDIdRFJjW2AS9jgqznrj_CEnwRAAX14o5ZmkjSf27UPfWNOBTsmVjYBF4tm6Rk0K-sr69bGYqz8FGgxD3kv2BGaYI2cc4SnU4mfNtxTojH-GRPkZNkGUmEPXSI4MDPuReNyLlC1Q5AyYcz4twjA\"\r\n\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -867,7 +990,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"value": "{{BASE_TOKEN_STUDENT}}",
 											"type": "string"
 										}
 									]
@@ -885,6 +1008,33 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GetInfoByIDController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_STUDENT}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_ADMIN}}/672b85b8226ae67ef9aaa005",
+									"host": [
+										"{{BASE_URL_ADMIN}}"
+									],
+									"path": [
+										"672b85b8226ae67ef9aaa005"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -892,14 +1042,14 @@
 					"name": "class",
 					"item": [
 						{
-							"name": "ClassDetailController",
+							"name": "ClassAccountController",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"value": "{{BASE_TOKEN_STUDENT}}",
 											"type": "string"
 										}
 									]
@@ -920,14 +1070,14 @@
 							"response": []
 						},
 						{
-							"name": "ClassAccountController",
+							"name": "ClassDetailController",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"value": "{{BASE_TOKEN_STUDENT}}",
 											"type": "string"
 										}
 									]
@@ -935,13 +1085,32 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BASE_URL_CLIENT}}/class/67175e3bf3296e25ac8d8fc9",
+									"raw": "{{BASE_URL_CLIENT}}/class/672b87af226ae67ef9aaa047",
 									"host": [
 										"{{BASE_URL_CLIENT}}"
 									],
 									"path": [
 										"class",
-										"67175e3bf3296e25ac8d8fc9"
+										"672b87af226ae67ef9aaa047"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CountDocumentController",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/class/count/672b86fd226ae67ef9aaa045",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"class",
+										"count",
+										"672b86fd226ae67ef9aaa045"
 									]
 								}
 							},
@@ -955,8 +1124,27 @@
 						{
 							"name": "CreateResultScoreController",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_STUDENT}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"score\": [\r\n    {\r\n        \"MSSV\": \"2220001\",\r\n        \"Data\": {\r\n            \"BT\": [10],\r\n            \"TN\": [10],\r\n            \"BTL\": [10],\r\n            \"GK\": 10,\r\n            \"CK\": 10\r\n        }\r\n    },\r\n    {\r\n        \"MSSV\": \"2211618\",\r\n        \"Data\": {\r\n            \"BT\": [10],\r\n            \"TN\": [10],\r\n            \"BTL\": [10],\r\n            \"GK\": 10,\r\n            \"CK\": 10\r\n        }\r\n    }\r\n  ],\r\n  \"class_id\": \"6755a0c453b7ebaadfd5b57d\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{BASE_URL_CLIENT}}/resultScore/create",
 									"host": [
@@ -978,13 +1166,50 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTM3ZWI0NjA0NDFlZmI1NzZhMTk0YiIsImV4cCI6MTczMDk4MDgyNX0.7Cdz1UFLS4qdAal_yLU8XsHfBmGz2SeXYeBh1gyQtCY",
+											"value": "{{BASE_TOKEN_STUDENT}}",
 											"type": "string"
 										}
 									]
 								},
 								"method": "GET",
 								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/resultScore/676ec3559a7b92d1ab7502c9",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"resultScore",
+										"676ec3559a7b92d1ab7502c9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ResultPatchController",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_STUDENT}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"score\": [\r\n    { \"MSSV\": \"2210000\" },\r\n    { \"MSSV\": \"2210001\" },\r\n    { \"MSSV\": \"2210002\" },\r\n    { \"MSSV\": \"2210003\" },\r\n    { \"MSSV\": \"2210004\" },\r\n    { \"MSSV\": \"2210005\" },\r\n    { \"MSSV\": \"2210006\" },\r\n    { \"MSSV\": \"2210007\" },\r\n    { \"MSSV\": \"2210008\" },\r\n    { \"MSSV\": \"2210009\" },\r\n    { \"MSSV\": \"2210010\" },\r\n    { \"MSSV\": \"2210011\" },\r\n    { \"MSSV\": \"2210012\" },\r\n    { \"MSSV\": \"2210013\" },\r\n    { \"MSSV\": \"2210014\" },\r\n    { \"MSSV\": \"2210015\" },\r\n    { \"MSSV\": \"2210016\" },\r\n    { \"MSSV\": \"2210017\" },\r\n    { \"MSSV\": \"2210018\" },\r\n    { \"MSSV\": \"2210019\" },\r\n    { \"MSSV\": \"2210020\" },\r\n    { \"MSSV\": \"2210021\" },\r\n    { \"MSSV\": \"2210022\" },\r\n    { \"MSSV\": \"2210023\" },\r\n    { \"MSSV\": \"2210024\" },\r\n    { \"MSSV\": \"2210025\" },\r\n    { \"MSSV\": \"2210026\" },\r\n    { \"MSSV\": \"2210027\" },\r\n    { \"MSSV\": \"2210028\" },\r\n    { \"MSSV\": \"2210029\" },\r\n    { \"MSSV\": \"2210030\" },\r\n    { \"MSSV\": \"2210031\" },\r\n    { \"MSSV\": \"2210032\" },\r\n    { \"MSSV\": \"2210033\" },\r\n    { \"MSSV\": \"2210034\" },\r\n    { \"MSSV\": \"2210035\" },\r\n    { \"MSSV\": \"2210036\" },\r\n    { \"MSSV\": \"2210037\" },\r\n    { \"MSSV\": \"2210038\" },\r\n    { \"MSSV\": \"2210039\" },\r\n    { \"MSSV\": \"2210040\" },\r\n    { \"MSSV\": \"2210041\" },\r\n    { \"MSSV\": \"2210042\" },\r\n    { \"MSSV\": \"2210043\" },\r\n    { \"MSSV\": \"2210044\" },\r\n    { \"MSSV\": \"2210045\" },\r\n    { \"MSSV\": \"2210046\" },\r\n    { \"MSSV\": \"2210047\" },\r\n    { \"MSSV\": \"2210048\" },\r\n    { \"MSSV\": \"2210049\" },\r\n    { \"MSSV\": \"2210050\" },\r\n    { \"MSSV\": \"2210051\" },\r\n    { \"MSSV\": \"2210052\" },\r\n    { \"MSSV\": \"2210053\" },\r\n    { \"MSSV\": \"2210054\" },\r\n    { \"MSSV\": \"2210055\" },\r\n    { \"MSSV\": \"2210056\" },\r\n    { \"MSSV\": \"2210057\" },\r\n    { \"MSSV\": \"2210058\" },\r\n    { \"MSSV\": \"2210059\" },\r\n    { \"MSSV\": \"2210060\" },\r\n    { \"MSSV\": \"2210061\" },\r\n    { \"MSSV\": \"2210062\" }\r\n  ],\r\n  \"class_id\": \"672b87af226ae67ef9aaa047\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{BASE_URL_CLIENT}}/resultScore/67175e3bf3296e25ac8d8fc9",
 									"host": [
@@ -999,18 +1224,93 @@
 							"response": []
 						},
 						{
-							"name": "ResultPatchController",
+							"name": "New Request",
 							"request": {
-								"method": "PATCH",
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmI4NjA1MjI2YWU2N2VmOWFhYTA0MyIsImV4cCI6MTczNTM5MDUwNH0.CtQCNiWBCidoB_UhWyRTuw7bgxNYDRw441egspF9pBk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"class_id\": \"676ec6b49a7b92d1ab7502ca\",\r\n    \"link_url\": \"https://docs.google.com/spreadsheets/d/1Ywz0yXE9SxusWyWUZdX7Tc6Xpi296E6EHMpv30w9rM8\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "{{BASE_URL_CLIENT}}/resultScore/67175e3bf3296e25ac8d8fc9",
+									"raw": "{{BASE_URL_CLIENT}}/resultScore/upload",
 									"host": [
 										"{{BASE_URL_CLIENT}}"
 									],
 									"path": [
 										"resultScore",
-										"67175e3bf3296e25ac8d8fc9"
+										"upload"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HallOfFame",
+					"item": [
+						{
+							"name": "GetPrevAllHallOfFame",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{BASE_TOKEN_STUDENT}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/HOF/all",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"HOF",
+										"all"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "course",
+					"item": [
+						{
+							"name": "GetCourseByCourseID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_CLIENT}}/course/672b86fd226ae67ef9aaa045",
+									"host": [
+										"{{BASE_URL_CLIENT}}"
+									],
+									"path": [
+										"course",
+										"672b86fd226ae67ef9aaa045"
 									]
 								}
 							},
@@ -1019,6 +1319,217 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "bot-tele",
+			"item": [
+				{
+					"name": "otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ms\": \"2213104\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/otp",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResetPasswordController",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ms\": \"2213104\",\r\n    \"password\": \"Th@i2004\",\r\n    \"otp\": \"461633\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/resetpassword",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"resetpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginTeleController",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ms\": \"2212571\",\r\n    \"password\": \"dath241\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/loginTele",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"loginTele"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResultCourseController",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BASE_TOKEN_CLIENT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/resultScore/getmark/CO3103",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"resultScore",
+								"getmark",
+								"CO3103"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResultAllController",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BASE_TOKEN_CLIENT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/resultScore/getmark",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"resultScore",
+								"getmark"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AccountController",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BASE_TOKEN_CLIENT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_CLIENT}}/info",
+							"host": [
+								"{{BASE_URL_CLIENT}}"
+							],
+							"path": [
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "demoServer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {},
+				"protocolVersion": "auto",
+				"strictSSL": false,
+				"followOriginalHttpMethod": false,
+				"followAuthorizationHeader": false,
+				"insecureHTTPParser": true,
+				"disableUrlEncoding": true,
+				"followRedirects": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://canxphung.id.vn",
+					"protocol": "https",
+					"host": [
+						"canxphung",
+						"id",
+						"vn"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -1046,12 +1557,37 @@
 	"variable": [
 		{
 			"key": "BASE_URL_ADMIN",
-			"value": "http://localhost:8080/admin/api",
+			"value": "https://dacnpm.thaily.id.vn/admin/api",
 			"type": "string"
 		},
 		{
 			"key": "BASE_URL_CLIENT",
+			"value": "https://dacnpm.thaily.id.vn/api",
+			"type": "string"
+		},
+		{
+			"key": "BASE_TOKEN_ADMIN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmI4NjVmMjI2YWU2N2VmOWFhYTA0NCIsImV4cCI6MTczMTQ3NTc1MX0.CvBQULJ0lwWzqwYmbXPgJb29PLma7DxmYtUUbicquQY",
+			"type": "string"
+		},
+		{
+			"key": "BASE_TOKEN_STUDENT",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmI4NjA1MjI2YWU2N2VmOWFhYTA0MyIsImV4cCI6MTczMTEzMjI1N30.WU1zU2AusPt2ZTx9r_SRVJzfyeC_11KdeF9IRBjfy6o",
+			"type": "string"
+		},
+		{
+			"key": "BASE_TOKEN_TEACHER",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "TEST_URL_CLIENT",
 			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "TEST_URL_ADMIN",
+			"value": "http://localhost:8080/admin/api",
 			"type": "string"
 		}
 	]

@@ -1,0 +1,42 @@
+@startuml
+
+actor Admin
+actor Teacher
+actor Student
+
+package "Frontend" {
+    [Student View] as StudentView
+    [Teacher View] as TeacherView
+    [Admin View] as AdminView
+}
+
+package "Backend" {
+    [API Server] as APIServer
+    [File Handler] as FileHandler
+    [CSV Monitor] as CSVMonitor
+}
+
+package "Database" {
+    [Users DB] as UsersDB
+    [Courses DB] as CoursesDB
+    [Scores DB] as ScoresDB
+    [Hall of Fame DB] as HallOfFameDB
+}
+
+Admin --> AdminView : Manage system users and permissions
+Teacher --> TeacherView : Upload CSV, manage courses
+Student --> StudentView : View scores, check Hall of Fame
+
+StudentView --> APIServer : Query score data
+TeacherView --> APIServer : Submit CSV file for scores
+AdminView --> APIServer : Manage users, permissions
+
+APIServer --> UsersDB : Manage user data
+APIServer --> CoursesDB : Manage course data
+APIServer --> ScoresDB : Retrieve/Update student scores
+APIServer --> HallOfFameDB : Retrieve Hall of Fame data
+
+TeacherView --> FileHandler : Upload course and score files
+CSVMonitor --> FileHandler : Automatically download and update CSV files
+
+@enduml
